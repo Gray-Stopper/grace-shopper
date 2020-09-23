@@ -67,6 +67,7 @@ class Navbar extends React.Component {
               <Link to="/cart">Cart</Link>
             </div>
           )}
+          <NavLink to="/products">All Products</NavLink>
         </nav>
         {!this.props.isLoggedIn && this.state.showLoginForm ? <Login /> : ''}
         {!this.props.isLoggedIn && this.state.showSignUpForm ? <Signup /> : ''}

@@ -12,7 +12,6 @@ class SingleProduct extends Component {
 
   render() {
     const product = this.props.product
-
     return (
       <div id="single-product">
         {product.id && (
