@@ -22,7 +22,7 @@ class Routes extends Component {
         <Route exact path="/" />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/hello" component={AllProducts} />
+        <Route path="/allproducts" component={AllProducts} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

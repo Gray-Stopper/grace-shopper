@@ -71,7 +71,8 @@ async function seed() {
       name: 'magenta dye',
       description: 'are you mad for magenta?',
       price: 55.99,
-      category: 'color'
+      category: 'color',
+      imageUrl: '../public/magenta.png'
     }),
     Product.create({
       name: 'rainbow dye',
