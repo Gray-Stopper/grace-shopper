@@ -1,32 +1,35 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchAllProducts} from '../store/allProducts'
+import Product from './product'
 
-export class AllProducts extends React.Component {
+class AllProducts extends Component {
   constructor() {
     super()
   }
 
-  componentDidMount() {
-    this.props.getallProducts()
+  async componentDidMount() {
+    await this.props.getAllProducts()
   }
 
   render() {
-    console.log(this.props.allProducts)
-    return <div>All Products</div>
+    const grayStoppers = this.props.allProducts
+    return (
+      <div id="grayStoppers">
+        {grayStoppers.map(grayStopper => (
+          <Product key={grayStopper.id} product={grayStopper} />
+        ))}
+      </div>
+    )
   }
 }
 
-const mapState = state => {
-  return {
-    allProducts: state.products
-  }
-}
+const mapState = state => ({
+  allProducts: state.allProducts
+})
 
-const mapDispatch = dispatch => {
-  return {
-    getallProducts: () => dispatch(fetchAllProducts())
-  }
-}
+const mapDispatch = dispatch => ({
+  getAllProducts: () => dispatch(fetchAllProducts())
+})
 
 export default connect(mapState, mapDispatch)(AllProducts)

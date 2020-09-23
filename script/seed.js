@@ -71,14 +71,14 @@ async function seed() {
       name: 'magenta dye',
       description: 'are you mad for magenta?',
       price: 55.99,
-      category: 'color',
-      imageUrl: '../public/magenta.png'
+      category: 'color'
     }),
     Product.create({
       name: 'rainbow dye',
       description: "for those who can't decide",
       price: 62.99,
-      category: 'color'
+      category: 'color',
+      stock: 0
     }),
     Product.create({
       name: 'tudor wig',
