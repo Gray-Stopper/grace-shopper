@@ -22,12 +22,39 @@ form div {
 
 /* Cart Page Styling */
 
-.cart-product {
-  border-top: 2px black solid;
-  border-bottom: 2px black solid;
+.left {
+  margin-left: 1.5rem;
 }
 
 .cart-img {
   width: 7rem;
   height: auto;
+  margin: 0.25rem 0rem 0.25rem 1rem;
+}
+
+.cart {
+  border-top: 2px #000411 solid;
+  width: 90%;
+}
+
+.t-head {
+  text-align: left;
+  padding: 0.5rem 0rem;
+}
+
+th,
+td {
+  border-bottom: 1px #160c28 dashed;
+  text-align: left;
+  padding: 0.25rem 0rem;
+}
+
+.cart-button {
+  color: 000411;
+  background-color: #e1efe6;
+  border-radius: 5%;
+  box-shadow: 1px 1px 1px #000411;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.4rem;
 }

@@ -3,13 +3,22 @@ import React from 'react'
 const CartProduct = props => {
   console.log('props in CartProduct ', props)
   const {name, imageUrl, price} = props.product
+  const quantity = props.product.productsInOrder.quantity
   return (
-    <div className="cart-product">
-      <img className="cart-img" src={imageUrl} />
-      <span>{name}</span>
-      <br />
-      <span>Quantity: {props.product.productsInOrder.quantity}</span>
-    </div>
+    <tr className="cart-product">
+      <td>
+        <img className="cart-img" src={imageUrl} />
+      </td>
+      <td>{name}</td>
+      <td>{`$${price}`}</td>
+      <td>{quantity}</td>
+      <td>{`$${price * quantity}`}</td>
+      <td>
+        <button type="button" className="cart-button">
+          Remove
+        </button>
+      </td>
+    </tr>
   )
 }
 

@@ -16,15 +16,31 @@ class ViewCart extends React.Component {
   render() {
     return (
       <div>
-        {this.props.cart.products ? (
-          <div>
-            {this.props.cart.products.map(prod => {
-              return <CartProduct key={prod.id} product={prod} />
-            })}
-          </div>
-        ) : (
-          <p>Your cart is empty!</p>
-        )}
+        <h3 className="left">Cart</h3>
+        <table className="cart left">
+          <thead className="t-head">
+            <tr>
+              <th />
+              <th scope="col">Item</th>
+              <th scope="col">Item Price</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Total Price</th>
+              <th />
+            </tr>
+          </thead>
+          {this.props.cart.products ? (
+            <tbody>
+              {this.props.cart.products.map(prod => {
+                return <CartProduct key={prod.id} product={prod} />
+              })}
+            </tbody>
+          ) : (
+            // <tbody>
+            //   <tr>Your cart is empty!</tr>
+            // </tbody>
+            <tbody />
+          )}
+        </table>
       </div>
     )
   }
