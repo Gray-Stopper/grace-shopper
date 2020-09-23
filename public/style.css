@@ -19,3 +19,15 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+/* Cart Page Styling */
+
+.cart-product {
+  border-top: 2px black solid;
+  border-bottom: 2px black solid;
+}
+
+.cart-img {
+  width: 7rem;
+  height: auto;
+}

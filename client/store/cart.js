@@ -8,7 +8,7 @@ const LOAD_CART = 'LOAD_CART'
 /**
  * INITIAL STATE
  */
-const emptyCart = {}
+const emptyCart = []
 
 /**
  * ACTION CREATORS
@@ -20,11 +20,9 @@ const gotCart = cart => ({type: LOAD_CART, cart})
  */
 export const loadCart = userId => async dispatch => {
   try {
-    console.log('userId in cart: ', userId)
     const {data, status} = await axios.get(`/api/cart/${userId}`)
-    if (data) {
-      dispatch(gotCart(data))
-    } else if (status === 404) throw new Error('cart empty')
+    if (data) dispatch(gotCart(data))
+    else if (status === 404) throw new Error('cart empty')
     else throw new Error('error fetching cart')
   } catch (err) {
     console.error(err)
