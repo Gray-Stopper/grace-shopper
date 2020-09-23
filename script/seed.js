@@ -62,41 +62,62 @@ async function seed() {
 
   const products = await Promise.all([
     Product.create({
-      name: 'blonde dye',
+      name: 'Blonde Dye',
       description: 'a favorite everyday blonde color',
       price: 45.99,
-      category: 'color'
+      category: 'color',
+      imageUrl:
+        'https://thumbs.dreamstime.com/b/young-beautiful-woman-dying-her-hair-blonde-color-happy-157142388.jpg'
     }),
     Product.create({
-      name: 'magenta dye',
+      name: 'Magenta Dye',
       description: 'are you mad for magenta?',
       price: 55.99,
-      category: 'color'
+      category: 'color',
+      imageUrl:
+        'https://png.pngtree.com/png-vector/20191205/ourmid/pngtree-girl-with-pink-hair-illustration-vector-on-white-background-png-image_2029610.jpg'
     }),
     Product.create({
-      name: 'rainbow dye',
+      name: 'Rainbow Dye',
       description: "for those who can't decide",
       price: 62.99,
       category: 'color',
-      stock: 0
+      stock: 0,
+      imageUrl:
+        'https://i.pinimg.com/474x/03/76/40/03764046d06ec848fb7a3ba52f4b646e.jpg'
     }),
     Product.create({
-      name: 'tudor wig',
+      name: 'Tudor Wig',
       description: 'old-school throwback',
       price: 85.99,
-      category: 'wigs'
+      category: 'wigs',
+      // imageUrl: 'https://i.pinimg.com/236x/b0/b4/62/b0b46202f08411826f71c90e0a40a9b6--tudor-dynasty-english-tudor.jpg'
+      imageUrl:
+        'https://images-na.ssl-images-amazon.com/images/I/51hAmCzkcCL._AC_UY1000_.jpg'
     }),
     Product.create({
-      name: 'barrister wig',
+      name: 'Barrister Wig',
       description: 'an across-the-pond favorite',
       price: 85.99,
-      category: 'wigs'
+      category: 'wigs',
+      imageUrl:
+        'https://st3.depositphotos.com/3038577/12922/v/450/depositphotos_129227100-stock-illustration-funny-judge-understand-thumbs-up.jpg'
     }),
     Product.create({
-      name: "all's fair with hair vitamins",
+      name: "All's Fair With Hair Vitamins",
       description: 'pills to nourish your hair color',
       price: 72.99,
-      category: 'nutrition'
+      category: 'nutrition',
+      // imageUrl: 'https://www.pngitem.com/pimgs/m/556-5569166_cartoon-vitamins-and-minerals-hd-png-download.png'
+      imageUrl:
+        'https://thumbs.dreamstime.com/b/capsule-mascot-doing-ok-hand-sign-vector-illustration-80659483.jpg'
+    }),
+    Product.create({
+      name: 'Embrace the Grays Meditation',
+      description: 'lean into your wisdom',
+      price: 22.99,
+      category: 'nutrition',
+      stock: 0
     })
   ])
 

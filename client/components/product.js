@@ -8,10 +8,11 @@ const Product = props => {
     <div id="product" key={product.id}>
       <Link to={`/products/${product.id}`}>
         <h1>{product.name}</h1>
-        <img src={product.imageUrl} width="100" height="100" />
+        <img src={product.imageUrl} width="200" height="200" />
       </Link>
       <h3>${product.price}</h3>
       {product.stock > 0 ? <h3>in stock!</h3> : <h3>sold out</h3>}
+      <button type="button">add to cart</button>
     </div>
   )
 }
