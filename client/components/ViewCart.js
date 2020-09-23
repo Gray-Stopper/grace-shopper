@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {loadCart} from '../store/cart'
+import CartProduct from './CartProduct'
 
 class ViewCart extends React.Component {
   constructor() {
@@ -14,23 +15,25 @@ class ViewCart extends React.Component {
 
   render() {
     console.log(this.props.user.id)
-    console.log(this.props.productsInCart)
+    console.log(this.props.cart)
     return (
       <div>
-        <span>This is the cart! Or it will be, soon (hopefully)</span>
-        {/* <ul>
-          {this.props.productsInCart &&
-            this.props.productsInCart.map((cartInfo) => {
-              return <li key={cartInfo.id}>{cartInfo}</li>
+        {this.props.cart.products ? (
+          <div>
+            {this.props.cart.products.map(prod => {
+              return <CartProduct key={prod.id} product={prod} />
             })}
-        </ul> */}
+          </div>
+        ) : (
+          <p>Your cart is empty!</p>
+        )}
       </div>
     )
   }
 }
 
 const mapState = state => ({
-  productsInCart: state.cart,
+  cart: state.cart,
   user: state.user
 })
 
