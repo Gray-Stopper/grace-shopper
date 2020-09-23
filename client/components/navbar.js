@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import {logout} from '../store'
 import {Login, Signup} from './auth-form'
 
@@ -40,7 +40,7 @@ class Navbar extends React.Component {
             <div>
               {/* The navbar will show these links after you log in */}
               <Link to="/home">Home</Link>
-              <a href="#" onClick={this.props.handleClick}>
+              <a to="/" href="#" onClick={this.props.handleClick}>
                 Logout
               </a>
             </div>
@@ -48,6 +48,7 @@ class Navbar extends React.Component {
             <div>
               {/* The navbar will show these links before you log in */}
               <button
+                type="button"
                 onClick={() => {
                   this.handleLoginClick()
                 }}
@@ -55,6 +56,7 @@ class Navbar extends React.Component {
                 Login
               </button>
               <button
+                type="button"
                 onClick={() => {
                   this.handleSignUpClick()
                 }}
@@ -64,8 +66,8 @@ class Navbar extends React.Component {
             </div>
           )}
         </nav>
-        {this.state.showLoginForm ? <Login /> : ''}
-        {this.state.showSignUpForm ? <Signup /> : ''}
+        {!this.props.isLoggedIn && this.state.showLoginForm ? <Login /> : ''}
+        {!this.props.isLoggedIn && this.state.showSignUpForm ? <Signup /> : ''}
         <hr />
       </div>
     )
