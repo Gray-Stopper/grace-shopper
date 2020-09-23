@@ -40,7 +40,7 @@ class Navbar extends React.Component {
             <div>
               {/* The navbar will show these links after you log in */}
               <Link to="/home">Home</Link>
-              <a href="#" onClick={this.props.handleClick}>
+              <a to="/" href="#" onClick={this.props.handleClick}>
                 Logout
               </a>
             </div>
@@ -48,6 +48,7 @@ class Navbar extends React.Component {
             <div>
               {/* The navbar will show these links before you log in */}
               <button
+                type="button"
                 onClick={() => {
                   this.handleLoginClick()
                 }}
@@ -55,6 +56,7 @@ class Navbar extends React.Component {
                 Login
               </button>
               <button
+                type="button"
                 onClick={() => {
                   this.handleSignUpClick()
                 }}
@@ -63,10 +65,10 @@ class Navbar extends React.Component {
               </button>
             </div>
           )}
-          <NavLink to="/allproducts">All Products</NavLink>
+          <NavLink to="/products">All Products</NavLink>
         </nav>
-        {this.state.showLoginForm ? <Login /> : ''}
-        {this.state.showSignUpForm ? <Signup /> : ''}
+        {!this.props.isLoggedIn && this.state.showLoginForm ? <Login /> : ''}
+        {!this.props.isLoggedIn && this.state.showSignUpForm ? <Signup /> : ''}
         <hr />
       </div>
     )
