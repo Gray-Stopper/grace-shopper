@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Link, NavLink} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import {Login, Signup} from './auth-form'
 
@@ -43,6 +43,7 @@ class Navbar extends React.Component {
               <a to="/" href="#" onClick={this.props.handleClick}>
                 Logout
               </a>
+              <Link to="/cart">Cart</Link>
             </div>
           ) : (
             <div>
@@ -63,6 +64,7 @@ class Navbar extends React.Component {
               >
                 Sign Up
               </button>
+              <Link to="/cart">Cart</Link>
             </div>
           )}
         </nav>
