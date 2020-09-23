@@ -14,8 +14,6 @@ class ViewCart extends React.Component {
   }
 
   render() {
-    console.log(this.props.user.id)
-    console.log(this.props.cart)
     return (
       <div>
         {this.props.cart.products ? (
