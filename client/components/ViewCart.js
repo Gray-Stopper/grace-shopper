@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import cart, {loadCart} from '../store/cart'
+import {loadCart} from '../store/cart'
 
 class ViewCart extends React.Component {
   constructor() {
@@ -9,7 +9,7 @@ class ViewCart extends React.Component {
 
   async componentDidMount() {
     const userId = this.props.user.id
-    await this.props.loadCart(userId)
+    if (userId) await this.props.loadCart(userId)
   }
 
   render() {
