@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {loadCart} from '../store/cart'
+import {loadCart, removeItem} from '../store/cart'
 import {CartProduct, CartTotal} from './index'
 
 class ViewCart extends React.Component {
@@ -11,7 +11,11 @@ class ViewCart extends React.Component {
 
   async handleRemove(event, productId) {
     event.preventDefault()
-    await this.props.removeItem(productId)
+    await this.props.removeItem({
+      productId,
+      userId: this.props.user.id,
+      orderId: this.props.cart.id
+    })
   }
 
   async componentDidMount() {
@@ -65,7 +69,7 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   loadCart: userId => dispatch(loadCart(userId)),
-  removeItem: productId => dispatch(removeItem(productId))
+  removeItem: idObj => dispatch(removeItem(idObj))
 })
 
 export default connect(mapState, mapDispatch)(ViewCart)

@@ -9,7 +9,9 @@ const REMOVE_ITEM = 'REMOVE_ITEM'
 /**
  * INITIAL STATE
  */
-const emptyCart = {}
+const emptyCart = {
+  products: []
+}
 
 /**
  * ACTION CREATORS
@@ -31,10 +33,12 @@ export const loadCart = userId => async dispatch => {
   }
 }
 
-export const removeItem = productId => async dispatch => {
+export const removeItem = idObj => async dispatch => {
   try {
-    const {status} = await axios.get(`/api/cart/remove/${productId}`)
-    if (status === 200) dispatch(itemRemoved(productId))
+    const {status} = await axios.put(`/api/cart/remove`, idObj)
+    if (status === 200) dispatch(itemRemoved(idObj.productId))
+    else if (status === 401)
+      throw new Error("Warning: attempt to edit another user's cart")
     else throw new Error('failed to remove item')
   } catch (err) {
     console.error(err)
@@ -49,9 +53,12 @@ export default function(state = emptyCart, action) {
     case LOAD_CART:
       return action.cart
     case REMOVE_ITEM:
-      let newState = {...state}
-      newState.products.filter(product => product.id !== action.productId)
-      return newState
+      return {
+        ...state,
+        products: state.products.filter(
+          product => product.id !== action.productId
+        )
+      }
     default:
       return state
   }

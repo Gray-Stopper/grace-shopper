@@ -1,7 +1,7 @@
 import React from 'react'
 
 const CartProduct = props => {
-  const {name, imageUrl, price} = props.product
+  const {id, name, imageUrl, price} = props.product
   const quantity = props.product.productsInOrder.quantity
   return (
     <tr className="cart-product">
@@ -16,7 +16,7 @@ const CartProduct = props => {
         <button
           type="button"
           className="button remove"
-          onClick={() => props.remove}
+          onClick={() => props.remove(event, id)}
         >
           Remove
         </button>
