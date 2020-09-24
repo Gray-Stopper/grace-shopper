@@ -5,14 +5,18 @@ const Product = props => {
   const product = props.product
 
   return (
-    <div id="product" key={product.id}>
+    <div id="product" key={product.id} className="grayStopper">
       <Link to={`/products/${product.id}`}>
-        <h1>{product.name}</h1>
         <img src={product.imageUrl} width="200" height="200" />
       </Link>
-      <h3>${product.price}</h3>
-      {product.stock > 0 ? <h3>in stock!</h3> : <h3>sold out</h3>}
-      <button type="button">add to cart</button>
+      <h4>{product.category}</h4>
+      <Link to={`/products/${product.id}`}>
+        <h3>{product.name}</h3>
+      </Link>
+      {product.stock > 0 ? <h4>in stock!</h4> : <h4>sold out</h4>}
+      <button type="button" className="clear button">
+        Add To Cart - ${product.price}
+      </button>
     </div>
   )
 }
