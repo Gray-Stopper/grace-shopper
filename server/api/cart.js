@@ -50,7 +50,7 @@ router.put('/quantity', async (req, res, next) => {
     if (currentOrder.userId !== req.body.userId) {
       res.sendStatus(401)
     }
-    const [numRows, updatedProd] = await ProductsInOrder.update(
+    const [numRows] = await ProductsInOrder.update(
       {quantity: req.body.quantity},
       {
         where: {
@@ -60,8 +60,6 @@ router.put('/quantity', async (req, res, next) => {
         returning: true
       }
     )
-    console.log('numRows: ', numRows)
-    console.log('updated Prod: ', updatedProd)
     if (numRows === 1) {
       res.json({
         quantity: req.body.quantity,
@@ -72,5 +70,50 @@ router.put('/quantity', async (req, res, next) => {
     } else throw new Error('update failed')
   } catch (err) {
     next(err)
+  }
+})
+
+// add item to cart
+router.put('/add', async (req, res, next) => {
+  try {
+    console.log(req.body)
+    const [currentOrder] = await Order.findOrCreate({
+      where: {
+        completed: false,
+        userId: req.body.userId
+      },
+      include: {
+        model: Product,
+        as: ProductsInOrder
+      }
+    })
+
+    console.log(currentOrder)
+    console.log(
+      'this is the first product in current order: ',
+      currentOrder.products[0]
+    )
+
+    if (currentOrder.userId !== req.body.userId) {
+      res.sendStatus(401)
+    } else {
+      currentOrder.products.forEach(async product => {
+        if (product.id === req.body.productId) {
+          const [rows, updatedOrder] = await ProductsInOrder.update({
+            quantity: product.productsInOrder.quantity++,
+            where: {
+              productId: req.body.productId,
+              orderId: currentOrder.id
+            }
+          })
+          res.json(updatedOrder)
+        }
+      })
+      const currentProduct = await Product.findByPk(req.body.productId)
+      const updatedOrder = await currentOrder.addProduct(currentProduct)
+      res.json(updatedOrder)
+    }
+  } catch (error) {
+    next(error)
   }
 })

@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 const CartTotal = props => {
   const totalPrice = props.cart.products.reduce((acc, val) => {
@@ -25,9 +26,19 @@ const CartTotal = props => {
         </tr>
       </tbody>
       <tfoot>
-        <button type="button" className="button checkout">
+        {/* <button type="button" className="button checkout">
           Proceed To Checkout
-        </button>
+        </button> */}
+        <Link
+          to={{
+            pathname: '/checkout',
+            state: {product: props.cart.products}
+          }}
+        >
+          <button type="button" className="button checkout">
+            Proceed To Checkout
+          </button>
+        </Link>
       </tfoot>
     </table>
   )
