@@ -4,16 +4,18 @@ import axios from 'axios'
  * ACTION TYPES
  */
 const LOAD_CART = 'LOAD_CART'
+const REMOVE_ITEM = 'REMOVE_ITEM'
 
 /**
  * INITIAL STATE
  */
-const emptyCart = []
+const emptyCart = {}
 
 /**
  * ACTION CREATORS
  */
 const gotCart = cart => ({type: LOAD_CART, cart})
+const itemRemoved = productId => ({type: REMOVE_ITEM, productId})
 
 /**
  * THUNK CREATORS
@@ -29,6 +31,16 @@ export const loadCart = userId => async dispatch => {
   }
 }
 
+export const removeItem = productId => async dispatch => {
+  try {
+    const {status} = await axios.get(`/api/cart/remove/${productId}`)
+    if (status === 200) dispatch(itemRemoved(productId))
+    else throw new Error('failed to remove item')
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 /**
  * REDUCER
  */
@@ -36,6 +48,10 @@ export default function(state = emptyCart, action) {
   switch (action.type) {
     case LOAD_CART:
       return action.cart
+    case REMOVE_ITEM:
+      let newState = {...state}
+      newState.products.filter(product => product.id !== action.productId)
+      return newState
     default:
       return state
   }

@@ -6,6 +6,12 @@ import {CartProduct, CartTotal} from './index'
 class ViewCart extends React.Component {
   constructor() {
     super()
+    this.handleRemove = this.handleRemove.bind(this)
+  }
+
+  async handleRemove(event, productId) {
+    event.preventDefault()
+    await this.props.removeItem(productId)
   }
 
   async componentDidMount() {
@@ -32,7 +38,13 @@ class ViewCart extends React.Component {
               </thead>
               <tbody>
                 {this.props.cart.products.map(prod => {
-                  return <CartProduct key={prod.id} product={prod} />
+                  return (
+                    <CartProduct
+                      key={prod.id}
+                      product={prod}
+                      remove={this.handleRemove}
+                    />
+                  )
                 })}
               </tbody>
             </table>
@@ -52,7 +64,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  loadCart: userId => dispatch(loadCart(userId))
+  loadCart: userId => dispatch(loadCart(userId)),
+  removeItem: productId => dispatch(removeItem(productId))
 })
 
 export default connect(mapState, mapDispatch)(ViewCart)
