@@ -13,12 +13,18 @@ class AllProducts extends Component {
   }
 
   render() {
-    const grayStoppers = this.props.allProducts
+    const grayStoppers = this.props.allProducts || []
     return (
-      <div id="grayStoppers" className="grayStoppers">
-        {grayStoppers.map(grayStopper => (
-          <Product key={grayStopper.id} product={grayStopper} />
-        ))}
+      <div>
+        {grayStoppers.length > 0 ? (
+          <div id="grayStoppers" className="grayStoppers">
+            {grayStoppers.map(grayStopper => (
+              <Product key={grayStopper.id} product={grayStopper} />
+            ))}
+          </div>
+        ) : (
+          <h3>More products coming soon!</h3>
+        )}
       </div>
     )
   }
