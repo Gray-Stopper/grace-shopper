@@ -14,7 +14,9 @@ const Product = props => {
         <h3>{product.name}</h3>
       </Link>
       {product.stock > 0 ? <h4>in stock!</h4> : <h4>sold out</h4>}
-      <button type="button">Add To Cart - ${product.price}</button>
+      <button type="button" className="clear button">
+        Add To Cart - ${product.price}
+      </button>
     </div>
   )
 }
