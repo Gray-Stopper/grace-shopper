@@ -35,8 +35,12 @@ class Navbar extends React.Component {
     return (
       <div>
         <div className="header">
-          <NavLink to="/products">All Products</NavLink>
-          <h2 className="logo">GRAY STOPPER</h2>
+          <NavLink to="/products" className="link">
+            All Products
+          </NavLink>
+          <Link to="/home" className="link">
+            <h2 className="logo">GRAY STOPPER</h2>
+          </Link>
           <nav>
             {this.props.isLoggedIn ? (
               <div>

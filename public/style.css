@@ -37,9 +37,6 @@ form div {
   margin: 0em;
 }
 
-.home {
-}
-
 .homeImage {
   background-image: url('/assets/download-2.png');
   background-repeat: no-repeat;
@@ -50,4 +47,29 @@ form div {
   background-color: #efcb68;
   text-align: right;
   padding: 1em 5em 1em 1em;
+}
+
+.grayStoppers {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  box-sizing: border-box;
+  /* font-family: Verdana; */
+  font-weight: normal;
+}
+
+.grayStopper {
+  padding: 3em;
+  /* background-color: #AEB7B3; */
+  /* background-clip: content-box; */
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.singleProduct {
+  display: flex;
+  justify-content: center;
 }

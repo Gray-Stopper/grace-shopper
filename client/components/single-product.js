@@ -15,7 +15,7 @@ class SingleProduct extends Component {
     return (
       <div id="single-product">
         {product.id && (
-          <div>
+          <div className="singleProduct">
             <Product product={product} />
             <p>{product.description}</p>
           </div>
