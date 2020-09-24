@@ -12,17 +12,17 @@ router.get('/:userId', async (req, res, next) => {
       },
       include: {model: Product, as: ProductsInOrder}
     })
-    console.log(currentCart)
     if (currentCart) {
       res.json(currentCart)
     } else {
-      res.sendStatus(404)
+      throw new Error()
     }
   } catch (err) {
     next(err)
   }
 })
 
+// remove item from cart
 router.put('/remove', async (req, res, next) => {
   try {
     const currentOrder = await Order.findByPk(req.body.orderId)
@@ -37,6 +37,39 @@ router.put('/remove', async (req, res, next) => {
       })
     }
     res.sendStatus(200)
+  } catch (err) {
+    next(err)
+  }
+})
+
+// edit quantity of an item
+router.put('/quantity', async (req, res, next) => {
+  try {
+    const currentOrder = await Order.findByPk(req.body.orderId)
+    console.log('currentOrder: ', currentOrder)
+    if (currentOrder.userId !== req.body.userId) {
+      res.sendStatus(401)
+    }
+    const [numRows, updatedProd] = await ProductsInOrder.update(
+      {quantity: req.body.quantity},
+      {
+        where: {
+          orderId: req.body.orderId,
+          productId: req.body.productId
+        },
+        returning: true
+      }
+    )
+    console.log('numRows: ', numRows)
+    console.log('updated Prod: ', updatedProd)
+    if (numRows === 1) {
+      res.json({
+        quantity: req.body.quantity,
+        productId: req.body.productId
+      })
+    } else if (numRows > 1) {
+      throw new Error('updated too many rows!')
+    } else throw new Error('update failed')
   } catch (err) {
     next(err)
   }
