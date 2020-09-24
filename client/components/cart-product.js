@@ -1,7 +1,6 @@
 import React from 'react'
 
 const CartProduct = props => {
-  console.log('props in CartProduct ', props)
   const {name, imageUrl, price} = props.product
   const quantity = props.product.productsInOrder.quantity
   return (

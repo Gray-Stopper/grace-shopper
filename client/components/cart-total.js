@@ -8,7 +8,7 @@ const CartTotal = props => {
     <table className="total">
       <tbody>
         <tr>
-          <td className="bold">Total Price</td>
+          <td className="bold">Subtotal</td>
           <td>{`$${totalPrice}`}</td>
         </tr>
         <tr>
