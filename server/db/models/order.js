@@ -5,6 +5,13 @@ const Order = db.define('order', {
   completed: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
+  },
+  subtotal: {
+    type: Sequelize.INTEGER,
+    get: function() {
+      let pennies = this.getDataValue('subtotal')
+      return pennies / 100
+    }
   }
 })
 
