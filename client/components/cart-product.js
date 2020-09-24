@@ -14,7 +14,7 @@ const CartProduct = props => {
       <td>{quantity}</td>
       <td>{`$${price * quantity}`}</td>
       <td>
-        <button type="button" className="cart-button">
+        <button type="button" className="button remove">
           Remove
         </button>
       </td>
