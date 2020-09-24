@@ -16,8 +16,14 @@ const Product = db.define('product', {
       min: 0
     }
   },
-  description: Sequelize.TEXT,
-  price: Sequelize.DECIMAL,
+  description: Sequelize.STRING,
+  price: {
+    type: Sequelize.INTEGER,
+    get: function() {
+      let pennies = this.getDataValue('price')
+      return pennies / 100
+    }
+  },
   category: Sequelize.ENUM('color', 'nutrition', 'wigs')
 })
 

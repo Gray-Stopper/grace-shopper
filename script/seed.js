@@ -64,7 +64,7 @@ async function seed() {
     Product.create({
       name: 'Blonde Dye',
       description: 'a favorite everyday blonde color',
-      price: 45.99,
+      price: 4599,
       category: 'color',
       imageUrl:
         'https://thumbs.dreamstime.com/b/young-beautiful-woman-dying-her-hair-blonde-color-happy-157142388.jpg'
@@ -72,7 +72,7 @@ async function seed() {
     Product.create({
       name: 'Magenta Dye',
       description: 'are you mad for magenta?',
-      price: 55.99,
+      price: 5599,
       category: 'color',
       imageUrl:
         'https://png.pngtree.com/png-vector/20191205/ourmid/pngtree-girl-with-pink-hair-illustration-vector-on-white-background-png-image_2029610.jpg'
@@ -80,7 +80,7 @@ async function seed() {
     Product.create({
       name: 'Rainbow Dye',
       description: "for those who can't decide",
-      price: 62.99,
+      price: 6299,
       category: 'color',
       stock: 0,
       imageUrl:
@@ -89,7 +89,7 @@ async function seed() {
     Product.create({
       name: 'Tudor Wig',
       description: 'old-school throwback',
-      price: 85.99,
+      price: 8599,
       category: 'wigs',
       // imageUrl: 'https://i.pinimg.com/236x/b0/b4/62/b0b46202f08411826f71c90e0a40a9b6--tudor-dynasty-english-tudor.jpg'
       imageUrl:
@@ -98,7 +98,7 @@ async function seed() {
     Product.create({
       name: 'Barrister Wig',
       description: 'an across-the-pond favorite',
-      price: 85.99,
+      price: 8599,
       category: 'wigs',
       imageUrl:
         'https://st3.depositphotos.com/3038577/12922/v/450/depositphotos_129227100-stock-illustration-funny-judge-understand-thumbs-up.jpg'
@@ -106,7 +106,7 @@ async function seed() {
     Product.create({
       name: "All's Fair With Hair Vitamins",
       description: 'pills to nourish your hair color',
-      price: 72.99,
+      price: 7299,
       category: 'nutrition',
       // imageUrl: 'https://www.pngitem.com/pimgs/m/556-5569166_cartoon-vitamins-and-minerals-hd-png-download.png'
       imageUrl:
@@ -115,7 +115,7 @@ async function seed() {
     Product.create({
       name: 'Embrace the Grays Meditation',
       description: 'lean into your wisdom',
-      price: 22.99,
+      price: 2299,
       category: 'nutrition',
       stock: 0
     })

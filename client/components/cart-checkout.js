@@ -22,13 +22,6 @@ const Checkout = props => {
       </div>
       <div>
         {products.length} {products.length > 1 ? 'Items' : 'Item'} in Cart
-        {/* {
-          products.map(product => {
-            <div>
-              <CartProduct props={product} />
-            </div>
-          })
-        } */}
       </div>
     </div>
   )
