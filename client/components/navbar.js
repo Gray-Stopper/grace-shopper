@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link, NavLink} from 'react-router-dom'
 import {logout} from '../store'
+import {emptyCart} from '../store/cart'
 import {Login, Signup} from './auth-form'
 
 class Navbar extends React.Component {
@@ -96,6 +97,7 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
+      dispatch(emptyCart())
     }
   }
 }

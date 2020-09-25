@@ -6,11 +6,12 @@ import axios from 'axios'
 const LOAD_CART = 'LOAD_CART'
 const REMOVE_ITEM = 'REMOVE_ITEM'
 const EDIT_QUANTITY = 'EDIT_QUANTITY'
+const EMPTY_CART = 'EMPTY_CART'
 
 /**
  * INITIAL STATE
  */
-const emptyCart = {
+const defaultCartState = {
   products: []
 }
 
@@ -26,6 +27,8 @@ const quantityChanged = updates => ({
   productId: updates.productId,
   quantity: updates.quantity
 })
+
+export const emptyCart = () => ({type: EMPTY_CART})
 
 /**
  * THUNK CREATORS
@@ -97,7 +100,7 @@ export const editQuantity = updateObj => async dispatch => {
 /**
  * REDUCER
  */
-export default function(state = emptyCart, action) {
+export default function(state = defaultCartState, action) {
   switch (action.type) {
     case LOAD_CART:
       return action.cart
@@ -118,6 +121,8 @@ export default function(state = emptyCart, action) {
           return product
         })
       }
+    case EMPTY_CART:
+      return defaultCartState
     default:
       return state
   }
