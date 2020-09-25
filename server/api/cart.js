@@ -85,3 +85,56 @@ router.put('/add', async (req, res, next) => {
     next(error)
   }
 })
+
+router.put('/:userId/:orderId', async (req, res, next) => {
+  try {
+    const currentCart = await ProductsInOrder.findAll({
+      where: {
+        orderId: req.params.orderId
+      }
+    })
+    const stock = await Promise.all(
+      currentCart.map(async product => {
+        const stock = await Product.findByPk(product.productId)
+        console.log(stock.stock)
+        if (product.quantity <= stock.stock) {
+          return stock.stock - product.quantity
+        } else {
+          return -1
+        }
+      })
+    )
+    if (stock.includes('-1')) {
+      res.status(202).send('Oh-no! Out of Stock!')
+    } else {
+      for (let i = 0; i < stock.length; i++) {
+        let newStock = stock[i]
+        let productId = currentCart[i].productId
+        Product.update(
+          {
+            stock: newStock
+          },
+          {
+            where: {
+              id: productId
+            }
+          }
+        )
+      }
+      await Order.update(
+        {
+          completed: true
+        },
+        {
+          where: {
+            userId: req.params.userId,
+            id: req.params.orderId
+          }
+        }
+      )
+      res.status(200).json({redirectUrl: '/confirmation'})
+    }
+  } catch (err) {
+    next(err)
+  }
+})

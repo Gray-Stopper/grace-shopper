@@ -103,6 +103,10 @@ td {
   padding: 0.25rem 0rem;
 }
 
+.foot {
+  border-bottom: none;
+}
+
 .button {
   border-radius: 5%;
   box-shadow: 1px 1px 1px #000411;
