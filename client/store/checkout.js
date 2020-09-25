@@ -9,6 +9,7 @@ export const putCheckOutItems = (orderObj, ownProps) => {
         `/api/cart/${cart.userId}/${cart.id}`,
         orderObj
       )
+      console.log(data)
       ownProps.history.push(data.redirectUrl)
     } catch (err) {
       console.log(err)
