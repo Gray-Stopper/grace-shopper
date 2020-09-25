@@ -18,16 +18,23 @@ class ViewCart extends React.Component {
     })
   }
 
+  async
+
   async componentDidMount() {
     const userId = this.props.user.id
-    if (userId) await this.props.loadCart(userId)
+    if (userId) {
+      await this.props.loadCart(userId)
+    }
   }
 
   render() {
+    console.log(this.props)
     return (
       <div>
-        <h3 className="left">Cart</h3>
-        {this.props.cart.products ? (
+        <h3 className="left">
+          {this.props.user ? `${this.props.user.firstName}'s Cart` : 'Cart'}
+        </h3>
+        {this.props.cart ? (
           <div>
             <table className="cart left">
               <thead className="t-head">
@@ -46,13 +53,15 @@ class ViewCart extends React.Component {
                     <CartProduct
                       key={prod.id}
                       product={prod}
+                      userId={this.props.user.id}
+                      orderId={this.props.cart.id}
                       remove={this.handleRemove}
                     />
                   )
                 })}
               </tbody>
             </table>
-            <CartTotal cart={this.props.cart} />
+            {this.props.cart && <CartTotal cart={this.props.cart} />}
           </div>
         ) : (
           <p>No items in cart</p>

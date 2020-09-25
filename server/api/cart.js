@@ -12,17 +12,17 @@ router.get('/:userId', async (req, res, next) => {
       },
       include: {model: Product, as: ProductsInOrder}
     })
-    console.log(currentCart)
     if (currentCart) {
       res.json(currentCart)
     } else {
-      res.sendStatus(404)
+      throw new Error()
     }
   } catch (err) {
     next(err)
   }
 })
 
+// remove item from cart
 router.put('/remove', async (req, res, next) => {
   try {
     const currentOrder = await Order.findByPk(req.body.orderId)
@@ -42,6 +42,38 @@ router.put('/remove', async (req, res, next) => {
   }
 })
 
+// edit quantity of an item
+router.put('/quantity', async (req, res, next) => {
+  try {
+    const currentOrder = await Order.findByPk(req.body.orderId)
+    console.log('currentOrder: ', currentOrder)
+    if (currentOrder.userId !== req.body.userId) {
+      res.sendStatus(401)
+    }
+    const [numRows] = await ProductsInOrder.update(
+      {quantity: req.body.quantity},
+      {
+        where: {
+          orderId: req.body.orderId,
+          productId: req.body.productId
+        },
+        returning: true
+      }
+    )
+    if (numRows === 1) {
+      res.json({
+        quantity: req.body.quantity,
+        productId: req.body.productId
+      })
+    } else if (numRows > 1) {
+      throw new Error('updated too many rows!')
+    } else throw new Error('update failed')
+  } catch (err) {
+    next(err)
+  }
+})
+
+// add item to cart
 router.put('/add', async (req, res, next) => {
   try {
     console.log(req.body)
@@ -96,7 +128,7 @@ router.put('/:userId/:orderId', async (req, res, next) => {
     const stock = await Promise.all(
       currentCart.map(async product => {
         const stock = await Product.findByPk(product.productId)
-        console.log(stock.stock)
+        console.log(product.quantity <= stock.stock)
         if (product.quantity <= stock.stock) {
           return stock.stock - product.quantity
         } else {
@@ -105,12 +137,12 @@ router.put('/:userId/:orderId', async (req, res, next) => {
       })
     )
     if (stock.includes('-1')) {
-      res.status(202).send('Oh-no! Out of Stock!')
+      res.status(202).json({redirectUrl: '/cart'})
     } else {
       for (let i = 0; i < stock.length; i++) {
         let newStock = stock[i]
         let productId = currentCart[i].productId
-        Product.update(
+        await Product.update(
           {
             stock: newStock
           },
@@ -132,6 +164,7 @@ router.put('/:userId/:orderId', async (req, res, next) => {
           }
         }
       )
+      await Order.create({userId: req.params.userId})
       res.status(200).json({redirectUrl: '/confirmation'})
     }
   } catch (err) {
