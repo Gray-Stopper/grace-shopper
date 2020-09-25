@@ -11,6 +11,10 @@ export const putCheckOutItems = (orderObj, ownProps) => {
       )
       console.log(data)
       ownProps.history.push(data.redirectUrl)
+      if (data.alert) {
+        const verb = data.alert.length > 1 ? 'are' : 'is'
+        alert(`${data.alert.join(' ')} ${verb} sold out!`)
+      }
     } catch (err) {
       console.log(err)
     }

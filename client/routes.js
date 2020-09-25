@@ -7,10 +7,12 @@ import {
   ViewCart,
   AllProducts,
   Checkout,
-  Confirmation
+  Confirmation,
+  GuestCart,
+  SingleProduct
 } from './components'
 import {me} from './store'
-import SingleProduct from './components/single-product'
+// import GuestCart from './components/guest-cart'
 
 /**
  * COMPONENT
@@ -32,15 +34,17 @@ class Routes extends Component {
         <Route exact path="/confirmation" component={Confirmation} />
         <Route exact path="/products/:productId" component={SingleProduct} />
         <Route exact path="/products" component={AllProducts} />
+        <Route exact path="/guestCart" component={GuestCart} />
         <Redirect from="/" to="/home" component={UserHome} />
+
         {/* <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} /> */}
-        {/* {isLoggedIn && (
+        {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-        {/* <Route path="/home" component={UserHome} />
-          </Switch> */}
-        {/* )} */}
+            <Route path="/home" component={UserHome} />
+          </Switch>
+        )}
         {/* Displays our Login component as a fallback */}
         {/* <Route component={Login} /> */}
       </Switch>

@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 
 const Product = props => {
   const product = props.product
+  console.log(props)
 
   return (
     <div id="product" key={product.id} className="grayStopper">

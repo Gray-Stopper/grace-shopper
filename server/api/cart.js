@@ -143,16 +143,21 @@ router.put('/:userId/:orderId', async (req, res, next) => {
       })
     )
     if (stock.includes(-1)) {
-      const outStockItems = stock.map((element, index) => {
-        if (element === -1) {
-          return currentCart[index].productId
-          // const id = currentCart[index].productId
-          // return await Product.findByPk(id)
-        }
+      const outStockItems = stock
+        .map((element, index) => {
+          if (element === -1) {
+            return currentCart[index].productId
+          }
+        })
+        .filter(productId => productId !== undefined)
+      await Promise.all(
+        outStockItems.map(async productId => {
+          const item = await Product.findByPk(productId)
+          return item.name
+        })
+      ).then(result => {
+        res.status(202).json({redirectUrl: '/cart', alert: result})
       })
-      // .filter(productId => productId !== undefined)
-      console.log(outStockItems)
-      res.status(202).json({redirectUrl: '/cart', alert: outStockItems})
     } else {
       for (let i = 0; i < stock.length; i++) {
         let newStock = stock[i]

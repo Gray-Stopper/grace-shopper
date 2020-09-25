@@ -16,7 +16,7 @@ export const UserHome = props => {
           <h3>Welcome, {firstName ? firstName : email}</h3>{' '}
         </div>
       ) : (
-        ''
+        <h3>Welcome, guest!</h3>
       )}
       <div className="homeImage">
         <p className="tagline">A virtual spa for your aging head</p>
