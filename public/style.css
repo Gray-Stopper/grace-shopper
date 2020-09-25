@@ -142,3 +142,22 @@ td {
   background-color: white;
   width: 100%;
 }
+
+.checkoutPage {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+}
+
+.checkoutPageChildren {
+  flex-grow: 1;
+}
+
+p {
+  text-align: center;
+}
+
+.checkoutPage {
+  justify-content: center;
+  left: 0%;
+}

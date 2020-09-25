@@ -22,22 +22,30 @@ export class Checkout extends Component {
     const item = products.length > 1 ? 'Items' : 'Item'
 
     return (
-      <div>
-        <div>
-          Shipping
-          <input />
-          <p>Standard shipping is $5.99, more options coming soon</p>
-          Payment Methods
-          <input />
+      <div className="checkoutPage">
+        <div className="checkoutPageChildren">
+          <div>
+            <p>Shipping</p>
+            <input />
+            <p>Standard shipping is $5.99, more options coming soon!</p>
+          </div>
+          <div>
+            <p>Payment Methods</p>
+            <input />
+          </div>
           <div>
             <form onSubmit={this.handleSubmit}>
-              <label>
-                <input type="submit" value="Make my gray go away!" />
+              <label className="checkoutPage">
+                <input
+                  type="submit"
+                  value="Make my gray go away!"
+                  className=" checkout button checkoutPage"
+                />
               </label>
             </form>
           </div>
         </div>
-        <div>
+        <div className="checkoutPageChildren">
           <h3>
             {products.length} {item} in Cart
           </h3>
