@@ -76,7 +76,6 @@ router.put('/quantity', async (req, res, next) => {
 // add item to cart
 router.put('/add', async (req, res, next) => {
   try {
-    console.log(req.body)
     const [currentOrder] = await Order.findOrCreate({
       where: {
         completed: false,
@@ -88,29 +87,37 @@ router.put('/add', async (req, res, next) => {
       }
     })
 
-    console.log(currentOrder)
-    console.log(
-      'this is the first product in current order: ',
-      currentOrder.products[0]
-    )
-
     if (currentOrder.userId !== req.body.userId) {
       res.sendStatus(401)
     } else {
-      currentOrder.products.forEach(async product => {
-        if (product.id === req.body.productId) {
-          const [rows, updatedOrder] = await ProductsInOrder.update({
-            quantity: product.productsInOrder.quantity++,
-            where: {
-              productId: req.body.productId,
-              orderId: currentOrder.id
-            }
-          })
-          res.json(updatedOrder)
-        }
+      let updatedProduct
+      if (currentOrder.products) {
+        currentOrder.products.forEach(async product => {
+          if (product.id === req.body.productId) {
+            const newQuantity = (product.productsInOrder.quantity += 1)
+            const productToUpdate = await ProductsInOrder.findOne({
+              where: {
+                productId: req.body.productId,
+                orderId: currentOrder.id
+              }
+            })
+            updatedProduct = await productToUpdate.update({
+              quantity: newQuantity
+            })
+          }
+        })
+      }
+      if (!updatedProduct) {
+        const currentProduct = await Product.findByPk(req.body.productId)
+        await currentOrder.addProduct(currentProduct)
+      }
+      let updatedOrder = await Order.findOne({
+        where: {
+          userId: req.body.userId,
+          completed: false
+        },
+        include: {model: Product, as: ProductsInOrder}
       })
-      const currentProduct = await Product.findByPk(req.body.productId)
-      const updatedOrder = await currentOrder.addProduct(currentProduct)
       res.json(updatedOrder)
     }
   } catch (error) {
