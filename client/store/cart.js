@@ -30,6 +30,22 @@ const quantityChanged = updates => ({
 /**
  * THUNK CREATORS
  */
+
+export const addItemThunk = idObj => async dispatch => {
+  try {
+    const {data, status} = await axios.put('/api/cart/add', idObj)
+    if (status === 200) {
+      dispatch(gotCart(data))
+    } else if (status === 401) {
+      throw new Error("Warning: attempt to edit another user's cart")
+    } else {
+      throw new Error('failed to add item')
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 export const loadCart = userId => async dispatch => {
   try {
     const {data, status} = await axios.get(`/api/cart/${userId}`)
