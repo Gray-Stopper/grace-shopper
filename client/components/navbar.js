@@ -32,6 +32,7 @@ class Navbar extends React.Component {
   }
 
   render() {
+    const users = this.props.isAdmin ? <Link to="/users">Users</Link> : ''
     return (
       <div>
         <div className="header">
@@ -46,10 +47,11 @@ class Navbar extends React.Component {
               <div>
                 {/* The navbar will show these links after you log in */}
                 <Link to="/home">Home</Link>
+                <Link to="/cart">Cart</Link>
+                {users}
                 <a to="/" href="#" onClick={this.props.handleClick}>
                   Logout
                 </a>
-                <Link to="/cart">Cart</Link>
               </div>
             ) : (
               <div>
@@ -89,7 +91,8 @@ class Navbar extends React.Component {
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    isAdmin: !!state.user.isAdmin
   }
 }
 
