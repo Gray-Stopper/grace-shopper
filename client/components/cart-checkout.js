@@ -23,44 +23,55 @@ export class Checkout extends Component {
     const cart = this.props.location.state.product
     const subtotal = this.props.location.state.subtotal
     const products = cart.products
-    const item = products.length > 1 ? 'Items' : 'Item'
-    const calTax = Math.round(subtotal * 100 * this.state.tax) / 100
+    const calTax = Math.round(subtotal * this.state.tax) / 100
     const tax = this.state.tax !== 0 ? `$${calTax}` : 'TBD'
+    const total = Math.round((subtotal + 5.99 + calTax) * 100) / 100
+
     return (
       <div className="checkoutPage">
         <div className="checkoutPageChildren">
-          <CheckOutForm props={this.props} checkTax={this.stateTax} />
+          <CheckOutForm
+            props={this.props}
+            checkTax={this.stateTax}
+            cartTotal={total}
+          />
         </div>
         <div className="checkoutPageChildren">
-          <h3>
-            {' '}
-            {products.length} {item} in Cart{' '}
-          </h3>
+          <h3 className="formHeader">Cart Items</h3>
           <div>
-            {products.map(product => (
-              <div key={product.id}>
-                {product.name}
-                <img src={product.imageUrl} height="40px" width="40px" />
-              </div>
-            ))}
+            <table>
+              <tbody>
+                {products.map(product => (
+                  <tr key={product.id}>
+                    <td className="foot">
+                      <img src={product.imageUrl} className="pay-img" />
+                    </td>
+                    <td className="foot longName">{product.name}</td>
+                    <td className="foot">
+                      x{product.productsInOrder.quantity}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
             <div>
               <table className="total">
                 <tbody>
                   <tr>
-                    <td className="bold">Subtotal</td>
-                    <td>{`$${subtotal}`}</td>
+                    <td className="bold rowSpaces">Subtotal</td>
+                    <td className="rightAdjust">{`$${subtotal}`}</td>
                   </tr>
                   <tr>
                     <td className="bold">Tax</td>
-                    <td>{tax}</td>
+                    <td className="rightAdjust">{tax}</td>
                   </tr>
                   <tr>
                     <td className="bold">Shipping</td>
-                    <td>$5.99</td>
+                    <td className="rightAdjust">$5.99</td>
                   </tr>
                   <tr>
                     <td className="bold">Total</td>
-                    <td>{`$${subtotal + 5.99 + calTax}`}</td>
+                    <td className="rightAdjust">{`$${total}`}</td>
                   </tr>
                 </tbody>
               </table>

@@ -32,7 +32,10 @@ export class CheckOutForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    this.props.cartCheckout(this.props.props.location.state)
+    this.props.cartCheckout({
+      obj: this.props.props.location.state,
+      total: this.props.cartTotal
+    })
   }
 
   render() {

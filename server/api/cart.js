@@ -175,7 +175,7 @@ router.put('/:userId/:orderId', async (req, res, next) => {
           }
         )
       }
-      const pennies = req.body.subtotal * 100
+      const pennies = req.body.total * 100
       await Order.update(
         {
           completed: true,

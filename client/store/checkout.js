@@ -3,7 +3,7 @@ import axios from 'axios'
 export const putCheckOutItems = (orderObj, ownProps) => {
   return async () => {
     try {
-      const cart = orderObj.product
+      const cart = orderObj.obj.product
       const {data} = await axios.put(
         `/api/cart/${cart.userId}/${cart.id}`,
         orderObj
