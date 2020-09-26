@@ -37,38 +37,41 @@ export class ShippingForm extends Component {
   render() {
     return (
       <div>
-        <h1>Shipping</h1>
-        <p>Standard shipping is $5.99, more options coming soon!</p>
+        <h1 className="formHeader">Shipping</h1>
+        <p className="leftPText">
+          Standard shipping is $5.99, more options coming soon!
+        </p>
+        <hr />
         <form onSubmit={this.handleSubmit}>
-          <label className="center form">
-            <h3>First Name</h3>
-            <div>
+          <div className="blocks">
+            <label className="formBlock">
+              <h3 className="textInput">First Name</h3>
               <input
-                className="text"
+                className="submitForm"
                 type="text"
                 name="firstName"
                 value={this.state.firstName}
                 onChange={this.handleChange}
               />
-            </div>
-          </label>
-          <label className="center form">
-            <h3>Last Name</h3>
-            <div>
+            </label>
+            <label className="formBlock">
+              <h3 className="textInput">Last Name</h3>
+              <div className="blocks">
+                <input
+                  className="submitForm"
+                  type="text"
+                  name="lastName"
+                  value={this.state.lastName}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </label>
+          </div>
+          <label className="formBlock">
+            <h3 className="textInput">Address</h3>
+            <div className="blocks">
               <input
-                className="text"
-                type="text"
-                name="lastName"
-                value={this.state.lastName}
-                onChange={this.handleChange}
-              />
-            </div>
-          </label>
-          <label className="center form">
-            <h3>Address</h3>
-            <div>
-              <input
-                className="text"
+                className="submitForm address"
                 type="text"
                 name="address"
                 value={this.state.address}
@@ -76,42 +79,44 @@ export class ShippingForm extends Component {
               />
             </div>
           </label>
-          <label className="center form">
-            <h3>City</h3>
-            <div>
-              <input
-                className="text"
-                type="text"
-                name="city"
-                value={this.state.city}
-                onChange={this.handleChange}
-              />
-            </div>
-          </label>
-          <label className="center form">
-            <h3>Postal Code</h3>
-            <div>
-              <input
-                className="text"
-                type="text"
-                name="postal"
-                value={this.state.postal}
-                onChange={this.handleChange}
-              />
-            </div>
-          </label>
-          <label className="center form">
-            <h3>State</h3>
-            <div>
-              <input
-                className="text"
-                type="text"
-                name="state"
-                value={this.state.state}
-                onChange={this.handleChange}
-              />
-            </div>
-          </label>
+          <div className="blocks">
+            <label className="formBlock">
+              <h3 className="textInput">City</h3>
+              <div className="blocks">
+                <input
+                  className="submitForm"
+                  type="text"
+                  name="city"
+                  value={this.state.city}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </label>
+            <label className="formBlock">
+              <h3 className="textInput">State</h3>
+              <div className="blocks">
+                <input
+                  className="submitForm postal"
+                  type="text"
+                  name="state"
+                  value={this.state.state}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </label>
+            <label className="formBlock">
+              <h3 className="textInput">Postal Code</h3>
+              <div className="blocks">
+                <input
+                  className="submitForm postal"
+                  type="text"
+                  name="postal"
+                  value={this.state.postal}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </label>
+          </div>
         </form>
       </div>
     )

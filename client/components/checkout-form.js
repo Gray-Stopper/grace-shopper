@@ -36,16 +36,11 @@ export class CheckOutForm extends Component {
   }
 
   render() {
-    const paymentStatus =
-      !(this.state.shipform && this.state.payform)
+    const paymentStatus = !(this.state.shipform && this.state.payform)
     return (
       <div>
-        <div>
-          <ShippingForm ifFilled={this.filledFields} />
-        </div>
-        <div>
-          <PaymentForm ifFilled={this.filledFields} />
-        </div>
+        <ShippingForm ifFilled={this.filledFields} />
+        <PaymentForm ifFilled={this.filledFields} />
         <form onSubmit={this.handleSubmit}>
           <label className="checkoutPage">
             <button

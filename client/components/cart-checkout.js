@@ -1,9 +1,4 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {putCheckOutItems} from '../store/checkout'
-import {ShippingForm} from './shipping-form'
-import {PaymentForm} from './payment-form'
+import React from 'react'
 import {default as CheckOutForm} from './checkout-form'
 
 export const Checkout = props => {
@@ -15,14 +10,12 @@ export const Checkout = props => {
   return (
     <div className="checkoutPage">
       <div className="checkoutPageChildren">
-        <div>
-          {/* <ShipAndPay props={props}> */}
-          <CheckOutForm props={props} />
-        </div>
+        <CheckOutForm props={props} />
       </div>
       <div className="checkoutPageChildren">
         <h3>
-          {products.length} {item} in Cart
+          {' '}
+          {products.length} {item} in Cart{' '}
         </h3>
         <div>
           {products.map(product => (

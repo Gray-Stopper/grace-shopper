@@ -12,7 +12,6 @@ import {
   SingleProduct
 } from './components'
 import {me} from './store'
-// import GuestCart from './components/guest-cart'
 
 /**
  * COMPONENT

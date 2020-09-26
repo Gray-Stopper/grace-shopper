@@ -35,57 +35,57 @@ export class PaymentForm extends Component {
   render() {
     return (
       <div>
-        <h1>Payment</h1>
-        <p>other payment methods coming soon!</p>
-        <form onSubmit={this.handleSubmit}>
-          <label className="center form">
-            <h3>Card Number</h3>
-            <div>
-              <input
-                className="text"
-                type="text"
-                name="cardNumber"
-                value={this.state.cardNumber}
-                onChange={this.handleChange}
-              />
-            </div>
+        <h1 className="formHeader">Payment</h1>
+        <hr />
+        <form onSubmit={this.handleSubmit} className="payMargin">
+          <label className="formBlock">
+            <h3 className="textInput">Card Number</h3>
+            <input
+              className="submitForm"
+              type="text"
+              name="cardNumber"
+              value={this.state.cardNumber}
+              onChange={this.handleChange}
+            />
           </label>
-          <label className="center form">
-            <h3>Exp Month</h3>
-            <div>
-              <input
-                className="text"
-                type="text"
-                name="expMonth"
-                value={this.state.expMonth}
-                onChange={this.handleChange}
-              />
-            </div>
-          </label>
-          <label className="center form">
-            <h3>Exp Year</h3>
-            <div>
-              <input
-                className="text"
-                type="text"
-                name="expYear"
-                value={this.state.expYear}
-                onChange={this.handleChange}
-              />
-            </div>
-          </label>
-          <label className="center form">
-            <h3>CVV</h3>
-            <div>
-              <input
-                className="text"
-                type="text"
-                name="cvv"
-                value={this.state.cvv}
-                onChange={this.handleChange}
-              />
-            </div>
-          </label>
+          <div className="blocks">
+            <label className="formBlock">
+              <h3 className="textInput">Exp Month</h3>
+              <div className="blocks">
+                <input
+                  className="submitForm numbers"
+                  type="text"
+                  name="expMonth"
+                  value={this.state.expMonth}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </label>
+            <label className="formBlock">
+              <h3 className="textInput">Exp Year</h3>
+              <div className="blocks">
+                <input
+                  className="submitForm numbers"
+                  type="text"
+                  name="expYear"
+                  value={this.state.expYear}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </label>
+            <label className="formBlock">
+              <h3 className="textInput">CVV</h3>
+              <div className="blocks">
+                <input
+                  className="submitForm numbers"
+                  type="text"
+                  name="cvv"
+                  value={this.state.cvv}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </label>
+          </div>
         </form>
       </div>
     )
