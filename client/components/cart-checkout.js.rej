@@ -1,7 +1,0 @@
-diff a/client/components/cart-checkout.js b/client/components/cart-checkout.js	(rejected hunks)
-@@ -27 +27 @@ export class Checkout extends Component {
--    const calTax = Math.round((subtotal*100) * this.state.tax)/100;
-+    const calTax = Math.round(subtotal * 100 * this.state.tax) / 100
-@@ -32 +32 @@ export class Checkout extends Component {
--          <CheckOutForm props={this.props} checkTax={this.stateTax}/>
-+          <CheckOutForm props={this.props} checkTax={this.stateTax} />
