@@ -23,7 +23,7 @@ export class Checkout extends Component {
     const cart = this.props.location.state.product
     const subtotal = this.props.location.state.subtotal
     const products = cart.products
-    const calTax = Math.round(subtotal * this.state.tax) / 100
+    const calTax = Math.round(subtotal * this.state.tax * 100) / 100
     const tax = this.state.tax !== 0 ? `$${calTax}` : 'TBD'
     const total = Math.round((subtotal + 5.99 + calTax) * 100) / 100
 
