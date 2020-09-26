@@ -16,12 +16,14 @@ class SingleProduct extends Component {
     await this.props.get(productId)
   }
 
-  async handleAdd(event, productId) {
+  async handleAdd(event, productId, userId) {
     event.preventDefault()
+    //if userId exist ...
     await this.props.addItem({
       productId,
       userId: this.props.userId
     })
+    //else storage in local storage
   }
 
   render() {

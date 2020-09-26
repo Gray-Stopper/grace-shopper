@@ -103,6 +103,10 @@ td {
   padding: 0.25rem 0rem;
 }
 
+.foot {
+  border-bottom: none;
+}
+
 .cart-select {
   padding: 0.5rem;
 }
@@ -141,4 +145,92 @@ td {
 .clear {
   background-color: white;
   width: 100%;
+}
+
+.checkoutPage {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  left: 0%;
+}
+
+.checkoutPageChildren {
+  flex-grow: 1;
+  padding: 5%;
+}
+
+.textCenter {
+  text-align: center;
+}
+
+p {
+  text-align: center;
+}
+
+.formHeader {
+  text-align: left;
+  font-size: 1.5em;
+  font-family: arial;
+}
+
+.leftPText {
+  text-align: left;
+}
+
+.blocks {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0em;
+  font-weight: normal;
+  font-size: 1em;
+}
+
+.submitForm {
+  width: 15em;
+  height: 2em;
+  margin: 0em;
+}
+
+.textInput {
+  margin: 0.3em;
+  font-weight: normal;
+}
+
+.formBlock {
+  margin: 0.5em;
+}
+
+.address {
+  width: 25em;
+}
+
+.postal {
+  width: 10em;
+}
+
+.numbers {
+  width: 5em;
+}
+
+.payMargin {
+  margin: 1em 0 0 0;
+}
+
+.pay-img {
+  width: 3em;
+  height: auto;
+  padding: 0em 1.5em;
+}
+
+.rowSpaces {
+  padding: 0em 5em 0em 0em;
+}
+
+.rightAdjust {
+  text-align: right;
+}
+
+.longName {
+  word-wrap: break-word;
+  width: 10em;
 }
