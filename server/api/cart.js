@@ -125,6 +125,7 @@ router.put('/add', async (req, res, next) => {
   }
 })
 
+//submit an order for cart
 router.put('/:userId/:orderId', async (req, res, next) => {
   try {
     const currentCart = await ProductsInOrder.findAll({
@@ -174,9 +175,11 @@ router.put('/:userId/:orderId', async (req, res, next) => {
           }
         )
       }
+      const pennies = req.body.subtotal * 100
       await Order.update(
         {
-          completed: true
+          completed: true,
+          subtotal: pennies
         },
         {
           where: {
