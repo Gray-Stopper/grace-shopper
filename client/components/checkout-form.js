@@ -39,7 +39,10 @@ export class CheckOutForm extends Component {
     const paymentStatus = !(this.state.shipform && this.state.payform)
     return (
       <div>
-        <ShippingForm ifFilled={this.filledFields} />
+        <ShippingForm
+          ifFilled={this.filledFields}
+          checkTax={this.props.checkTax}
+        />
         <PaymentForm ifFilled={this.filledFields} />
         <form onSubmit={this.handleSubmit}>
           <label className="checkoutPage">

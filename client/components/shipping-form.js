@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 
 export class ShippingForm extends Component {
   constructor(props) {
-    super(props)
+    super()
     this.state = {
       firstName: '',
       lastName: '',
@@ -25,6 +25,7 @@ export class ShippingForm extends Component {
       () => {
         if (Object.values(this.state).indexOf('') === -1) {
           this.props.ifFilled('ship', true)
+          this.props.checkTax(true)
         }
       }
     )
@@ -39,7 +40,7 @@ export class ShippingForm extends Component {
       <div>
         <h1 className="formHeader">Shipping</h1>
         <p className="leftPText">
-          Standard shipping is $5.99, more options coming soon!
+          Standard shipping is 7-10 business days after order processes.
         </p>
         <hr />
         <form onSubmit={this.handleSubmit}>
