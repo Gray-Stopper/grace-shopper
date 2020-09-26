@@ -3,7 +3,9 @@ const isAdminMiddleware = (req, res, next) => {
   if (currentUser && currentUser.isAdmin) {
     next()
   } else {
-    const error = new Error('Access denied. No gray-busting products for you.')
+    const error = new Error(
+      '<h3>Access denied. No gray-busting products for you.<h3>'
+    )
     error.status = 401
     next(error)
   }

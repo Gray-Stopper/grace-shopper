@@ -17,13 +17,13 @@ import SingleProduct from './components/single-product'
  * COMPONENT
  */
 class Routes extends Component {
-  componentDidMount() {
-    this.props.loadInitialData()
+  async componentDidMount() {
+    await this.props.loadInitialData()
   }
 
   render() {
     const {isAdmin} = this.props
-    console.log('isAdmin: ', isAdmin)
+    console.log('isAdmin: ', this.props.isAdmin)
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
@@ -35,10 +35,10 @@ class Routes extends Component {
         <Route exact path="/products" component={AllProducts} />
         {isAdmin && (
           <Switch>
-            <Route exact path="/users" component={Users} />
+            <Route path="/users" component={Users} />
           </Switch>
         )}
-        <Redirect from="/" to="/home" component={UserHome} />
+        <Route component={UserHome} />
       </Switch>
     )
   }
@@ -51,6 +51,7 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
+    user: state.user,
     isLoggedIn: !!state.user.id,
     isAdmin: !!state.user.isAdmin
   }

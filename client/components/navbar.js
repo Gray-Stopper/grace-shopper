@@ -77,10 +77,8 @@ class Navbar extends React.Component {
             )}
           </nav>
         </div>
-        {/* <h4>A virtual spa for your aging head</h4> */}
         {!this.props.isLoggedIn && this.state.showLoginForm ? <Login /> : ''}
         {!this.props.isLoggedIn && this.state.showSignUpForm ? <Signup /> : ''}
-        {/* <hr /> */}
       </div>
     )
   }
