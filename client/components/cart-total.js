@@ -24,22 +24,21 @@ const CartTotal = props => {
           <td className="bold">Total</td>
           <td>{`$${totalPrice + 5.99}`}</td>
         </tr>
+        <tr>
+          <td className="foot">
+            <Link
+              to={{
+                pathname: '/checkout',
+                state: {product: props.cart, subtotal: totalPrice}
+              }}
+            >
+              <button type="button" className="button checkout">
+                Proceed To Checkout
+              </button>
+            </Link>
+          </td>
+        </tr>
       </tbody>
-      <tfoot>
-        {/* <button type="button" className="button checkout">
-          Proceed To Checkout
-        </button> */}
-        <Link
-          to={{
-            pathname: '/checkout',
-            state: {product: props.cart.products}
-          }}
-        >
-          <button type="button" className="button checkout">
-            Proceed To Checkout
-          </button>
-        </Link>
-      </tfoot>
     </table>
   )
 }

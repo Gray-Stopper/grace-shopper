@@ -1,15 +1,25 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchAllProducts} from '../store/allProducts'
+import {addItemThunk} from '../store/cart'
 import Product from './product'
 
 class AllProducts extends Component {
   constructor() {
     super()
+    this.handleAdd = this.handleAdd.bind(this)
   }
 
   async componentDidMount() {
     await this.props.getAllProducts()
+  }
+
+  async handleAdd(event, productId) {
+    event.preventDefault()
+    await this.props.addItem({
+      productId,
+      userId: this.props.userId
+    })
   }
 
   render() {
@@ -19,7 +29,11 @@ class AllProducts extends Component {
         {grayStoppers.length > 0 ? (
           <div id="grayStoppers" className="grayStoppers">
             {grayStoppers.map(grayStopper => (
-              <Product key={grayStopper.id} product={grayStopper} />
+              <Product
+                key={grayStopper.id}
+                product={grayStopper}
+                add={this.handleAdd}
+              />
             ))}
           </div>
         ) : (
@@ -31,11 +45,15 @@ class AllProducts extends Component {
 }
 
 const mapState = state => ({
-  allProducts: state.allProducts
+  allProducts: state.allProducts,
+  userId: state.user.id
 })
 
 const mapDispatch = dispatch => ({
-  getAllProducts: () => dispatch(fetchAllProducts())
+  getAllProducts: () => dispatch(fetchAllProducts()),
+  addItem: product => {
+    dispatch(addItemThunk(product))
+  }
 })
 
 export default connect(mapState, mapDispatch)(AllProducts)
