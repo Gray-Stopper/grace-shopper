@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {default as CheckOutForm} from './checkout-form'
+import {default as CheckOutForm} from './checkoutForm'
 
 export class Checkout extends Component {
   constructor() {
@@ -82,7 +82,3 @@ export class Checkout extends Component {
     )
   }
 }
-
-// export const Checkout = props => {
-
-// }

@@ -116,11 +116,33 @@ td {
   box-shadow: 1px 1px 1px #000411;
   cursor: pointer;
   font-size: 0.9rem;
-  padding: 0.4rem;
+  padding: 0.3rem;
 }
 
 .remove {
+  background-color: #aeb7b3;
+}
+
+.edit {
+  background-color: #efcb68;
+}
+
+.add {
   background-color: #e1efe6;
+  margin-left: 2rem;
+}
+
+.nav {
+  background-color: white;
+  margin: 0rem 0.5rem;
+}
+
+.dash {
+  margin: 1rem 0rem;
+}
+
+.inline {
+  display: inline-block;
 }
 
 .checkout {
@@ -145,6 +167,38 @@ td {
 .clear {
   background-color: white;
   width: 100%;
+}
+
+.margin-left {
+  margin-left: 1.5rem;
+}
+
+.add-new-form {
+  margin-left: 1.5rem;
+  justify-content: center;
+}
+
+.add-form-field {
+  border: 1px #aeb7b3 solid;
+  margin: 0.5rem 1rem;
+}
+
+.add-label {
+  display: inline-block;
+}
+
+.form-box {
+  display: inline-flex;
+  border-top: 2px #000411 solid;
+  border-bottom: 1px #000411 dashed;
+  width: 90%;
+  padding-top: 1rem;
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.no-margin {
+  margin: 0rem;
 }
 
 .checkoutPage {
