@@ -7,7 +7,7 @@ const Confirmation = props => {
       <h3 className="textCenter">Purchase is Processing</h3>
       <p>Email confirmation will be sent when your purchase is shipped!</p>
       <Link to="/home" className="checkoutPage">
-        <button className="checkout button checkoutPage">
+        <button type="button" className="checkout button checkoutPage">
           Back to Home Page
         </button>
       </Link>
