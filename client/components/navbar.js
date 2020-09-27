@@ -53,13 +53,17 @@ class Navbar extends React.Component {
             {/* The navbar will show these links after you log in, not as an admin */}
             {this.props.isLoggedIn &&
               !this.props.isAdmin && (
-                <LoggedInNavbar handleLoginClick={this.handleLoginClick} />
+                <LoggedInNavbar
+                  handleLoginClick={this.handleLoginClick}
+                  handleClick={this.props.handleClick}
+                />
               )}
             {/* The navbar will show these links before you log in */}
             {!this.props.isLoggedIn && (
               <NotLoggedInNavbar
                 handleLoginClick={this.handleLoginClick}
                 handleSignUpClick={this.handleSignUpClick}
+                handleClick={this.props.handleClick}
               />
             )}
           </nav>

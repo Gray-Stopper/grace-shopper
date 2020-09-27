@@ -10,7 +10,8 @@ import {
   Confirmation,
   Users,
   GuestCart,
-  SingleProduct
+  SingleProduct,
+  ProductDashboard
 } from './components'
 import {me} from './store'
 
@@ -36,6 +37,7 @@ class Routes extends Component {
         <Route exact path="/guestCart" component={GuestCart} />
         {isAdmin && (
           <Switch>
+            <Route path="/productDashboard" component={ProductDashboard} />
             <Route path="/users" component={Users} />
           </Switch>
         )}
