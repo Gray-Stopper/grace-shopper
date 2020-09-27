@@ -278,3 +278,7 @@ p {
   word-wrap: break-word;
   width: 10em;
 }
+
+.soldOut {
+  color: red;
+}

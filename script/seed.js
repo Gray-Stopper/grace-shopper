@@ -74,7 +74,8 @@ async function seed() {
   const products = await Promise.all([
     Product.create({
       name: 'Blonde Dye',
-      description: 'a favorite everyday blonde color',
+      description:
+        "'I'm not offended by all the dumb blonde jokes because I know I'm not dumb... and I also know that I'm not blonde.' -- Dolly Parton",
       price: 4599,
       category: 'color',
       imageUrl:
@@ -82,7 +83,8 @@ async function seed() {
     }),
     Product.create({
       name: 'Magenta Dye',
-      description: 'are you mad for magenta?',
+      description:
+        "'I'm having a magenta day. Not just red, but Magenta!' -- Stephen King",
       price: 5599,
       category: 'color',
       imageUrl:
@@ -90,7 +92,8 @@ async function seed() {
     }),
     Product.create({
       name: 'Rainbow Dye',
-      description: "for those who can't decide",
+      description:
+        "'Where does the rainbow end, in your soul or on the horizon?' -- Pablo Neruda",
       price: 6299,
       category: 'color',
       stock: 0,
@@ -99,7 +102,8 @@ async function seed() {
     }),
     Product.create({
       name: 'Tudor Wig',
-      description: 'old-school throwback',
+      description:
+        "'I have no heir. The Tudor Dynasty, all my father's work, finished, and it's MY fault!' -- King Henry VIII in 'The Tudors'",
       price: 8599,
       category: 'wigs',
       // imageUrl: 'https://i.pinimg.com/236x/b0/b4/62/b0b46202f08411826f71c90e0a40a9b6--tudor-dynasty-english-tudor.jpg'
@@ -108,7 +112,8 @@ async function seed() {
     }),
     Product.create({
       name: 'Barrister Wig',
-      description: 'an across-the-pond favorite',
+      description:
+        "'An author must be nothing if he do not love truth; a barrister must be nothing if he do.' -- Anthony Trollope",
       price: 8599,
       category: 'wigs',
       imageUrl:
@@ -116,7 +121,8 @@ async function seed() {
     }),
     Product.create({
       name: "All's Fair With Hair Vitamins",
-      description: 'pills to nourish your hair color',
+      description:
+        "'To all my little Hulkamaniacs, say your prayers, take your vitamins and you will never go wrong. -- Hulk Hogan",
       price: 7299,
       category: 'nutrition',
       // imageUrl: 'https://www.pngitem.com/pimgs/m/556-5569166_cartoon-vitamins-and-minerals-hd-png-download.png'
@@ -125,10 +131,28 @@ async function seed() {
     }),
     Product.create({
       name: 'Embrace the Grays Meditation',
-      description: 'lean into your wisdom',
+      description:
+        "'It's great to have gray hair. Ask anyone who's bald.' -- Rodney Dangerfield",
       price: 2299,
       category: 'nutrition',
       stock: 0
+    }),
+    Product.create({
+      name: 'Marge Simpson Wig',
+      description:
+        "'I can't believe it! I've done all my housework and it's only 9:30! Well, better go upstairs and make sure the beds are still made.' -- Marge Simpson",
+      price: 8599,
+      category: 'wigs',
+      imageUrl:
+        'https://2.bp.blogspot.com/_nuLnGSnu094/THEojekdaWI/AAAAAAAAKBI/XQR7Fmocu0M/s200/marge-simpson.jpg'
+    }),
+    Product.create({
+      name: 'Head Massager',
+      description:
+        "'She put her hands to her face and rubbed, then dug her fingers into her scalp, trying to massage some life back into her tired brain.' -- Thea Harrison",
+      price: 3295,
+      category: 'nutrition',
+      imageUrl: 'https://i.ebayimg.com/images/g/ChgAAOSwIndcTxYN/s-l300.jpg'
     })
   ])
 
