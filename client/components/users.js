@@ -38,16 +38,14 @@ class Users extends React.Component {
 
   showEdit(id) {
     const [userToEdit] = this.props.users.filter(aUser => aUser.id === id)
-    console.log('user to edit: ', userToEdit)
-    this.setState({
-      showEdit: true,
+    this.setState(prevState => ({
+      showEdit: !prevState.showEdit,
       editId: id,
       editFirstName: userToEdit.firstName,
       editLastName: userToEdit.lastName,
       editEmail: userToEdit.email,
       editIsAdmin: userToEdit.isAdmin
-    })
-    console.log(this.state)
+    }))
   }
 
   async handleRemove(userId) {

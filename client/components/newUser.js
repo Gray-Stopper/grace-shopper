@@ -38,19 +38,21 @@ const NewUser = props => {
           />
           <br />
 
-          <label htmlFor="newEmail" className="add-label email">
+          <label htmlFor="newEmail" className="add-label">
             Email:{' '}
           </label>
 
           <input
-            className="add-form-fieldl"
+            className="add-form-field"
             name="newEmail"
             type="text"
+            size="65"
             value={newEmail}
             onChange={props.onChange}
           />
+          <br />
 
-          <label htmlFor="newPassword" className="add-label password">
+          <label htmlFor="newPassword" className="add-label">
             Password:{' '}
           </label>
 
@@ -61,12 +63,11 @@ const NewUser = props => {
             value={newPassword}
             onChange={props.onChange}
           />
-          <br />
 
           <label htmlFor="newIsAdmin" className="add-label">
             Admin:
           </label>
-          <div>
+          <div className="no-margin">
             <input
               className="add-form-field"
               value={true}
@@ -86,8 +87,8 @@ const NewUser = props => {
             />
             No
           </div>
-
-          <button type="submit" className="button add">
+          <br />
+          <button type="submit" className="button add dash">
             Add Customer
           </button>
         </form>

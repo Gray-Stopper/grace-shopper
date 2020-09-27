@@ -120,7 +120,7 @@ td {
 }
 
 .remove {
-  background-color: #e1efe6;
+  background-color: #aeb7b3;
 }
 
 .edit {
@@ -128,8 +128,12 @@ td {
 }
 
 .add {
-  background-color: #aeb7b3;
+  background-color: #e1efe6;
   margin-left: 2rem;
+}
+
+.dash {
+  margin: 1rem 0rem;
 }
 
 .checkout {
@@ -181,14 +185,11 @@ td {
   width: 90%;
   padding-top: 1rem;
   margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
-.email {
-  margin-right: 3.2rem;
-}
-
-.password {
-  margin-left: 1.5rem;
+.no-margin {
+  margin: 0rem;
 }
 
 .checkoutPage {

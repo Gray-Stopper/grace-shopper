@@ -45,7 +45,6 @@ router.put('/:userId', isAdminMiddleware, async (req, res, next) => {
       }
     )
     if (numUpdates === 1) {
-      console.log(updatedUser)
       res.json(updatedUser)
     } else {
       next()
