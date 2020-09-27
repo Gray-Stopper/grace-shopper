@@ -32,14 +32,25 @@ export class CheckOutForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    this.props.cartCheckout({
-      obj: this.props.props.location.state,
-      total: this.props.cartTotal
-    })
+    const firstprod = Object.values(this.props.props.location.state.product)[0]
+    console.log('firstprod', firstprod)
+    if (Object.keys(firstprod).includes('productsInOrder')) {
+      this.props.cartCheckout({
+        obj: this.props.props.location.state,
+        total: this.props.cartTotal
+      })
+    } else {
+      console.log('else')
+      //       this.props.cartCheckout({
+      //   obj: this.props.props.location.state,
+      //   total: this.props.cartTotal
+      // })
+    }
   }
 
   render() {
     const paymentStatus = !(this.state.shipform && this.state.payform)
+    // console.log(this.props)
     return (
       <div>
         <ShippingForm
@@ -52,7 +63,7 @@ export class CheckOutForm extends Component {
             <button
               type="submit"
               className="checkout button checkoutPage"
-              disabled={paymentStatus}
+              disabled={false}
             >
               Make my gray go away!
             </button>
@@ -70,7 +81,8 @@ const mapState = () => {
 const mapDispatch = (dispatch, ownProps) => {
   return {
     cartCheckout: obj => {
-      dispatch(putCheckOutItems(obj, ownProps))
+      console.log('obj', obj)
+      return dispatch(putCheckOutItems(obj, ownProps))
     }
   }
 }

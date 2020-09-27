@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {me} from '../store'
 import {loadCart, removeItem} from '../store/cart'
+import {GuestProduct} from './guestcart-product'
 import {CartProduct, CartTotal} from './index'
 
 export class GuestCart extends Component {
@@ -50,7 +51,7 @@ export class GuestCart extends Component {
               <tbody>
                 {productsArr.map(prod => {
                   return (
-                    <CartProduct
+                    <GuestProduct
                       key={prod.id}
                       product={prod}
                       // userId={this.props.user.id}
@@ -61,7 +62,7 @@ export class GuestCart extends Component {
                 })}
               </tbody>
             </table>
-            {/* {this.props.cart && <CartTotal cart={this.props.cart} />} */}
+            <CartTotal cart={productsArr} />
           </div>
         ) : (
           <p>No items in cart</p>

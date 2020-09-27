@@ -4,6 +4,8 @@ export const putCheckOutItems = (orderObj, ownProps) => {
   return async () => {
     try {
       const cart = orderObj.obj.product
+      const userId = cart
+      console.log('cart', cart)
       const {data} = await axios.put(
         `/api/cart/${cart.userId}/${cart.id}`,
         orderObj

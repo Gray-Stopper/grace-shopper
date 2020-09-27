@@ -1,9 +1,22 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
+import {Checkout} from './cart-checkout'
 
 const CartTotal = props => {
-  const totalPrice = props.cart.products.reduce((acc, val) => {
-    return acc + val.price * val.productsInOrder.quantity
+  let productArr = props.cart.products
+  console.log('cart-total', props)
+  if (Array.isArray(props.cart)) {
+    productArr = props.cart
+  }
+  const totalPrice = productArr.reduce((acc, val) => {
+    let orderQuantity
+    if (!val.productsInOrder) {
+      orderQuantity = val.quantity
+    } else {
+      orderQuantity = val.productsInOrder.quantity
+    }
+    return acc + val.price * orderQuantity
   }, 0)
   return (
     <table className="total">
@@ -29,7 +42,7 @@ const CartTotal = props => {
             <Link
               to={{
                 pathname: '/checkout',
-                state: {product: props.cart, subtotal: totalPrice}
+                state: {product: props, subtotal: totalPrice}
               }}
             >
               <button type="button" className="button checkout">
