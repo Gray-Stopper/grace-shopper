@@ -45,11 +45,11 @@ class Navbar extends React.Component {
             {this.props.isLoggedIn ? (
               <div>
                 {/* The navbar will show these links after you log in */}
-                <Link to="/home">Home</Link>
+                {/* <Link to="/home">Home</Link> */}
+                <Link to="/cart">Cart</Link>
                 <a to="/" href="#" onClick={this.props.handleClick}>
                   Logout
                 </a>
-                <Link to="/cart">Cart</Link>
               </div>
             ) : (
               <div>
@@ -70,7 +70,7 @@ class Navbar extends React.Component {
                 >
                   Sign Up
                 </button>
-                <Link to="/cart">Cart</Link>
+                <Link to="/guestCart">Cart</Link>
               </div>
             )}
           </nav>

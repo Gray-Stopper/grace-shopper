@@ -7,61 +7,67 @@ import {CartProduct, CartTotal} from './index'
 export class GuestCart extends Component {
   constructor() {
     super()
+    this.state = {
+      products: {}
+    }
+    this.isFilled = this.isFilled.bind(this)
+  }
 
-    const guestStorage = windows.localStorage
+  componentDidMount() {
+    const productObj = JSON.parse(localStorage.getItem('cart'))
+    this.setState({
+      products: productObj
+    })
+    console.log('productObj', productObj)
+  }
+
+  isFilled() {
+    const productObj = JSON.parse(localStorage.getItem('cart'))
+    this.setState({
+      products: productObj
+    })
   }
 
   render() {
+    const productsArr = Object.values(this.state.products)
+    console.log(productsArr)
     return (
       <div>
-        <h3>Guest Cart</h3>
+        <h3 className="left">Guest's Cart</h3>
+        {this.state.products ? (
+          <div>
+            <table className="cart left">
+              <thead className="t-head">
+                <tr>
+                  <th />
+                  <th scope="col">Item</th>
+                  <th scope="col">Item Price</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Total Price</th>
+                  <th />
+                </tr>
+              </thead>
+              <tbody>
+                {productsArr.map(prod => {
+                  return (
+                    <CartProduct
+                      key={prod.id}
+                      product={prod}
+                      // userId={this.props.user.id}
+                      // orderId={this.props.cart.id}
+                      // remove={this.handleRemove}
+                    />
+                  )
+                })}
+              </tbody>
+            </table>
+            {/* {this.props.cart && <CartTotal cart={this.props.cart} />} */}
+          </div>
+        ) : (
+          <p>No items in cart</p>
+        )}
       </div>
     )
-    //   if (!this.state.mounted) {
-    //     return null
-    //   } else {
-    //     return (
-    //       <div>
-    //         <h3 className="left">
-    //           {this.props.user.firstName
-    //             ? `${this.props.user.firstName}'s Cart`
-    //             : 'Cart'}
-    //         </h3>
-    //         {this.props.cart.id ? (
-    //           <div>
-    //             <table className="cart left">
-    //               <thead className="t-head">
-    //                 <tr>
-    //                   <th />
-    //                   <th scope="col">Item</th>
-    //                   <th scope="col">Item Price</th>
-    //                   <th scope="col">Quantity</th>
-    //                   <th scope="col">Total Price</th>
-    //                   <th />
-    //                 </tr>
-    //               </thead>
-    //               <tbody>
-    //                 {this.props.cart.products.map(prod => {
-    //                   return (
-    //                     <CartProduct
-    //                       key={prod.id}
-    //                       product={prod}
-    //                       userId={this.props.user.id}
-    //                       orderId={this.props.cart.id}
-    //                       remove={this.handleRemove}
-    //                     />
-    //                   )
-    //                 })}
-    //               </tbody>
-    //             </table>
-    //             {this.props.cart && <CartTotal cart={this.props.cart} />}
-    //           </div>
-    //         ) : (
-    //           <p>No items in cart</p>
-    //         )}
-    //       </div>
-    //     )
-    //   }
   }
 }
 
