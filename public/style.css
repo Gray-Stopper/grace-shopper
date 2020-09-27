@@ -197,6 +197,11 @@ td {
   margin-bottom: 1.5rem;
 }
 
+.dash-img {
+  height: 3rem;
+  width: auto;
+}
+
 .no-margin {
   margin: 0rem;
 }
