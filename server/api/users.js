@@ -28,6 +28,33 @@ router.post('/', isAdminMiddleware, async (req, res, next) => {
   }
 })
 
+router.put('/:userId', isAdminMiddleware, async (req, res, next) => {
+  try {
+    const [numUpdates, updatedUser] = await User.update(
+      {
+        email: req.body.email,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        isAdmin: req.body.isAdmin
+      },
+      {
+        where: {
+          id: req.params.userId
+        },
+        returning: true
+      }
+    )
+    if (numUpdates === 1) {
+      console.log(updatedUser)
+      res.json(updatedUser)
+    } else {
+      next()
+    }
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.delete('/:userId', isAdminMiddleware, async (req, res, next) => {
   try {
     const numDeletes = await User.destroy({

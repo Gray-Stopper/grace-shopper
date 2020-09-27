@@ -10,8 +10,12 @@ const UserRow = props => {
       <td>{email}</td>
       <td>{isAdmin ? 'Yes' : 'No'}</td>
       <td>
-        <button type="button" className="button edit">
-          Edit User
+        <button
+          type="button"
+          className="button edit"
+          onClick={() => props.showEdit(id)}
+        >
+          Edit Customer
         </button>
       </td>
       <td>
@@ -20,7 +24,7 @@ const UserRow = props => {
           className="button remove"
           onClick={() => props.removeUser(id)}
         >
-          Remove User
+          Delete Customer
         </button>
       </td>
     </tr>

@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchUsers, removeUser, addUser} from '../store/allUsers'
-import {UserRow, NewUser} from './index'
+import {fetchUsers, removeUser, addUser, editUser} from '../store/allUsers'
+import {UserRow, NewUser, EditUser} from './index'
 
 class Users extends React.Component {
   constructor() {
@@ -11,11 +11,19 @@ class Users extends React.Component {
       newLastName: '',
       newEmail: '',
       newPassword: '',
-      newIsAdmin: false
+      newIsAdmin: false,
+      showEdit: false,
+      editId: '',
+      editFirstName: '',
+      editLastName: '',
+      editEmail: '',
+      editIsAdmin: false
     }
     this.handleFormInput = this.handleFormInput.bind(this)
     this.handleRemove = this.handleRemove.bind(this)
     this.handleAdd = this.handleAdd.bind(this)
+    this.handleEdit = this.handleEdit.bind(this)
+    this.showEdit = this.showEdit.bind(this)
   }
 
   handleFormInput(event) {
@@ -26,6 +34,20 @@ class Users extends React.Component {
 
   async componentDidMount() {
     await this.props.getAllUsers()
+  }
+
+  showEdit(id) {
+    const [userToEdit] = this.props.users.filter(aUser => aUser.id === id)
+    console.log('user to edit: ', userToEdit)
+    this.setState({
+      showEdit: true,
+      editId: id,
+      editFirstName: userToEdit.firstName,
+      editLastName: userToEdit.lastName,
+      editEmail: userToEdit.email,
+      editIsAdmin: userToEdit.isAdmin
+    })
+    console.log(this.state)
   }
 
   async handleRemove(userId) {
@@ -57,6 +79,30 @@ class Users extends React.Component {
     }
   }
 
+  async handleEdit(event) {
+    event.preventDefault()
+    if (
+      this.state.editFirstName &&
+      this.state.editLastName &&
+      this.state.editEmail
+    ) {
+      await this.props.editUser({
+        id: this.state.editId,
+        firstName: this.state.editFirstName,
+        lastName: this.state.editLastName,
+        email: this.state.editEmail,
+        isAdmin: this.state.editIsAdmin
+      })
+      this.setState({
+        showEdit: false,
+        editFirstName: '',
+        editLastName: '',
+        editEmail: '',
+        editIsAdmin: false
+      })
+    }
+  }
+
   render() {
     return (
       <div>
@@ -75,11 +121,12 @@ class Users extends React.Component {
           </thead>
           <tbody>
             {this.props.users &&
-              this.props.users.map(user => {
+              this.props.users.sort((a, b) => a.id - b.id).map(user => {
                 return (
                   <UserRow
                     key={user.id}
                     user={user}
+                    showEdit={this.showEdit}
                     removeUser={this.handleRemove}
                   />
                 )
@@ -92,6 +139,13 @@ class Users extends React.Component {
           onSubmit={this.handleAdd}
           formInput={this.state}
         />
+        {this.state.showEdit && (
+          <EditUser
+            onChange={this.handleFormInput}
+            onSubmit={this.handleEdit}
+            formInput={this.state}
+          />
+        )}
       </div>
     )
   }
@@ -104,7 +158,8 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   getAllUsers: () => dispatch(fetchUsers()),
   removeUser: userId => dispatch(removeUser(userId)),
-  addUser: userInfo => dispatch(addUser(userInfo))
+  addUser: userInfo => dispatch(addUser(userInfo)),
+  editUser: userInfo => dispatch(editUser(userInfo))
 })
 
 export default connect(mapState, mapDispatch)(Users)

@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {Link, NavLink} from 'react-router-dom'
 import {logout} from '../store'
 import {emptyCart} from '../store/cart'
-import {Login, Signup} from './auth-form'
+import {Login, Signup} from './authForm'
 
 class Navbar extends React.Component {
   constructor(props) {

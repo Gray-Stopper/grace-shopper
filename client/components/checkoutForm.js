@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {putCheckOutItems} from '../store/checkout'
-import {ShippingForm} from './shipping-form'
-import {PaymentForm} from './payment-form'
+import {ShippingForm} from './shippingForm'
+import {PaymentForm} from './paymentForm'
 
 export class CheckOutForm extends Component {
   constructor(props) {

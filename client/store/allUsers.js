@@ -6,6 +6,7 @@ import axios from 'axios'
 const GET_USERS = 'GET_USERS'
 const DELETE_USER = 'DELETE_USER'
 const ADD_USER = 'ADD_USER'
+const EDIT_USER = 'EDIT_USER'
 
 /**
  * INITIAL STATE
@@ -21,6 +22,8 @@ const removedUser = userId => ({type: DELETE_USER, userId})
 
 const addedUser = user => ({type: ADD_USER, user})
 
+const editedUser = (id, user) => ({type: EDIT_USER, id, user})
+
 /**
  * THUNK CREATORS
  */
@@ -35,8 +38,32 @@ export const fetchUsers = () => async dispatch => {
 
 export const addUser = userInfo => async dispatch => {
   try {
-    const {data} = await axios.post('/api/users/', userInfo)
-    dispatch(addedUser(data))
+    const {data, status} = await axios.post('/api/users/', userInfo)
+    if (status === 200) {
+      dispatch(addedUser(data))
+    } else if (status === 401) {
+      throw new Error('Unauthorized attempt to add user')
+    } else {
+      throw new Error('add user failed')
+    }
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const editUser = userInfo => async dispatch => {
+  try {
+    const {data, status} = await axios.put(
+      '/api/users/' + userInfo.id,
+      userInfo
+    )
+    if (status === 200) {
+      dispatch(editedUser(userInfo.id, data))
+    } else if (status === 401) {
+      throw new Error('Unauthorized attempt to edit user')
+    } else {
+      throw new Error('edit user failed')
+    }
   } catch (err) {
     console.error(err)
   }
@@ -66,6 +93,14 @@ export default function(state = defaultUsers, action) {
       return action.users
     case ADD_USER:
       return [...state, action.user]
+    case EDIT_USER:
+      return state.map(user => {
+        if (user.id === action.id) {
+          return action.user[0]
+        } else {
+          return user
+        }
+      })
     case DELETE_USER:
       return state.filter(user => user.id !== action.userId)
     default:
