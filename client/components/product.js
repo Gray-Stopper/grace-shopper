@@ -9,11 +9,15 @@ const Product = props => {
       <Link to={`/products/${product.id}`}>
         <img src={product.imageUrl} width="200" height="200" />
       </Link>
-      <h4>{product.category}</h4>
+      {/* <h4>{product.category}</h4> */}
       <Link to={`/products/${product.id}`}>
         <h3>{product.name}</h3>
       </Link>
-      {product.stock > 0 ? <h4>in stock!</h4> : <h4>sold out</h4>}
+      {product.stock > 0 ? (
+        <h4>in stock</h4>
+      ) : (
+        <h4 className="soldOut">sold out</h4>
+      )}
       <button
         type="button"
         className="clear button"
