@@ -52,7 +52,6 @@ export const addItemThunk = idObj => async dispatch => {
 export const loadCart = userId => async dispatch => {
   try {
     const {data, status} = await axios.get(`/api/cart/${userId}`)
-
     if (data) {
       dispatch(gotCart(data))
     } else if (status === 404) {

@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {default as CheckOutForm} from './checkout-form'
+import {SideCartView} from './side-cartView'
 
 export class Checkout extends Component {
   constructor() {
@@ -20,17 +21,15 @@ export class Checkout extends Component {
   }
 
   render() {
-    const cart = this.props.location.state.product
+    const cart = this.props.location.state.product.cart
     const subtotal = this.props.location.state.subtotal
-    let products = cart.cart.products
+    let products = cart.products
     if (Array.isArray(cart)) {
       products = cart
     }
     const calTax = Math.round(subtotal * this.state.tax * 100) / 100
     const tax = this.state.tax !== 0 ? `$${calTax}` : 'TBD'
     const total = Math.round((subtotal + 5.99 + calTax) * 100) / 100
-    console.log('cart-checkout', this.props)
-    console.log(cart)
     return (
       <div className="checkoutPage">
         <div className="checkoutPageChildren">
@@ -45,16 +44,8 @@ export class Checkout extends Component {
           <div>
             <table>
               <tbody>
-                {products.map(product => (
-                  <tr key={product.id}>
-                    <td className="foot">
-                      <img src={product.imageUrl} className="pay-img" />
-                    </td>
-                    <td className="foot longName">{product.name}</td>
-                    <td className="foot">
-                      x{product.productsInOrder.quantity}
-                    </td>
-                  </tr>
+                {products.map((product, index) => (
+                  <SideCartView key={index} item={product} />
                 ))}
               </tbody>
             </table>

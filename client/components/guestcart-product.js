@@ -1,4 +1,5 @@
 import React from 'react'
+import {default as EditCartQuantity} from './edit-cart-quantity'
 
 export const GuestProduct = props => {
   const {quantity, name, imageUrl, price} = props.product
@@ -10,17 +11,17 @@ export const GuestProduct = props => {
       <td>{name}</td>
       <td>{`$${price}`}</td>
       <td>
-        {/* <EditCartQuantity
-            quantity={this.state.quantity}
-            onChange={this.updateState}
-          /> */}
+        <EditCartQuantity
+          quantity={quantity}
+          onChange={event => props.edit(event, name)}
+        />
       </td>
       <td>{`$${price * quantity}`}</td>
       <td>
         <button
           type="button"
           className="button remove"
-          // onClick={() => this.props.remove(event, id)}
+          onClick={() => props.remove(name)}
         >
           Remove
         </button>

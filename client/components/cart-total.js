@@ -9,7 +9,7 @@ const CartTotal = props => {
   if (Array.isArray(props.cart)) {
     productArr = props.cart
   }
-  const totalPrice = productArr.reduce((acc, val) => {
+  const calPrice = productArr.reduce((acc, val) => {
     let orderQuantity
     if (!val.productsInOrder) {
       orderQuantity = val.quantity
@@ -18,6 +18,7 @@ const CartTotal = props => {
     }
     return acc + val.price * orderQuantity
   }, 0)
+  const totalPrice = Math.round((calPrice + 5.99) * 100) / 100
   return (
     <table className="total">
       <tbody>

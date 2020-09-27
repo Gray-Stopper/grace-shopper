@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {putCheckOutItems} from '../store/checkout'
+import {putCheckOutItems, putGuestCheckout} from '../store/checkout'
 import {ShippingForm} from './shipping-form'
 import {PaymentForm} from './payment-form'
 
@@ -32,19 +32,19 @@ export class CheckOutForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    const firstprod = Object.values(this.props.props.location.state.product)[0]
-    console.log('firstprod', firstprod)
-    if (Object.keys(firstprod).includes('productsInOrder')) {
+    const cart = Object.keys(this.props.props.location.state.product.cart)
+    console.log('cart', this.props.props)
+    if (cart.includes('userId')) {
+      //if logged in user --- need the state due to user id and product id
       this.props.cartCheckout({
         obj: this.props.props.location.state,
         total: this.props.cartTotal
       })
     } else {
-      console.log('else')
-      //       this.props.cartCheckout({
-      //   obj: this.props.props.location.state,
-      //   total: this.props.cartTotal
-      // })
+      this.props.guestCheckOut({
+        obj: this.props.props.location.state.product.cart,
+        total: this.props.cartTotal
+      })
     }
   }
 
@@ -81,8 +81,10 @@ const mapState = () => {
 const mapDispatch = (dispatch, ownProps) => {
   return {
     cartCheckout: obj => {
-      console.log('obj', obj)
       return dispatch(putCheckOutItems(obj, ownProps))
+    },
+    guestCheckOut: obj => {
+      return dispatch(putGuestCheckout(obj, ownProps))
     }
   }
 }

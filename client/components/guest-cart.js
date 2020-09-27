@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {me} from '../store'
 import {loadCart, removeItem} from '../store/cart'
+import {removeGuestCartItem, updateGuestItemQuantity} from '../store/guestCart'
 import {GuestProduct} from './guestcart-product'
 import {CartProduct, CartTotal} from './index'
 
@@ -11,7 +12,9 @@ export class GuestCart extends Component {
     this.state = {
       products: {}
     }
-    this.isFilled = this.isFilled.bind(this)
+
+    this.removeItem = this.removeItem.bind(this)
+    this.updateItem = this.updateItem.bind(this)
   }
 
   componentDidMount() {
@@ -19,10 +22,15 @@ export class GuestCart extends Component {
     this.setState({
       products: productObj
     })
-    console.log('productObj', productObj)
   }
 
-  isFilled() {
+  removeItem(productName) {
+    removeGuestCartItem(productName)
+  }
+
+  async updateItem(event, name) {
+    const newQuantity = Number(event.target.value)
+    updateGuestItemQuantity(name, newQuantity)
     const productObj = JSON.parse(localStorage.getItem('cart'))
     this.setState({
       products: productObj
@@ -31,7 +39,6 @@ export class GuestCart extends Component {
 
   render() {
     const productsArr = Object.values(this.state.products)
-    console.log(productsArr)
     return (
       <div>
         <h3 className="left">Guest's Cart</h3>
@@ -54,9 +61,8 @@ export class GuestCart extends Component {
                     <GuestProduct
                       key={prod.id}
                       product={prod}
-                      // userId={this.props.user.id}
-                      // orderId={this.props.cart.id}
-                      // remove={this.handleRemove}
+                      remove={this.removeItem}
+                      edit={(event, name) => this.updateItem(event, name)}
                     />
                   )
                 })}
