@@ -124,3 +124,74 @@ router.put('/add', async (req, res, next) => {
     next(error)
   }
 })
+
+//submit an order for cart
+router.put('/:userId/:orderId', async (req, res, next) => {
+  try {
+    const currentCart = await ProductsInOrder.findAll({
+      where: {
+        orderId: req.params.orderId
+      }
+    })
+    const stock = await Promise.all(
+      currentCart.map(async product => {
+        const stock = await Product.findByPk(product.productId)
+        if (product.quantity <= stock.stock) {
+          return stock.stock - product.quantity
+        } else {
+          return -1
+        }
+      })
+    )
+    if (stock.includes(-1)) {
+      const outStockItems = stock
+        .map((element, index) => {
+          if (element === -1) {
+            return currentCart[index].productId
+          }
+        })
+        .filter(productId => productId !== undefined)
+      await Promise.all(
+        outStockItems.map(async productId => {
+          const item = await Product.findByPk(productId)
+          return item.name
+        })
+      ).then(result => {
+        res.status(202).json({redirectUrl: '/cart', alert: result})
+      })
+    } else {
+      for (let i = 0; i < stock.length; i++) {
+        let newStock = stock[i]
+        let productId = currentCart[i].productId
+        console.log(newStock)
+        await Product.update(
+          {
+            stock: newStock
+          },
+          {
+            where: {
+              id: productId
+            }
+          }
+        )
+      }
+      const pennies = req.body.total * 100
+      await Order.update(
+        {
+          completed: true,
+          subtotal: pennies
+        },
+        {
+          where: {
+            userId: req.params.userId,
+            id: req.params.orderId
+          }
+        }
+      )
+      await Order.create({userId: req.params.userId})
+      res.status(200).json({redirectUrl: '/confirmation'})
+    }
+  } catch (err) {
+    next(err)
+  }
+})

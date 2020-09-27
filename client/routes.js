@@ -8,10 +8,11 @@ import {
   AllProducts,
   Checkout,
   Confirmation,
-  Users
+  Users,
+  GuestCart,
+  SingleProduct
 } from './components'
 import {me} from './store'
-import SingleProduct from './components/single-product'
 
 /**
  * COMPONENT
@@ -33,12 +34,26 @@ class Routes extends Component {
         <Route exact path="/confirmation" component={Confirmation} />
         <Route exact path="/products/:productId" component={SingleProduct} />
         <Route exact path="/products" component={AllProducts} />
+        <Route exact path="/guestCart" component={GuestCart} />
         {isAdmin && (
           <Switch>
             <Route path="/users" component={Users} />
           </Switch>
         )}
-        <Route component={UserHome} />
+        {/* <Route component={UserHome} /> */}
+
+        <Redirect from="/" to="/home" component={UserHome} />
+
+        {/* <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} /> */}
+        {/* {isLoggedIn && (
+          <Switch>
+            {/* Routes placed here are only available after logging in */}
+        {/* <Route path="/home" component={UserHome} />
+          </Switch> */}
+        {/* )} */}
+        {/* Displays our Login component as a fallback */}
+        {/* <Route component={Login} /> */}
       </Switch>
     )
   }
