@@ -42,6 +42,7 @@ class CartProduct extends React.Component {
 
   render() {
     const {id, name, imageUrl, price} = this.props.product
+    const totalPrice = Math.round(price * this.state.quantity * 100) / 100
     return (
       <tr className="cart-product">
         <td>
@@ -55,7 +56,7 @@ class CartProduct extends React.Component {
             onChange={this.updateState}
           />
         </td>
-        <td>{`$${price * this.state.quantity}`}</td>
+        <td>{`$${totalPrice}`}</td>
         <td>
           <button
             type="button"

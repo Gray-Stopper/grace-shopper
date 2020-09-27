@@ -3,6 +3,7 @@ import {default as EditCartQuantity} from './edit-cart-quantity'
 
 export const GuestProduct = props => {
   const {quantity, name, imageUrl, price} = props.product
+  const totalPrice = Math.round(price * quantity * 100) / 100
   return (
     <tr className="cart-product">
       <td>
@@ -16,7 +17,7 @@ export const GuestProduct = props => {
           onChange={event => props.edit(event, name)}
         />
       </td>
-      <td>{`$${price * quantity}`}</td>
+      <td>{`$${totalPrice}`}</td>
       <td>
         <button
           type="button"

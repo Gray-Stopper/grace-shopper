@@ -36,7 +36,7 @@ const CartTotal = props => {
         </tr>
         <tr>
           <td className="bold">Total</td>
-          <td>{`$${totalPrice + 5.99}`}</td>
+          <td>{`$${totalPrice}`}</td>
         </tr>
         <tr>
           <td className="foot">
