@@ -74,6 +74,5 @@ export default withRouter(connect(mapState, mapDispatch)(Routes))
  * PROP TYPES
  */
 Routes.propTypes = {
-  loadInitialData: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  loadInitialData: PropTypes.func.isRequired
 }

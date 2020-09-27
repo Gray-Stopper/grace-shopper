@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
 
 export class ShippingForm extends Component {
-  constructor(props) {
+  constructor() {
     super()
     this.state = {
       firstName: '',
@@ -123,14 +122,3 @@ export class ShippingForm extends Component {
     )
   }
 }
-
-const mapState = state => {
-  return {}
-}
-
-const mapDispatch = (dispatch, ownProps) => {
-  return {}
-}
-
-// export default connect(mapState, mapDispatch)(ShippingForm);
-// export ShippingForm

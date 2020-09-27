@@ -132,8 +132,17 @@ td {
   margin-left: 2rem;
 }
 
+.nav {
+  background-color: white;
+  margin: 0rem 0.5rem;
+}
+
 .dash {
   margin: 1rem 0rem;
+}
+
+.inline {
+  display: inline-block;
 }
 
 .checkout {

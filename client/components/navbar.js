@@ -5,9 +5,12 @@ import {Link, NavLink} from 'react-router-dom'
 import {logout} from '../store'
 import {emptyCart} from '../store/cart'
 import {Login, Signup} from './authForm'
+import AdminNavbar from './adminNavbar'
+import NotLoggedInNavbar from './notLoggedInNavbar'
+import LoggedInNavbar from './loggedInNavbar'
 
 class Navbar extends React.Component {
-  constructor(props) {
+  constructor() {
     super()
     this.state = {
       showLoginForm: false,
@@ -31,55 +34,41 @@ class Navbar extends React.Component {
     }))
   }
 
+  // eslint-disable-next-line complexity
   render() {
-    const users = this.props.isAdmin ? <Link to="/users">Users</Link> : ''
     return (
-      <div>
+      <>
         <div className="header">
           <NavLink to="/products" className="link">
-            All Products
+            See Products
           </NavLink>
           <Link to="/home" className="link">
             <h2 className="logo">GRAY STOPPER</h2>
           </Link>
           <nav>
-            {this.props.isLoggedIn ? (
-              <div>
-                {/* The navbar will show these links after you log in */}
-                <Link to="/home">Home</Link>
-                <Link to="/cart">Cart</Link>
-                {users}
-                <a to="/" href="#" onClick={this.props.handleClick}>
-                  Logout
-                </a>
-              </div>
-            ) : (
-              <div>
-                {/* The navbar will show these links before you log in */}
-                <button
-                  type="button"
-                  onClick={() => {
-                    this.handleLoginClick()
-                  }}
-                >
-                  Login
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    this.handleSignUpClick()
-                  }}
-                >
-                  Sign Up
-                </button>
-                <Link to="/cart">Cart</Link>
-              </div>
+            {/* The navbar will show these links after you log in as an admin */}
+            {this.props.isAdmin && (
+              <AdminNavbar handleClick={this.props.handleClick} />
+            )}
+            {/* The navbar will show these links after you log in, not as an admin */}
+            {this.props.isLoggedIn &&
+              !this.props.isAdmin && (
+                <LoggedInNavbar handleLoginClick={this.handleLoginClick} />
+              )}
+            {/* The navbar will show these links before you log in */}
+            {!this.props.isLoggedIn && (
+              <NotLoggedInNavbar
+                handleLoginClick={this.handleLoginClick}
+                handleSignUpClick={this.handleSignUpClick}
+              />
             )}
           </nav>
         </div>
-        {!this.props.isLoggedIn && this.state.showLoginForm ? <Login /> : ''}
-        {!this.props.isLoggedIn && this.state.showSignUpForm ? <Signup /> : ''}
-      </div>
+        <div>
+          {!this.props.isLoggedIn && this.state.showLoginForm && <Login />}
+          {!this.props.isLoggedIn && this.state.showSignUpForm && <Signup />}
+        </div>
+      </>
     )
   }
 }
