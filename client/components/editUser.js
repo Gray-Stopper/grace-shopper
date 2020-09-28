@@ -5,6 +5,9 @@ const EditUser = props => {
   return (
     <>
       <h3 className="margin-left">Edit Customer</h3>
+      <span className="margin-left">
+        All fields must be filled in to update a customer profile.
+      </span>
       <div className="form-box">
         <form className="add-new-form" onSubmit={props.onSubmit}>
           <label className="add-label" htmlFor="editFirstName">

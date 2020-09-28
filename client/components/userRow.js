@@ -15,7 +15,7 @@ const UserRow = props => {
           className="button edit"
           onClick={() => props.showEdit(id)}
         >
-          Edit Customer
+          Edit
         </button>
       </td>
       <td>
@@ -24,7 +24,7 @@ const UserRow = props => {
           className="button remove"
           onClick={() => props.removeUser(id)}
         >
-          Delete Customer
+          Delete
         </button>
       </td>
     </tr>

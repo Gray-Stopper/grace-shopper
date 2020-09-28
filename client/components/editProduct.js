@@ -1,107 +1,106 @@
 import React from 'react'
 
-const NewProduct = props => {
+const EditProduct = props => {
   const {
-    newImageUrl,
-    newDescription,
-    newName,
-    newStock,
-    newPrice
+    editImageUrl,
+    editDescription,
+    editName,
+    editStock,
+    editPrice
   } = props.formInput
   return (
     <>
-      <h3 className="margin-left">Add New Product</h3>
+      <h3 className="margin-left">Edit Product</h3>
       <span className="margin-left">
-        New products must include a <b>name</b>, <b>price</b> and{' '}
-        <b>category</b>.
+        All edited products must include a <b>name</b>, <b>price</b>,{' '}
+        <b>stock amount</b> and <b>category</b>.
       </span>
       <div className="form-box">
         <form className="add-new-form" onSubmit={props.onSubmit}>
-          <label className="add-label" htmlFor="newName">
+          <label className="add-label" htmlFor="editName">
             Name:{' '}
           </label>
 
           <input
-            name="newName"
+            name="editName"
             type="text"
             className="add-form-field"
             size="37"
-            value={newName}
+            value={editName}
             onChange={props.onChange}
           />
 
-          <label htmlFor="newStock" className="add-label">
+          <label htmlFor="editStock" className="add-label">
             Stock:{' '}
           </label>
 
           <input
             className="add-form-field"
-            name="newStock"
+            name="editStock"
             type="number"
-            value={newStock}
+            value={editStock}
             onChange={props.onChange}
           />
           <br />
 
-          <label htmlFor="newImageUrl" className="add-label">
+          <label htmlFor="editImageUrl" className="add-label">
             Image URL:{' '}
           </label>
 
           <input
             className="add-form-field"
-            name="newImageUrl"
+            name="editImageUrl"
             type="text"
             size="120"
-            value={newImageUrl}
+            value={editImageUrl}
             onChange={props.onChange}
           />
           <br />
 
-          <label htmlFor="newDescription" className="add-label">
+          <label htmlFor="editDescription" className="add-label">
             Description:{' '}
           </label>
 
           <input
             className="add-form-field"
-            name="newDescription"
+            name="editDescription"
             type="text"
             size="120"
-            value={newDescription}
+            value={editDescription}
             onChange={props.onChange}
           />
           <br />
 
-          <label htmlFor="newPrice" className="add-label">
+          <label htmlFor="editPrice" className="add-label">
             Price:{' '}
           </label>
 
           <input
             className="add-form-field"
-            name="newPrice"
+            name="editPrice"
             type="number"
-            value={newPrice}
+            value={editPrice}
             onChange={props.onChange}
           />
 
-          <label htmlFor="newCategory" className="add-label category">
+          <label htmlFor="editCategory" className="add-label category">
             Category:
           </label>
 
           <select
-            name="newCategory"
+            name="editCategory"
             className="cart-select add-select"
-            value={props.newCategory}
+            value={props.editCategory}
             onChange={props.onChange}
           >
-            <option>Choose a category...</option>
             <option value="color">Color</option>
             <option value="nutrition">Nutrition</option>
             <option value="wigs">Wigs</option>
           </select>
 
           <br />
-          <button type="submit" className="button add dash">
-            Add Product
+          <button type="submit" className="button edit dash">
+            Edit Product
           </button>
         </form>
       </div>
@@ -109,4 +108,4 @@ const NewProduct = props => {
   )
 }
 
-export default NewProduct
+export default EditProduct

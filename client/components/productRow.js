@@ -11,16 +11,16 @@ const ProductRow = props => {
       <td>{name}</td>
       <td>{category}</td>
       <td>{`$${price}`}</td>
-      <td>{stock}</td>
-      {/* <td>
+      <td className={!stock ? 'soldOut' : ''}>{stock}</td>
+      <td>
         <button
           type="button"
           className="button edit"
           onClick={() => props.showEdit(id)}
         >
-          Edit Customer
+          Edit
         </button>
-      </td> */}
+      </td>
       <td>
         <button
           type="button"

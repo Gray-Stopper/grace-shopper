@@ -6,6 +6,7 @@ import axios from 'axios'
 const GET_PRODUCTS = 'GET_PRODUCTS'
 const DELETE_PRODUCT = 'DELETE_PRODUCT'
 const ADD_PRODUCT = 'ADD_PRODUCT'
+const EDIT_PRODUCT = 'EDIT_PRODUCT'
 
 /**
  * ACTION CREATORS
@@ -15,6 +16,8 @@ const getAllProducts = products => ({type: GET_PRODUCTS, products})
 const removedProduct = productId => ({type: DELETE_PRODUCT, productId})
 
 const addedProduct = product => ({type: ADD_PRODUCT, product})
+
+const editedProduct = (id, product) => ({type: EDIT_PRODUCT, id, product})
 
 /**
  * THUNK CREATORS
@@ -60,6 +63,24 @@ export const removeProduct = productId => async dispatch => {
   }
 }
 
+export const editProduct = productInfo => async dispatch => {
+  try {
+    const {data, status} = await axios.put(
+      '/api/products/' + productInfo.id,
+      productInfo
+    )
+    if (status === 200) {
+      dispatch(editedProduct(productInfo.id, data))
+    } else if (status === 401) {
+      throw new Error('Unauthorized attempt to edit product')
+    } else {
+      throw new Error('edit product failed')
+    }
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 /**
  * REDUCER
  */
@@ -69,6 +90,14 @@ export default function allProductsReducer(state = [], action) {
       return action.products
     case ADD_PRODUCT:
       return [...state, action.product]
+    case EDIT_PRODUCT:
+      return state.map(product => {
+        if (product.id === action.id) {
+          return action.product[0]
+        } else {
+          return product
+        }
+      })
     case DELETE_PRODUCT:
       return state.filter(product => product.id !== action.productId)
     default:

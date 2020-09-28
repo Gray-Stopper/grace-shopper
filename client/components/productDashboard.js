@@ -1,7 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchAllProducts, removeProduct, addProduct} from '../store/allProducts'
-import {ProductRow, NewProduct} from './index'
+import {
+  fetchAllProducts,
+  removeProduct,
+  addProduct,
+  editProduct
+} from '../store/allProducts'
+import {ProductRow, NewProduct, EditProduct} from './index'
 
 class ProductDashboard extends Component {
   constructor() {
@@ -12,11 +17,21 @@ class ProductDashboard extends Component {
       newStock: 10,
       newPrice: '',
       newCategory: '',
-      newDescription: ''
+      newDescription: '',
+      showEdit: false,
+      editId: '',
+      editName: '',
+      editImageUrl: '',
+      editStock: '',
+      editPrice: '',
+      editCategory: '',
+      editDescription: ''
     }
     this.handleRemove = this.handleRemove.bind(this)
     this.handleFormInput = this.handleFormInput.bind(this)
     this.handleAdd = this.handleAdd.bind(this)
+    this.handleEdit = this.handleEdit.bind(this)
+    this.showEdit = this.showEdit.bind(this)
   }
 
   async componentDidMount() {
@@ -27,11 +42,24 @@ class ProductDashboard extends Component {
     this.setState({
       [event.target.name]: event.target.value
     })
-    console.log('this.state.price: ', this.state.newPrice)
   }
 
   async handleRemove(productId) {
     await this.props.removeProduct(productId)
+  }
+
+  showEdit(id) {
+    const [productToEdit] = this.props.products.filter(prod => prod.id === id)
+    this.setState(prevState => ({
+      showEdit: !prevState.showEdit,
+      editId: id,
+      editName: productToEdit.name,
+      editImageUrl: productToEdit.imageUrl,
+      editStock: productToEdit.stock,
+      editPrice: productToEdit.price,
+      editCategory: productToEdit.category,
+      editDescription: productToEdit.description
+    }))
   }
 
   async handleAdd(event) {
@@ -50,7 +78,7 @@ class ProductDashboard extends Component {
         name: newName,
         stock: newStock,
         category: newCategory,
-        price: newPrice * 100
+        price: parseInt(newPrice * 100, 10)
       }
       if (newImageUrl) newProductInfo.imageUrl = newImageUrl
       if (newDescription) newProductInfo.description = newDescription
@@ -63,6 +91,45 @@ class ProductDashboard extends Component {
         newStock: 10,
         newPrice: '',
         newCategory: ''
+      })
+    }
+  }
+
+  async handleEdit(event) {
+    event.preventDefault()
+    const {
+      editId,
+      editName,
+      editCategory,
+      editPrice,
+      editStock,
+      editImageUrl,
+      editDescription
+    } = this.state
+
+    if (editName && editCategory && editPrice && editStock) {
+      const editProductInfo = {
+        id: editId,
+        name: editName,
+        stock: editStock,
+        category: editCategory,
+        price: parseInt(editPrice * 100, 10)
+      }
+
+      if (editImageUrl) editProductInfo.imageUrl = editImageUrl
+      if (editDescription) editProductInfo.description = editDescription
+
+      await this.props.editProduct(editProductInfo)
+
+      this.setState({
+        showEdit: false,
+        editId: '',
+        editName: '',
+        editImageUrl: '',
+        editStock: '',
+        editPrice: '',
+        editCategory: '',
+        editDescription: ''
       })
     }
   }
@@ -91,7 +158,7 @@ class ProductDashboard extends Component {
                   <ProductRow
                     key={product.id}
                     product={product}
-                    // showEdit={this.showEdit}
+                    showEdit={this.showEdit}
                     removeProduct={this.handleRemove}
                   />
                 )
@@ -104,13 +171,13 @@ class ProductDashboard extends Component {
           onSubmit={this.handleAdd}
           formInput={this.state}
         />
-        {/* {this.state.showEdit && (
-          <EditUser
+        {this.state.showEdit && (
+          <EditProduct
             onChange={this.handleFormInput}
             onSubmit={this.handleEdit}
             formInput={this.state}
           />
-        )} */}
+        )}
       </div>
     )
   }
@@ -123,8 +190,8 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   getAllProducts: () => dispatch(fetchAllProducts()),
   removeProduct: productId => dispatch(removeProduct(productId)),
-  addProduct: productInfo => dispatch(addProduct(productInfo))
-  // editUser: userInfo => dispatch(editUser(userInfo))
+  addProduct: productInfo => dispatch(addProduct(productInfo)),
+  editProduct: productInfo => dispatch(editProduct(productInfo))
 })
 
 export default connect(mapState, mapDispatch)(ProductDashboard)
