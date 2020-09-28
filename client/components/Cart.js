@@ -1,12 +1,16 @@
 import React from 'react'
-import {CartProduct, CartTotal} from './index'
+import {CartProduct, CartTotal, GuestCartProduct} from './index'
 
 export const Cart = props => {
   let products = props.cart.products
-  let hasItems = true
+  let hasItems = false
+  if (products) {
+    hasItems = true
+  }
   if (!products) {
+    console.log('hi', props.cart)
     products = props.cart
-    hasItems = false
+    hasItems = true
   }
   return (
     <div>
@@ -26,15 +30,26 @@ export const Cart = props => {
             <tbody>
               {products &&
                 products.map(prod => {
-                  return (
-                    <CartProduct
-                      key={prod.id}
-                      product={prod}
-                      userId={props.user.id}
-                      orderId={props.cart.id}
-                      remove={props.handleRemove}
-                    />
-                  )
+                  if (prod.user) {
+                    return (
+                      <CartProduct
+                        key={prod.id}
+                        product={prod}
+                        userId={props.user.id}
+                        orderId={props.cart.id}
+                        remove={props.handleRemove}
+                      />
+                    )
+                  } else {
+                    return (
+                      <GuestCartProduct
+                        key={prod.id}
+                        product={prod}
+                        remove={props.handleRemove}
+                        edit={(event, name) => props.edit(event, name)}
+                      />
+                    )
+                  }
                 })}
             </tbody>
           </table>

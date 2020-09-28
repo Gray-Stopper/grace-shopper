@@ -2,8 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {me} from '../store'
 import {loadCart, removeItem} from '../store/cart'
-import {CartProduct, CartTotal} from './index'
-import {GuestCart} from './guestCart'
 import {Cart} from './Cart'
 
 class ViewCart extends React.Component {

@@ -32,7 +32,6 @@ class Routes extends Component {
         <Route exact path="/confirmation" component={Confirmation} />
         <Route exact path="/products/:productId" component={SingleProduct} />
         <Route exact path="/products" component={AllProducts} />
-        <Route exact path="/cart" component={GuestCart} />
         {isAdmin && (
           <Switch>
             <Route path="/productDashboard" component={ProductDashboard} />
