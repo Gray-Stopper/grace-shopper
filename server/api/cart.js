@@ -202,7 +202,11 @@ router.put('/guestCheckout', async (req, res, next) => {
     console.log(products)
     const stock = await Promise.all(
       products.map(async product => {
-        const stock = await Product.findByPk(product.id)
+        const stock = await Product.findOne({
+          where: {
+            name: product.name
+          }
+        })
         if (product.quantity <= stock.stock) {
           return stock.stock - product.quantity
         } else {
@@ -214,18 +218,22 @@ router.put('/guestCheckout', async (req, res, next) => {
       const outStockItems = stock
         .map((element, index) => {
           if (element === -1) {
-            return products[index].id
+            return products[index].name
           }
         })
-        .filter(productId => productId !== undefined)
-      await Promise.all(
-        outStockItems.map(async productId => {
-          const item = await Product.findByPk(productId)
-          return item.name
-        })
-      ).then(result => {
-        res.status(202).json({redirectUrl: '/cart', alert: result})
-      })
+        .filter(prodName => prodName !== undefined)
+      // await Promise.all(
+      //   outStockItems.map(async prodName => {
+      //     const item = await Product.findOne({
+      //       where: {
+      //         name: prodName
+      //       }
+      //     })
+      //     return item.name
+      //   })
+      // ).then(result => {
+      res.status(202).json({redirectUrl: '/cart', alert: result})
+      // })
     } else {
       for (let i = 0; i < stock.length; i++) {
         let newStock = stock[i]
