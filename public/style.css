@@ -87,6 +87,7 @@ form div {
 
 .singleProduct {
   display: flex;
+  flex-flow: column wrap;
   justify-content: center;
 }
 
