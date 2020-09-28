@@ -2,20 +2,43 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchAllProducts} from '../store/allProducts'
 import {addItemThunk} from '../store/cart'
-import Product from './product'
+import AllProductRender from './allProductRender'
 
 class AllProducts extends Component {
   constructor() {
     super()
     this.state = {
-      mounted: false
+      mounted: false,
+      colorProducts: [],
+      wigProducts: [],
+      nutritionProducts: [],
+      colorLeft: 0,
+      colorRight: 3,
+      wigLeft: 0,
+      wigRight: 3,
+      nutritionLeft: 0,
+      nutritionRight: 3
     }
     this.handleAdd = this.handleAdd.bind(this)
+    this.scrollLeft = this.scrollLeft.bind(this)
+    this.scrollRight = this.scrollRight.bind(this)
   }
 
   async componentDidMount() {
     await this.props.getAllProducts()
-    this.setState({mounted: true})
+    this.setState({
+      mounted: true,
+      colorProducts: this.props.allProducts.filter(
+        grayStopper => grayStopper.category === 'color'
+      ),
+      wigProducts: this.props.allProducts.filter(
+        grayStopper => grayStopper.category === 'wigs'
+      ),
+      nutritionProducts: this.props.allProducts.filter(
+        grayStopper => grayStopper.category === 'nutrition'
+      )
+    })
+    console.log('wigProducts: ', this.state.wigProducts)
   }
 
   async handleAdd(event, productId) {
@@ -26,6 +49,53 @@ class AllProducts extends Component {
     })
   }
 
+  scrollLeft(category) {
+    if (category === 'color' && this.state.colorLeft > 0) {
+      this.setState(prevState => ({
+        colorLeft: --prevState.colorLeft,
+        colorRight: --prevState.colorRight
+      }))
+    } else if (category === 'wigs' && this.state.wigLeft > 0) {
+      this.setState(prevState => ({
+        wigLeft: --prevState.wigLeft,
+        wigRight: --prevState.wigRight
+      }))
+    } else if (category === 'nutrition' && this.state.nutritionLeft > 0) {
+      this.setState(prevState => ({
+        nutritionLeft: --prevState.nutritionLeft,
+        nutritionRight: --prevState.nutritionRight
+      }))
+    }
+  }
+
+  scrollRight(category) {
+    if (
+      category === 'color' &&
+      this.state.colorRight < this.state.colorProducts.length
+    ) {
+      this.setState(prevState => ({
+        colorLeft: ++prevState.colorLeft,
+        colorRight: ++prevState.colorRight
+      }))
+    } else if (
+      category === 'wigs' &&
+      this.state.wigRight < this.state.wigProducts.length
+    ) {
+      this.setState(prevState => ({
+        wigLeft: ++prevState.wigLeft,
+        wigRight: ++prevState.wigRight
+      }))
+    } else if (
+      category === 'nutrition' &&
+      this.state.nutritionRight < this.state.nutritionProducts.length
+    ) {
+      this.setState(prevState => ({
+        nutritionLeft: ++prevState.nutritionLeft,
+        nutritionRight: ++prevState.nutritionRight
+      }))
+    }
+  }
+
   render() {
     const grayStoppers = this.props.allProducts || []
     if (!this.state.mounted) {
@@ -34,44 +104,14 @@ class AllProducts extends Component {
       return (
         <div>
           {grayStoppers.length > 0 ? (
-            <>
-              <div id="grayStoppers" className="grayStoppers">
-                <h3>COLOR POPPERS</h3>
-                {grayStoppers
-                  .filter(grayStopper => grayStopper.category === 'color')
-                  .map(grayStopper => (
-                    <Product
-                      key={grayStopper.id}
-                      product={grayStopper}
-                      add={this.handleAdd}
-                    />
-                  ))}
-              </div>
-              <div id="grayStoppers" className="grayStoppers">
-                <h3>HAIR TOPPERS</h3>
-                {grayStoppers
-                  .filter(grayStopper => grayStopper.category === 'wigs')
-                  .map(grayStopper => (
-                    <Product
-                      key={grayStopper.id}
-                      product={grayStopper}
-                      add={this.handleAdd}
-                    />
-                  ))}
-              </div>
-              <div id="grayStoppers" className="grayStoppers">
-                <h3>FOR WELLNESS SHOPPERS</h3>
-                {grayStoppers
-                  .filter(grayStopper => grayStopper.category === 'nutrition')
-                  .map(grayStopper => (
-                    <Product
-                      key={grayStopper.id}
-                      product={grayStopper}
-                      add={this.handleAdd}
-                    />
-                  ))}
-              </div>
-            </>
+            <AllProductRender
+              indexes={this.state}
+              colorProducts={this.state.colorProducts}
+              wigProducts={this.state.wigProducts}
+              nutritionProducts={this.state.nutritionProducts}
+              scrollLeft={this.scrollLeft}
+              scrollRight={this.scrollRight}
+            />
           ) : (
             <h3>More products coming soon!</h3>
           )}

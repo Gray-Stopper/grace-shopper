@@ -1,7 +1,5 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
-import {Checkout} from './cartCheckout'
 
 const CartTotal = props => {
   let productArr = props.cart.products

@@ -1,12 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
 import {putCheckOutItems, putGuestCheckout} from '../store/checkout'
 import {ShippingForm} from './shippingForm'
 import {PaymentForm} from './paymentForm'
 
 export class CheckOutForm extends Component {
-  constructor(props) {
+  constructor() {
     super()
     this.state = {
       shipform: false,
