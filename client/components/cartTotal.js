@@ -1,11 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
-import {Checkout} from './cartCheckout'
 
 const CartTotal = props => {
   let productArr = props.cart.products
-  console.log('cart-total', props)
   if (Array.isArray(props.cart)) {
     productArr = props.cart
   }
@@ -18,13 +15,14 @@ const CartTotal = props => {
     }
     return acc + val.price * orderQuantity
   }, 0)
+  const subtotal = Math.round(calPrice * 100) / 100
   const totalPrice = Math.round((calPrice + 5.99) * 100) / 100
   return (
     <table className="total">
       <tbody>
         <tr>
           <td className="bold">Subtotal</td>
-          <td>{`$${totalPrice}`}</td>
+          <td>{`$${subtotal}`}</td>
         </tr>
         <tr>
           <td className="bold">Tax</td>
