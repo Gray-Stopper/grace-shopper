@@ -1,20 +1,70 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchAllProducts, removeProduct} from '../store/allProducts'
-import {ProductRow} from './index'
+import {fetchAllProducts, removeProduct, addProduct} from '../store/allProducts'
+import {ProductRow, NewProduct} from './index'
 
 class ProductDashboard extends Component {
   constructor() {
     super()
+    this.state = {
+      newName: '',
+      newImageUrl: '',
+      newStock: 10,
+      newPrice: '',
+      newCategory: '',
+      newDescription: ''
+    }
     this.handleRemove = this.handleRemove.bind(this)
+    this.handleFormInput = this.handleFormInput.bind(this)
+    this.handleAdd = this.handleAdd.bind(this)
   }
 
   async componentDidMount() {
     await this.props.getAllProducts()
   }
 
-  async handleRemove(userId) {
-    await this.props.removeProduct(userId)
+  handleFormInput(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+    console.log('this.state.price: ', this.state.newPrice)
+  }
+
+  async handleRemove(productId) {
+    await this.props.removeProduct(productId)
+  }
+
+  async handleAdd(event) {
+    event.preventDefault()
+    const {
+      newName,
+      newCategory,
+      newPrice,
+      newStock,
+      newImageUrl,
+      newDescription
+    } = this.state
+
+    if (newName && newCategory && newPrice) {
+      const newProductInfo = {
+        name: newName,
+        stock: newStock,
+        category: newCategory,
+        price: newPrice * 100
+      }
+      if (newImageUrl) newProductInfo.imageUrl = newImageUrl
+      if (newDescription) newProductInfo.description = newDescription
+      if (newStock || newStock === 0) newProductInfo.stock = newStock
+
+      await this.props.addProduct(newProductInfo)
+      this.setState({
+        newName: '',
+        newImageUrl: '',
+        newStock: 10,
+        newPrice: '',
+        newCategory: ''
+      })
+    }
   }
 
   render() {
@@ -28,6 +78,7 @@ class ProductDashboard extends Component {
               <th scope="col">Product ID</th>
               <th scope="col">Name</th>
               <th scope="col">Category</th>
+              <th scope="col">Price</th>
               <th scope="col">Stock</th>
               <th scope="col" />
               <th scope="col" />
@@ -48,12 +99,12 @@ class ProductDashboard extends Component {
           </tbody>
         </table>
         <br />
-        {/* <NewUser
+        <NewProduct
           onChange={this.handleFormInput}
           onSubmit={this.handleAdd}
           formInput={this.state}
         />
-        {this.state.showEdit && (
+        {/* {this.state.showEdit && (
           <EditUser
             onChange={this.handleFormInput}
             onSubmit={this.handleEdit}
@@ -71,8 +122,8 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   getAllProducts: () => dispatch(fetchAllProducts()),
-  removeProduct: userId => dispatch(removeProduct(userId))
-  // addUser: userInfo => dispatch(addUser(userInfo)),
+  removeProduct: productId => dispatch(removeProduct(productId)),
+  addProduct: productInfo => dispatch(addProduct(productInfo))
   // editUser: userInfo => dispatch(editUser(userInfo))
 })
 

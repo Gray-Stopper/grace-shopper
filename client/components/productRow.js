@@ -1,7 +1,7 @@
 import React from 'react'
 
 const ProductRow = props => {
-  const {imageUrl, name, id, category, stock} = props.product
+  const {imageUrl, name, id, price, category, stock} = props.product
   return (
     <tr>
       <td>
@@ -10,6 +10,7 @@ const ProductRow = props => {
       <td>{id}</td>
       <td>{name}</td>
       <td>{category}</td>
+      <td>{`$${price}`}</td>
       <td>{stock}</td>
       {/* <td>
         <button
@@ -26,7 +27,7 @@ const ProductRow = props => {
           className="button remove"
           onClick={() => props.removeProduct(id)}
         >
-          Delete Product
+          Delete
         </button>
       </td>
     </tr>

@@ -13,6 +13,21 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.post('/', isAdminMiddleware, async (req, res, next) => {
+  try {
+    const {name, category, price, stock, imageUrl, description} = req.body
+    const newProductInfo = {name, stock, category, price}
+    if (imageUrl) newProductInfo.imageUrl = imageUrl
+    if (description) newProductInfo.description = description
+    if (stock || stock === 0) newProductInfo.stock = stock
+
+    const newProduct = await Product.create(newProductInfo)
+    res.json(newProduct)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.get('/:productId', async (req, res, next) => {
   try {
     const oneProduct = await Product.findByPk(req.params.productId)
