@@ -11,6 +11,9 @@ const NewUser = props => {
   return (
     <>
       <h3 className="margin-left">Add New Customer</h3>
+      <span className="margin-left">
+        All fields must be filled in to create a new customer profile.
+      </span>
       <div className="form-box">
         <form className="add-new-form" onSubmit={props.onSubmit}>
           <label className="add-label" htmlFor="newFirstName">

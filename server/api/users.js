@@ -41,6 +41,7 @@ router.put('/:userId', isAdminMiddleware, async (req, res, next) => {
         where: {
           id: req.params.userId
         },
+        include: {model: Product, as: ProductsInOrder},
         returning: true
       }
     )
