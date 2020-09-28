@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {auth} from '../store'
+import {login, signup} from '../store'
 
 /**
  * COMPONENT
@@ -11,7 +11,23 @@ const AuthForm = props => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} name={name}>
+      <form className="auth-form" onSubmit={handleSubmit} name={name}>
+        {name === 'signup' && (
+          <>
+            <div>
+              <label htmlFor="firstName">
+                <small>First Name</small>
+              </label>
+              <input name="firstName" type="text" />
+            </div>
+            <div>
+              <label htmlFor="lastName">
+                <small>Last Name</small>
+              </label>
+              <input name="lastName" type="text" />
+            </div>
+          </>
+        )}
         <div>
           <label htmlFor="email">
             <small>Email</small>
@@ -25,7 +41,9 @@ const AuthForm = props => {
           <input name="password" type="password" />
         </div>
         <div>
-          <button type="submit">{displayName}</button>
+          <button className="button auth" type="submit">
+            {displayName}
+          </button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
@@ -64,7 +82,19 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(auth(email, password, formName))
+
+      if (formName === 'login') {
+        dispatch(login({email, password}))
+      } else {
+        dispatch(
+          signup({
+            firstName: evt.target.firstName.value,
+            lastName: evt.target.lastName.value,
+            email,
+            password
+          })
+        )
+      }
     }
   }
 }
