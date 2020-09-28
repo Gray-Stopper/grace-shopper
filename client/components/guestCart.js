@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {removeGuestCartItem, updateGuestItemQuantity} from '../store/guestCart'
 import {GuestCartProduct} from './guestCartProduct'
 import {CartTotal} from './index'
+import {Cart} from './Cart'
 
 export class GuestCart extends Component {
   constructor() {
@@ -43,7 +44,9 @@ export class GuestCart extends Component {
     const productsArr = Object.values(cart)
     return (
       <div>
-        {productsArr.length > 0 ? (
+        <h3 className="left">Guest's Cart</h3>
+        <Cart cart={productsArr} handleRemove={this.removeItem} />
+        {/* {productsArr.length > 0 ? (
           <div>
             <table className="cart left">
               <thead className="t-head">
@@ -73,7 +76,7 @@ export class GuestCart extends Component {
           </div>
         ) : (
           <p>No items in cart</p>
-        )}
+        )} */}
       </div>
     )
   }
