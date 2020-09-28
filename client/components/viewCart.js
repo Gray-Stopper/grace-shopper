@@ -26,9 +26,9 @@ class ViewCart extends React.Component {
   async componentDidMount() {
     if (!this.props.user.id) {
       await this.props.loadInitialData()
-      if (this.props.user.id) {
-        await this.props.loadCart(this.props.user.id)
-      }
+    }
+    if (this.props.user.id) {
+      await this.props.loadCart(this.props.user.id)
     }
     this.setState({mounted: true})
   }
@@ -58,20 +58,21 @@ class ViewCart extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.props.cart.products.map(prod => {
-                    return (
-                      <CartProduct
-                        key={prod.id}
-                        product={prod}
-                        userId={this.props.user.id}
-                        orderId={this.props.cart.id}
-                        remove={this.handleRemove}
-                      />
-                    )
-                  })}
+                  {this.props.cart.products &&
+                    this.props.cart.products.map(prod => {
+                      return (
+                        <CartProduct
+                          key={prod.id}
+                          product={prod}
+                          userId={this.props.user.id}
+                          orderId={this.props.cart.id}
+                          remove={this.handleRemove}
+                        />
+                      )
+                    })}
                 </tbody>
               </table>
-              {this.props.cart && <CartTotal cart={this.props.cart} />}
+              {this.props.cart.products && <CartTotal cart={this.props.cart} />}
             </div>
           ) : (
             <GuestCart />
