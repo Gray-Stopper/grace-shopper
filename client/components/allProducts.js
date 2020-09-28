@@ -39,7 +39,6 @@ class AllProducts extends Component {
         grayStopper => grayStopper.category === 'nutrition'
       )
     })
-    console.log('wigProducts: ', this.state.wigProducts)
   }
 
   async handleAdd(event, productId) {
@@ -116,6 +115,7 @@ class AllProducts extends Component {
               nutritionProducts={this.state.nutritionProducts}
               scrollLeft={this.scrollLeft}
               scrollRight={this.scrollRight}
+              add={this.handleAdd}
             />
           ) : (
             <h3>More products coming soon!</h3>
