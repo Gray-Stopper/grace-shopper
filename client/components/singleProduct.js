@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import Product from './product'
-import {Link} from 'react-router-dom'
+// import Product from './product'
+// import {Link} from 'react-router-dom'
 import {fetchProduct} from '../store/product'
 import {addItemThunk, loadCart} from '../store/cart'
 import {addGuestCartItem} from '../store/guestCart'
@@ -13,7 +13,8 @@ class SingleProduct extends Component {
     super()
     this.handleAdd = this.handleAdd.bind(this)
     this.state = {
-      tax: 0
+      tax: 0,
+      cart: []
     }
   }
 
@@ -26,7 +27,10 @@ class SingleProduct extends Component {
     if (this.props.userId) {
       await this.props.loadCart(this.props.userId)
     } else {
-      // const productObj = JSON.parse(localStorage.getItem('cart'))
+      const guestCart = Object.values(JSON.parse(localStorage.getItem('cart')))
+      this.setState({
+        cart: guestCart
+      })
     }
   }
 
@@ -39,11 +43,20 @@ class SingleProduct extends Component {
       })
     } else {
       this.props.addGuestItem(productId)
+      const guestCart = Object.values(JSON.parse(localStorage.getItem('cart')))
+      this.setState({
+        cart: guestCart
+      })
     }
   }
 
   render() {
-    const cart = this.props.cart
+    let cart
+    if (this.props.userId) {
+      cart = this.props.cart
+    } else {
+      cart = this.state.cart
+    }
     let cartProducts = cart.products
     if (Array.isArray(cart)) {
       cartProducts = cart
@@ -65,8 +78,6 @@ class SingleProduct extends Component {
 
     const total = Math.round((subtotal + 5.99 + calTax) * 100) / 100
     const product = this.props.product
-
-    console.log('cartProducts: ', cartProducts)
 
     return (
       <>
@@ -92,38 +103,40 @@ class SingleProduct extends Component {
             </div>
           )}
         </div>
-        <div className="checkoutPageChildren">
-          <h3 className="formHeader">Cart Items</h3>
-          <table>
-            <tbody>
-              {cartProducts.map(cartProduct => (
-                <SideCartView key={cartProduct.id} item={cartProduct} />
-              ))}
-            </tbody>
-          </table>
-          <div>
-            <table className="total">
+        {cartProducts.length > 0 && (
+          <div className="checkoutPageChildren">
+            <h3 className="formHeader">Your Cart Items</h3>
+            <table>
               <tbody>
-                <tr>
-                  <td className="bold rowSpaces">Subtotal</td>
-                  <td className="rightAdjust">{`$${subtotal}`}</td>
-                </tr>
-                <tr>
-                  <td className="bold">Tax</td>
-                  <td className="rightAdjust">{tax}</td>
-                </tr>
-                <tr>
-                  <td className="bold">Shipping</td>
-                  <td className="rightAdjust">$5.99</td>
-                </tr>
-                <tr>
-                  <td className="bold">Total</td>
-                  <td className="rightAdjust">{`$${total}`}</td>
-                </tr>
+                {cartProducts.map(cartProduct => (
+                  <SideCartView key={cartProduct.id} item={cartProduct} />
+                ))}
               </tbody>
             </table>
+            <div>
+              <table className="total">
+                <tbody>
+                  <tr>
+                    <td className="bold rowSpaces">Subtotal</td>
+                    <td className="rightAdjust">{`$${subtotal}`}</td>
+                  </tr>
+                  <tr>
+                    <td className="bold">Tax</td>
+                    <td className="rightAdjust">{tax}</td>
+                  </tr>
+                  <tr>
+                    <td className="bold">Shipping</td>
+                    <td className="rightAdjust">$5.99</td>
+                  </tr>
+                  <tr>
+                    <td className="bold">Total</td>
+                    <td className="rightAdjust">{`$${total}`}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
+        )}
       </>
     )
   }
