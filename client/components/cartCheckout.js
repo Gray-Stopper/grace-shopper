@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {default as CheckOutForm} from './checkoutForm'
-import {SideCartView} from './side-cartView'
+import {SideCartView} from './sideCartView'
 
 export class Checkout extends Component {
   constructor() {

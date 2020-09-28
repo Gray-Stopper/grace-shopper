@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {me} from '../store'
 import {loadCart, removeItem} from '../store/cart'
 import {removeGuestCartItem, updateGuestItemQuantity} from '../store/guestCart'
-import {GuestProduct} from './guestcart-product'
+import {GuestProduct} from './guestcartProduct'
 import {CartProduct, CartTotal} from './index'
 
 export class GuestCart extends Component {

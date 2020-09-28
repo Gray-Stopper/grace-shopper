@@ -1,5 +1,5 @@
 import React from 'react'
-import {default as EditCartQuantity} from './edit-cart-quantity'
+import {default as EditCartQuantity} from './editCartQuantity'
 
 export const GuestProduct = props => {
   const {quantity, name, imageUrl, price} = props.product
