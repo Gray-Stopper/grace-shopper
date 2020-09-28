@@ -71,7 +71,7 @@ class ViewCart extends React.Component {
                     })}
                 </tbody>
               </table>
-              {this.props.cart && <CartTotal cart={this.props.cart} />}
+              {this.props.cart.products && <CartTotal cart={this.props.cart} />}
             </div>
           ) : (
             <p>No items in cart</p>

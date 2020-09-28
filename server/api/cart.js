@@ -46,7 +46,6 @@ router.put('/remove', async (req, res, next) => {
 router.put('/quantity', async (req, res, next) => {
   try {
     const currentOrder = await Order.findByPk(req.body.orderId)
-    console.log('currentOrder: ', currentOrder)
     if (currentOrder.userId !== req.body.userId) {
       res.sendStatus(401)
     }
