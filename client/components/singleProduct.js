@@ -3,6 +3,7 @@ import Product from './product'
 import {Link} from 'react-router-dom'
 import {fetchProduct} from '../store/product'
 import {addItemThunk} from '../store/cart'
+import {addGuestCartItem} from '../store/guestCart'
 import {connect} from 'react-redux'
 
 class SingleProduct extends Component {
@@ -16,14 +17,16 @@ class SingleProduct extends Component {
     await this.props.get(productId)
   }
 
-  async handleAdd(event, productId, userId) {
+  async handleAdd(event, productId) {
     event.preventDefault()
-    //if userId exist ...
-    await this.props.addItem({
-      productId,
-      userId: this.props.userId
-    })
-    //else storage in local storage
+    if (this.props.userId) {
+      await this.props.addItem({
+        productId,
+        userId: this.props.userId
+      })
+    } else {
+      this.props.addGuestItem(productId)
+    }
   }
 
   render() {
@@ -55,6 +58,9 @@ const mapDispatch = dispatch => {
     },
     addItem: product => {
       dispatch(addItemThunk(product))
+    },
+    addGuestItem: productId => {
+      dispatch(addGuestCartItem(productId))
     }
   }
 }

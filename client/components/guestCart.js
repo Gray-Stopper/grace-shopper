@@ -2,66 +2,79 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {me} from '../store'
 import {loadCart, removeItem} from '../store/cart'
+import {removeGuestCartItem, updateGuestItemQuantity} from '../store/guestCart'
+import {GuestProduct} from './guestcartProduct'
 import {CartProduct, CartTotal} from './index'
 
 export class GuestCart extends Component {
   constructor() {
     super()
+    this.state = {
+      products: {}
+    }
 
-    const guestStorage = windows.localStorage
+    this.removeItem = this.removeItem.bind(this)
+    this.updateItem = this.updateItem.bind(this)
+  }
+
+  componentDidMount() {
+    const productObj = JSON.parse(localStorage.getItem('cart'))
+    this.setState({
+      products: productObj
+    })
+  }
+
+  removeItem(productName) {
+    removeGuestCartItem(productName)
+  }
+
+  async updateItem(event, name) {
+    const newQuantity = Number(event.target.value)
+    updateGuestItemQuantity(name, newQuantity)
+    const productObj = JSON.parse(localStorage.getItem('cart'))
+    this.setState({
+      products: productObj
+    })
   }
 
   render() {
+    const productsArr = Object.values(this.state.products)
     return (
       <div>
-        <h3>Guest Cart</h3>
+        <h3 className="left">Guest's Cart</h3>
+        {this.state.products ? (
+          <div>
+            <table className="cart left">
+              <thead className="t-head">
+                <tr>
+                  <th />
+                  <th scope="col">Item</th>
+                  <th scope="col">Item Price</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Total Price</th>
+                  <th />
+                </tr>
+              </thead>
+              <tbody>
+                {productsArr.map(prod => {
+                  return (
+                    <GuestProduct
+                      key={prod.id}
+                      product={prod}
+                      remove={this.removeItem}
+                      edit={(event, name) => this.updateItem(event, name)}
+                    />
+                  )
+                })}
+              </tbody>
+            </table>
+            <CartTotal cart={productsArr} />
+          </div>
+        ) : (
+          <p>No items in cart</p>
+        )}
       </div>
     )
-    //   if (!this.state.mounted) {
-    //     return null
-    //   } else {
-    //     return (
-    //       <div>
-    //         <h3 className="left">
-    //           {this.props.user.firstName
-    //             ? `${this.props.user.firstName}'s Cart`
-    //             : 'Cart'}
-    //         </h3>
-    //         {this.props.cart.id ? (
-    //           <div>
-    //             <table className="cart left">
-    //               <thead className="t-head">
-    //                 <tr>
-    //                   <th />
-    //                   <th scope="col">Item</th>
-    //                   <th scope="col">Item Price</th>
-    //                   <th scope="col">Quantity</th>
-    //                   <th scope="col">Total Price</th>
-    //                   <th />
-    //                 </tr>
-    //               </thead>
-    //               <tbody>
-    //                 {this.props.cart.products.map(prod => {
-    //                   return (
-    //                     <CartProduct
-    //                       key={prod.id}
-    //                       product={prod}
-    //                       userId={this.props.user.id}
-    //                       orderId={this.props.cart.id}
-    //                       remove={this.handleRemove}
-    //                     />
-    //                   )
-    //                 })}
-    //               </tbody>
-    //             </table>
-    //             {this.props.cart && <CartTotal cart={this.props.cart} />}
-    //           </div>
-    //         ) : (
-    //           <p>No items in cart</p>
-    //         )}
-    //       </div>
-    //     )
-    //   }
   }
 }
 
