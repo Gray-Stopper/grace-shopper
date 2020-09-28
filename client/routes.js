@@ -8,8 +8,10 @@ import {
   AllProducts,
   Checkout,
   Confirmation,
+  Users,
   GuestCart,
-  SingleProduct
+  SingleProduct,
+  ProductDashboard
 } from './components'
 import {me} from './store'
 
@@ -17,13 +19,12 @@ import {me} from './store'
  * COMPONENT
  */
 class Routes extends Component {
-  componentDidMount() {
-    this.props.loadInitialData()
+  async componentDidMount() {
+    await this.props.loadInitialData()
   }
 
   render() {
-    const {isLoggedIn} = this.props
-
+    const {isAdmin} = this.props
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
@@ -34,18 +35,13 @@ class Routes extends Component {
         <Route exact path="/products/:productId" component={SingleProduct} />
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/guestCart" component={GuestCart} />
-        <Redirect from="/" to="/home" component={UserHome} />
-
-        {/* <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} /> */}
-        {isLoggedIn && (
+        {isAdmin && (
           <Switch>
-            {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
+            <Route path="/productDashboard" component={ProductDashboard} />
+            <Route path="/users" component={Users} />
           </Switch>
         )}
-        {/* Displays our Login component as a fallback */}
-        {/* <Route component={Login} /> */}
+        <Redirect from="/" to="/home" component={UserHome} />
       </Switch>
     )
   }
@@ -58,7 +54,9 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    user: state.user,
+    isLoggedIn: !!state.user.id,
+    isAdmin: !!state.user.isAdmin
   }
 }
 
@@ -78,6 +76,5 @@ export default withRouter(connect(mapState, mapDispatch)(Routes))
  * PROP TYPES
  */
 Routes.propTypes = {
-  loadInitialData: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  loadInitialData: PropTypes.func.isRequired
 }

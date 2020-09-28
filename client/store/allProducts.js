@@ -7,7 +7,6 @@ const getAllProducts = data => ({
   products: data
 })
 
-
 export const fetchAllProducts = () => {
   return async dispatch => {
     try {
@@ -19,7 +18,7 @@ export const fetchAllProducts = () => {
   }
 }
 
-export default function allProductsReducer (state = [], action) {
+export default function allProductsReducer(state = [], action) {
   switch (action.type) {
     case GET_PRODUCTS:
       return action.products
