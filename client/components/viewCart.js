@@ -36,13 +36,14 @@ class ViewCart extends React.Component {
     if (!this.state.mounted) {
       return null
     } else {
+      console.log('viewCart', this)
       return (
         <div>
           <h3 className="left">{this.props.user.firstName}'s Cart</h3>
           <Cart
             cart={this.props.cart}
             user={this.props.user}
-            handleRemove={this.props.handleRemove}
+            remove={this.handleRemove}
           />
         </div>
       )

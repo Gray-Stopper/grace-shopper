@@ -20,6 +20,10 @@ form div {
   display: inline-block;
 }
 
+h1 {
+  text-align: center;
+}
+
 /* Navbar */
 
 .header {
@@ -85,10 +89,34 @@ form div {
 
 /* Single Product View */
 
+.singleProductPage {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+}
+
 .singleProduct {
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: row nowrap;
   justify-content: center;
+  align-items: center;
+}
+
+.title-img {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.single-img {
+  width: 50%;
+  height: auto;
+  padding: 1em;
+}
+
+.description {
+  width: 60%;
 }
 
 /* Cart Page Styling */
@@ -129,7 +157,6 @@ td {
 }
 
 .add-select {
-  /* background-color: #e1efe6; */
   font-weight: 600;
 }
 
@@ -334,4 +361,12 @@ p {
 
 .soldOut {
   color: red;
+}
+
+.addItem {
+  width: 60%;
+}
+
+.totheleft {
+  padding: 10em;
 }

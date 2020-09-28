@@ -8,10 +8,10 @@ export const Cart = props => {
     hasItems = true
   }
   if (!products) {
-    console.log('hi', props.cart)
     products = props.cart
     hasItems = true
   }
+  console.log('cart', props)
   return (
     <div>
       {hasItems ? (
@@ -30,14 +30,14 @@ export const Cart = props => {
             <tbody>
               {products &&
                 products.map(prod => {
-                  if (prod.user) {
+                  if (props.user) {
                     return (
                       <CartProduct
                         key={prod.id}
                         product={prod}
                         userId={props.user.id}
                         orderId={props.cart.id}
-                        remove={props.handleRemove}
+                        remove={props.remove}
                       />
                     )
                   } else {
