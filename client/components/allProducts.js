@@ -115,7 +115,7 @@ class AllProducts extends Component {
               nutritionProducts={this.state.nutritionProducts}
               scrollLeft={this.scrollLeft}
               scrollRight={this.scrollRight}
-              add={this.handleAdd}
+              handleAdd={this.handleAdd}
             />
           ) : (
             <h3>More products coming soon!</h3>

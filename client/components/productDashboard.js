@@ -12,6 +12,7 @@ class ProductDashboard extends Component {
   constructor() {
     super()
     this.state = {
+      mounted: false,
       newName: '',
       newImageUrl: '',
       newStock: 10,
@@ -36,6 +37,7 @@ class ProductDashboard extends Component {
 
   async componentDidMount() {
     await this.props.getAllProducts()
+    this.setState({mounted: true})
   }
 
   handleFormInput(event) {
@@ -135,51 +137,55 @@ class ProductDashboard extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <h3 className="margin-left">Product Dashboard</h3>
-        <table className="cart left">
-          <thead className="t-head">
-            <tr>
-              <th scope="col">Image</th>
-              <th scope="col">Product ID</th>
-              <th scope="col">Name</th>
-              <th scope="col">Category</th>
-              <th scope="col">Price</th>
-              <th scope="col">Stock</th>
-              <th scope="col" />
-              <th scope="col" />
-            </tr>
-          </thead>
-          <tbody>
-            {this.props.products &&
-              this.props.products.sort((a, b) => a.id - b.id).map(product => {
-                return (
-                  <ProductRow
-                    key={product.id}
-                    product={product}
-                    showEdit={this.showEdit}
-                    removeProduct={this.handleRemove}
-                  />
-                )
-              })}
-          </tbody>
-        </table>
-        <br />
-        <NewProduct
-          onChange={this.handleFormInput}
-          onSubmit={this.handleAdd}
-          formInput={this.state}
-        />
-        {this.state.showEdit && (
-          <EditProduct
+    if (!this.state.mounted) {
+      return null
+    } else {
+      return (
+        <div>
+          <h3 className="margin-left">Product Dashboard</h3>
+          <table className="cart left">
+            <thead className="t-head">
+              <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Product ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">Price</th>
+                <th scope="col">Stock</th>
+                <th scope="col" />
+                <th scope="col" />
+              </tr>
+            </thead>
+            <tbody>
+              {this.props.products &&
+                this.props.products.sort((a, b) => a.id - b.id).map(product => {
+                  return (
+                    <ProductRow
+                      key={product.id}
+                      product={product}
+                      showEdit={this.showEdit}
+                      removeProduct={this.handleRemove}
+                    />
+                  )
+                })}
+            </tbody>
+          </table>
+          <br />
+          {this.state.showEdit && (
+            <EditProduct
+              onChange={this.handleFormInput}
+              onSubmit={this.handleEdit}
+              formInput={this.state}
+            />
+          )}
+          <NewProduct
             onChange={this.handleFormInput}
-            onSubmit={this.handleEdit}
+            onSubmit={this.handleAdd}
             formInput={this.state}
           />
-        )}
-      </div>
-    )
+        </div>
+      )
+    }
   }
 }
 
