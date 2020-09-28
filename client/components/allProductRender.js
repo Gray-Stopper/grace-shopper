@@ -33,7 +33,7 @@ const AllProductRender = props => {
             <Product
               key={grayStopper.id}
               product={grayStopper}
-              add={props.handleAdd}
+              handleAdd={props.handleAdd}
             />
           ))}
         <button
@@ -70,7 +70,7 @@ const AllProductRender = props => {
             <Product
               key={grayStopper.id}
               product={grayStopper}
-              add={props.handleAdd}
+              handleAdd={props.handleAdd}
             />
           ))}
         <button
@@ -107,7 +107,7 @@ const AllProductRender = props => {
             <Product
               key={grayStopper.id}
               product={grayStopper}
-              add={props.handleAdd}
+              handleAdd={props.handleAdd}
             />
           ))}
         <button

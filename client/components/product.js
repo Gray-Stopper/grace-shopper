@@ -17,7 +17,7 @@ const Product = props => {
           type="button"
           className="clear button"
           onClick={() => {
-            props.add(event, product.id)
+            props.handleAdd(event, product.id)
           }}
         >
           Add To Cart - ${product.price}
