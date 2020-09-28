@@ -62,7 +62,7 @@ const NewUser = props => {
           <input
             className="add-form-field"
             name="newPassword"
-            type="text"
+            type="password"
             value={newPassword}
             onChange={props.onChange}
           />

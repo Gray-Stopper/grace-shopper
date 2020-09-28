@@ -40,7 +40,7 @@ class Routes extends Component {
             <Route path="/users" component={Users} />
           </Switch>
         )}
-        <Redirect from="/" to="/home" component={UserHome} />
+        <Redirect exact from="/" to="/home" component={UserHome} />
       </Switch>
     )
   }

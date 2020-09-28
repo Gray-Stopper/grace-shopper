@@ -7,6 +7,7 @@ class Users extends React.Component {
   constructor() {
     super()
     this.state = {
+      mounted: false,
       newFirstName: '',
       newLastName: '',
       newEmail: '',
@@ -34,6 +35,7 @@ class Users extends React.Component {
 
   async componentDidMount() {
     await this.props.getAllUsers()
+    this.setState({mounted: true})
   }
 
   showEdit(id) {
@@ -109,50 +111,54 @@ class Users extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <h3 className="margin-left">All Registered Customers</h3>
-        <table className="cart left">
-          <thead className="t-head">
-            <tr>
-              <th scope="col">Id</th>
-              <th scope="col">First Name</th>
-              <th scope="col">Last Name</th>
-              <th scope="col">Email</th>
-              <th scope="col">Admin</th>
-              <th scope="col" />
-              <th scope="col" />
-            </tr>
-          </thead>
-          <tbody>
-            {this.props.users &&
-              this.props.users.sort((a, b) => a.id - b.id).map(user => {
-                return (
-                  <UserRow
-                    key={user.id}
-                    user={user}
-                    showEdit={this.showEdit}
-                    removeUser={this.handleRemove}
-                  />
-                )
-              })}
-          </tbody>
-        </table>
-        <br />
-        <NewUser
-          onChange={this.handleFormInput}
-          onSubmit={this.handleAdd}
-          formInput={this.state}
-        />
-        {this.state.showEdit && (
-          <EditUser
+    if (!this.state.mounted) {
+      return null
+    } else {
+      return (
+        <div>
+          <h3 className="margin-left">All Registered Customers</h3>
+          <table className="cart left">
+            <thead className="t-head">
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Admin</th>
+                <th scope="col" />
+                <th scope="col" />
+              </tr>
+            </thead>
+            <tbody>
+              {this.props.users &&
+                this.props.users.sort((a, b) => a.id - b.id).map(user => {
+                  return (
+                    <UserRow
+                      key={user.id}
+                      user={user}
+                      showEdit={this.showEdit}
+                      removeUser={this.handleRemove}
+                    />
+                  )
+                })}
+            </tbody>
+          </table>
+          <br />
+          {this.state.showEdit && (
+            <EditUser
+              onChange={this.handleFormInput}
+              onSubmit={this.handleEdit}
+              formInput={this.state}
+            />
+          )}
+          <NewUser
             onChange={this.handleFormInput}
-            onSubmit={this.handleEdit}
+            onSubmit={this.handleAdd}
             formInput={this.state}
           />
-        )}
-      </div>
-    )
+        </div>
+      )
+    }
   }
 }
 
