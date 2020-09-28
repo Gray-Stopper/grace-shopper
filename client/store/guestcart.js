@@ -31,7 +31,7 @@ export const removeGuestCartItem = productName => {
     delete cartArr[productName]
     const objToStr = JSON.stringify(cartArr)
     localStorage.setItem('cart', objToStr)
-  } catch {
+  } catch (err) {
     console.log(err)
   }
 }

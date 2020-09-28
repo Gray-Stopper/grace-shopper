@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {fetchAllProducts} from '../store/allProducts'
 import {addItemThunk} from '../store/cart'
 import AllProductRender from './allProductRender'
+import {addGuestCartItem} from '../store/guestCart'
 
 class AllProducts extends Component {
   constructor() {
@@ -43,10 +44,14 @@ class AllProducts extends Component {
 
   async handleAdd(event, productId) {
     event.preventDefault()
-    await this.props.addItem({
-      productId,
-      userId: this.props.userId
-    })
+    if (this.props.userId) {
+      await this.props.addItem({
+        productId,
+        userId: this.props.userId
+      })
+    } else {
+      this.props.addGuestItem(productId)
+    }
   }
 
   scrollLeft(category) {
@@ -130,6 +135,9 @@ const mapDispatch = dispatch => ({
   getAllProducts: () => dispatch(fetchAllProducts()),
   addItem: product => {
     dispatch(addItemThunk(product))
+  },
+  addGuestItem: productId => {
+    dispatch(addGuestCartItem(productId))
   }
 })
 

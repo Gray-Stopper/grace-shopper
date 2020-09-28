@@ -1,10 +1,7 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {me} from '../store'
-import {loadCart, removeItem} from '../store/cart'
 import {removeGuestCartItem, updateGuestItemQuantity} from '../store/guestCart'
-import {GuestProduct} from './guestcartProduct'
-import {CartProduct, CartTotal} from './index'
+import {GuestCartProduct} from './guestCartProduct'
+import {CartTotal} from './index'
 
 export class GuestCart extends Component {
   constructor() {
@@ -26,6 +23,10 @@ export class GuestCart extends Component {
 
   removeItem(productName) {
     removeGuestCartItem(productName)
+    const productObj = JSON.parse(localStorage.getItem('cart'))
+    this.setState({
+      products: productObj
+    })
   }
 
   async updateItem(event, name) {
@@ -38,11 +39,11 @@ export class GuestCart extends Component {
   }
 
   render() {
-    const productsArr = Object.values(this.state.products)
+    const cart = this.state.products || []
+    const productsArr = Object.values(cart)
     return (
       <div>
-        <h3 className="left">Guest's Cart</h3>
-        {this.state.products ? (
+        {productsArr.length > 0 ? (
           <div>
             <table className="cart left">
               <thead className="t-head">
@@ -58,7 +59,7 @@ export class GuestCart extends Component {
               <tbody>
                 {productsArr.map(prod => {
                   return (
-                    <GuestProduct
+                    <GuestCartProduct
                       key={prod.id}
                       product={prod}
                       remove={this.removeItem}
@@ -78,9 +79,4 @@ export class GuestCart extends Component {
   }
 }
 
-const mapState = state => ({})
-
-const mapDispatch = dispatch => ({})
-
-export default connect(mapState, mapDispatch)(GuestCart)
-// export default GuestCart
+export default GuestCart

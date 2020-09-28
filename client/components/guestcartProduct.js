@@ -1,7 +1,7 @@
 import React from 'react'
 import {default as EditCartQuantity} from './editCartQuantity'
 
-export const GuestProduct = props => {
+export const GuestCartProduct = props => {
   const {quantity, name, imageUrl, price} = props.product
   const totalPrice = Math.round(price * quantity * 100) / 100
   return (
