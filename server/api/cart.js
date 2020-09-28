@@ -162,7 +162,6 @@ router.put('/:userId/:orderId', async (req, res, next) => {
       for (let i = 0; i < stock.length; i++) {
         let newStock = stock[i]
         let productId = currentCart[i].productId
-        console.log(newStock)
         await Product.update(
           {
             stock: newStock
@@ -187,7 +186,6 @@ router.put('/:userId/:orderId', async (req, res, next) => {
           }
         }
       )
-      // await Order.create({userId: req.params.userId})
       res.status(200).json({redirectUrl: '/confirmation'})
     }
   } catch (err) {
@@ -198,7 +196,6 @@ router.put('/:userId/:orderId', async (req, res, next) => {
 router.put('/guestCheckout', async (req, res, next) => {
   try {
     const products = req.body.obj
-    console.log(products)
     const stock = await Promise.all(
       products.map(async product => {
         const stock = await Product.findOne({
@@ -221,47 +218,22 @@ router.put('/guestCheckout', async (req, res, next) => {
           }
         })
         .filter(prodName => prodName !== undefined)
-      // await Promise.all(
-      //   outStockItems.map(async prodName => {
-      //     const item = await Product.findOne({
-      //       where: {
-      //         name: prodName
-      //       }
-      //     })
-      //     return item.name
-      //   })
-      // ).then(result => {
-      res.status(202).json({redirectUrl: '/cart', alert: result})
-      // })
+      res.status(202).json({redirectUrl: '/cart', alert: outStockItems})
     } else {
       for (let i = 0; i < stock.length; i++) {
         let newStock = stock[i]
-        let productId = products[i].id
-        console.log(newStock)
+        let productName = products[i].name
         await Product.update(
           {
             stock: newStock
           },
           {
             where: {
-              id: productId
+              name: productName
             }
           }
         )
       }
-      const pennies = req.body.total * 100
-      // await Order.update(
-      //   {
-      //     completed: true,
-      //     subtotal: pennies
-      //   },
-      //   {
-      //     where: {
-      //       userId: req.params.userId,
-      //       id: req.params.orderId
-      //     }
-      //   }
-      // )
       res.status(200).json({redirectUrl: '/confirmation'})
     }
   } catch (err) {

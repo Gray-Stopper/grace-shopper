@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {me} from '../store'
 import {loadCart, removeItem} from '../store/cart'
 import {CartProduct, CartTotal} from './index'
+import {GuestCart} from './guestCart'
 
 class ViewCart extends React.Component {
   constructor() {
@@ -41,7 +42,7 @@ class ViewCart extends React.Component {
           <h3 className="left">
             {this.props.user.firstName
               ? `${this.props.user.firstName}'s Cart`
-              : 'Cart'}
+              : "Guest's Cart"}
           </h3>
           {this.props.cart.id ? (
             <div>
@@ -74,7 +75,7 @@ class ViewCart extends React.Component {
               {this.props.cart.products && <CartTotal cart={this.props.cart} />}
             </div>
           ) : (
-            <p>No items in cart</p>
+            <GuestCart />
           )}
         </div>
       )

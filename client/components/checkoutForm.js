@@ -1,17 +1,17 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {putCheckOutItems, putGuestCheckout} from '../store/checkout'
+import {
+  putCheckOutItems,
+  putGuestCheckout,
+  shipFormComplete,
+  payFormComplete
+} from '../store/checkout'
 import {ShippingForm} from './shippingForm'
 import {PaymentForm} from './paymentForm'
 
 export class CheckOutForm extends Component {
   constructor(props) {
     super()
-    this.state = {
-      shipform: false,
-      payform: false
-    }
 
     this.handleSubmit = this.handleSubmit.bind(this)
     this.filledFields = this.filledFields.bind(this)
@@ -19,23 +19,17 @@ export class CheckOutForm extends Component {
 
   filledFields(type, status) {
     if (status && type === 'ship') {
-      this.setState({
-        shipform: true
-      })
+      this.props.shipForm()
     }
     if (status && type === 'pay') {
-      this.setState({
-        payform: true
-      })
+      this.props.payForm()
     }
   }
 
   handleSubmit(event) {
     event.preventDefault()
     const cart = Object.keys(this.props.props.location.state.product.cart)
-    console.log('cart', this.props.props)
     if (cart.includes('userId')) {
-      //if logged in user --- need the state due to user id and product id
       this.props.cartCheckout({
         obj: this.props.props.location.state,
         total: this.props.cartTotal
@@ -49,8 +43,7 @@ export class CheckOutForm extends Component {
   }
 
   render() {
-    const paymentStatus = !(this.state.shipform && this.state.payform)
-    // console.log(this.props)
+    const paymentStatus = !(this.props.shipform && this.props.payform)
     return (
       <div>
         <ShippingForm
@@ -63,7 +56,7 @@ export class CheckOutForm extends Component {
             <button
               type="submit"
               className="checkout button checkoutPage"
-              disabled={false}
+              disabled={paymentStatus}
             >
               Make my gray go away!
             </button>
@@ -74,8 +67,11 @@ export class CheckOutForm extends Component {
   }
 }
 
-const mapState = () => {
-  return {}
+const mapState = state => {
+  return {
+    shipform: state.checkout.shipping,
+    payform: state.checkout.payment
+  }
 }
 
 const mapDispatch = (dispatch, ownProps) => {
@@ -85,6 +81,12 @@ const mapDispatch = (dispatch, ownProps) => {
     },
     guestCheckOut: obj => {
       return dispatch(putGuestCheckout(obj, ownProps))
+    },
+    shipForm: () => {
+      return dispatch(shipFormComplete())
+    },
+    payForm: () => {
+      return dispatch(payFormComplete())
     }
   }
 }

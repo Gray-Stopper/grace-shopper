@@ -27,7 +27,6 @@ class Routes extends Component {
     const {isAdmin} = this.props
     return (
       <Switch>
-        {/* Routes placed here are available to all visitors */}
         <Route exact path="/home" component={UserHome} />
         <Route exact path="/cart" component={ViewCart} />
         <Route exact path="/checkout" component={Checkout} />
