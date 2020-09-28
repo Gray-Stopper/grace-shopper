@@ -72,6 +72,27 @@ form div {
   font-weight: normal;
 }
 
+.all-product-header {
+  display: inline-block;
+  padding-left: 1.5rem;
+}
+
+.arrow {
+  width: 3rem;
+  height: auto;
+}
+
+.scroll {
+  display: inline-block;
+  background-color: white;
+  border: none;
+}
+
+button:focus {
+  outline: 1px solid #fff;
+  outline-offset: -4px;
+}
+
 .grayStopper {
   padding: 3em;
   /* background-color: #AEB7B3; */

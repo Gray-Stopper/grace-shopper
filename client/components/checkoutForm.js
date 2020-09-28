@@ -10,7 +10,7 @@ import {ShippingForm} from './shippingForm'
 import {PaymentForm} from './paymentForm'
 
 export class CheckOutForm extends Component {
-  constructor(props) {
+  constructor() {
     super()
 
     this.handleSubmit = this.handleSubmit.bind(this)
