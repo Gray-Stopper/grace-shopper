@@ -1,14 +1,17 @@
 import React from 'react'
 
-const UserRow = props => {
-  const {id, email, firstName, lastName, isAdmin} = props.user
+const ProductRow = props => {
+  const {imageUrl, name, id, price, category, stock} = props.product
   return (
     <tr>
+      <td>
+        <img src={imageUrl} className="dash-img" />
+      </td>
       <td>{id}</td>
-      <td>{firstName}</td>
-      <td>{lastName}</td>
-      <td>{email}</td>
-      <td>{isAdmin ? 'Yes' : 'No'}</td>
+      <td>{name}</td>
+      <td>{category}</td>
+      <td>{`$${price}`}</td>
+      <td className={!stock ? 'soldOut' : ''}>{stock}</td>
       <td>
         <button
           type="button"
@@ -22,7 +25,7 @@ const UserRow = props => {
         <button
           type="button"
           className="button remove"
-          onClick={() => props.removeUser(id)}
+          onClick={() => props.removeProduct(id)}
         >
           Delete
         </button>
@@ -31,4 +34,4 @@ const UserRow = props => {
   )
 }
 
-export default UserRow
+export default ProductRow

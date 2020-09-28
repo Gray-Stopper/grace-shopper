@@ -54,18 +54,21 @@ class Users extends React.Component {
 
   async handleAdd(event) {
     event.preventDefault()
-    if (
-      this.state.newFirstName &&
-      this.state.newLastName &&
-      this.state.newPassword &&
-      this.state.newEmail
-    ) {
+    const {
+      newFirstName,
+      newLastName,
+      newEmail,
+      newIsAdmin,
+      newPassword
+    } = this.state
+
+    if (newFirstName && newLastName && newPassword && newEmail) {
       await this.props.addUser({
-        firstName: this.state.newFirstName,
-        lastName: this.state.newLastName,
-        email: this.state.newEmail,
-        isAdmin: this.state.newIsAdmin,
-        password: this.state.newPassword
+        firstName: newFirstName,
+        lastName: newLastName,
+        email: newEmail,
+        isAdmin: newIsAdmin,
+        password: newPassword
       })
       this.setState({
         newFirstName: '',
@@ -79,17 +82,21 @@ class Users extends React.Component {
 
   async handleEdit(event) {
     event.preventDefault()
-    if (
-      this.state.editFirstName &&
-      this.state.editLastName &&
-      this.state.editEmail
-    ) {
+    const {
+      editFirstName,
+      editLastName,
+      editEmail,
+      editId,
+      editIsAdmin
+    } = this.state
+
+    if (editFirstName && editLastName && editEmail) {
       await this.props.editUser({
-        id: this.state.editId,
-        firstName: this.state.editFirstName,
-        lastName: this.state.editLastName,
-        email: this.state.editEmail,
-        isAdmin: this.state.editIsAdmin
+        id: editId,
+        firstName: editFirstName,
+        lastName: editLastName,
+        email: editEmail,
+        isAdmin: editIsAdmin
       })
       this.setState({
         showEdit: false,
