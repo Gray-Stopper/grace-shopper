@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {putCheckOutItems} from '../store/checkout'
+import {putCheckOutItems, putGuestCheckout} from '../store/checkout'
 import {ShippingForm} from './shippingForm'
 import {PaymentForm} from './paymentForm'
 
@@ -32,14 +32,25 @@ export class CheckOutForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    this.props.cartCheckout({
-      obj: this.props.props.location.state,
-      total: this.props.cartTotal
-    })
+    const cart = Object.keys(this.props.props.location.state.product.cart)
+    console.log('cart', this.props.props)
+    if (cart.includes('userId')) {
+      //if logged in user --- need the state due to user id and product id
+      this.props.cartCheckout({
+        obj: this.props.props.location.state,
+        total: this.props.cartTotal
+      })
+    } else {
+      this.props.guestCheckOut({
+        obj: this.props.props.location.state.product.cart,
+        total: this.props.cartTotal
+      })
+    }
   }
 
   render() {
     const paymentStatus = !(this.state.shipform && this.state.payform)
+    // console.log(this.props)
     return (
       <div>
         <ShippingForm
@@ -52,7 +63,7 @@ export class CheckOutForm extends Component {
             <button
               type="submit"
               className="checkout button checkoutPage"
-              disabled={paymentStatus}
+              disabled={false}
             >
               Make my gray go away!
             </button>
@@ -70,7 +81,10 @@ const mapState = () => {
 const mapDispatch = (dispatch, ownProps) => {
   return {
     cartCheckout: obj => {
-      dispatch(putCheckOutItems(obj, ownProps))
+      return dispatch(putCheckOutItems(obj, ownProps))
+    },
+    guestCheckOut: obj => {
+      return dispatch(putGuestCheckout(obj, ownProps))
     }
   }
 }
