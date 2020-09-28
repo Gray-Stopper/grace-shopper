@@ -20,6 +20,8 @@ form div {
   display: inline-block;
 }
 
+/* Navbar */
+
 .header {
   display: flex;
   flex-flow: row wrap;
@@ -37,6 +39,8 @@ form div {
   margin: 0em;
 }
 
+/* Homepage */
+
 .homeImage {
   background-image: url('/assets/download-2.png');
   background-repeat: no-repeat;
@@ -49,6 +53,15 @@ form div {
   text-align: right;
   padding: 1em 5em 1em 1em;
 }
+
+/* Auth form */
+
+.auth-form {
+  border-top: 1px black dashed;
+  border-bottom: 1px black solid;
+}
+
+/* All products view */
 
 .grayStoppers {
   display: flex;
@@ -70,12 +83,15 @@ form div {
   color: black;
 }
 
+/* Single Product View */
+
 .singleProduct {
   display: flex;
   justify-content: center;
 }
 
 /* Cart Page Styling */
+
 .left {
   margin-left: 1.5rem;
 }
@@ -116,6 +132,8 @@ td {
   font-weight: 600;
 }
 
+/* Button styling */
+
 .button {
   border-radius: 5%;
   box-shadow: 1px 1px 1px #000411;
@@ -135,6 +153,10 @@ td {
 .add {
   background-color: #e1efe6;
   margin-left: 2rem;
+}
+
+.auth {
+  background-color: #e1efe6;
 }
 
 .nav {
@@ -179,6 +201,8 @@ td {
   width: 100%;
 }
 
+/* User / Product Dashboard styling */
+
 .margin-left {
   margin-left: 1.5rem;
 }
@@ -216,6 +240,8 @@ td {
 .no-margin {
   margin: 0rem;
 }
+
+/* Checkout page styling */
 
 .checkoutPage {
   display: flex;
