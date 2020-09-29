@@ -4,10 +4,10 @@ import {connect} from 'react-redux'
 import {Link, NavLink} from 'react-router-dom'
 import {logout} from '../store'
 import {emptyCart} from '../store/cart'
-import {Login, Signup} from './authForm'
-import AdminNavbar from './adminNavbar'
-import NotLoggedInNavbar from './notLoggedInNavbar'
-import LoggedInNavbar from './loggedInNavbar'
+import {Login, Signup} from './AuthForm'
+import AdminNavbar from './AdminNavbar'
+import NotLoggedInNavbar from './NotLoggedInNavbar'
+import LoggedInNavbar from './LoggedInNavbar'
 
 class Navbar extends React.Component {
   constructor() {
@@ -39,7 +39,11 @@ class Navbar extends React.Component {
     return (
       <>
         <div className="header">
-          <NavLink to="/products" className="link">
+          <NavLink
+            to="/products"
+            activeClassName="active-link"
+            className="link"
+          >
             See Products
           </NavLink>
           <Link to="/home" className="link">

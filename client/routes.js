@@ -27,29 +27,43 @@ class Routes extends Component {
     const {isAdmin, isLoggedIn} = this.props
     return (
       <Switch>
-        <Route exact path="/home" component={UserHome} />
-        <Route exact path="/checkout" component={Checkout} />
-        <Route exact path="/confirmation" component={Confirmation} />
-        <Route exact path="/products/:productId" component={SingleProduct} />
-        <Route exact path="/products" component={AllProducts} />
         {isAdmin && (
           <Switch>
+            <Route exact path="/" component={UserHome} />
+            <Route path="/home" component={UserHome} />
             <Route path="/productDashboard" component={ProductDashboard} />
-            <Route path="/users" component={Users} />
+            <Route path="/userDashboard" component={Users} />
+            <Route exact path="/products" component={AllProducts} />
+            <Route path="/products/:productId" component={SingleProduct} />
+            <Route path="*" component={UserHome} />
           </Switch>
         )}
         {isLoggedIn &&
           !isAdmin && (
             <Switch>
-              <Route exact path="/cart" component={ViewCart} />
+              <Route exact path="/" component={UserHome} />
+              <Route path="/home" component={UserHome} />
+              <Route exact path="/products" component={AllProducts} />
+              <Route path="/products/:productId" component={SingleProduct} />
+              <Route path="/cart" component={ViewCart} />
+              <Route path="/checkout" component={Checkout} />
+              <Route path="/confirmation" component={Confirmation} />
+              <Route path="*" component={UserHome} />
             </Switch>
           )}
         {!isLoggedIn && (
           <Switch>
+            <Route exact path="/" component={UserHome} />
+            <Route exact path="/home" component={UserHome} />
+            <Route exact path="/checkout" component={Checkout} />
+            <Route exact path="/confirmation" component={Confirmation} />
+            <Route exact path="/products" component={AllProducts} />
+            <Route path="/products/:productId" component={SingleProduct} />
             <Route exact path="/cart" component={GuestCart} />
+            <Route path="*" component={UserHome} />
           </Switch>
         )}
-        <Redirect from="/" to="/home" component={UserHome} />
+        <Route path="*" component={UserHome} />
       </Switch>
     )
   }
