@@ -75,6 +75,7 @@ router.put('/quantity', async (req, res, next) => {
 // add item to cart
 router.put('/add', async (req, res, next) => {
   try {
+    // let message;
     const [currentOrder] = await Order.findOrCreate({
       where: {
         completed: false,
@@ -85,14 +86,20 @@ router.put('/add', async (req, res, next) => {
         as: ProductsInOrder
       }
     })
-
     if (currentOrder.userId !== req.body.userId) {
       res.sendStatus(401)
     } else {
       let updatedProduct
       if (currentOrder.products) {
         currentOrder.products.forEach(async product => {
-          if (product.id === req.body.productId) {
+          let limit = 10
+          if (product.stock < 10) {
+            limit = product.stock
+          }
+          if (
+            product.id === req.body.productId &&
+            product.productsInOrder.quantity < limit
+          ) {
             const newQuantity = (product.productsInOrder.quantity += 1)
             const productToUpdate = await ProductsInOrder.findOne({
               where: {
