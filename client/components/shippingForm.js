@@ -100,7 +100,8 @@ export class ShippingForm extends Component {
       ['WA', 0.065],
       ['WV', 0.06],
       ['WI', 0.05],
-      ['WY', 0.04]
+      ['WY', 0.04],
+      ['DC', 0.06]
     ]
     return (
       <div>

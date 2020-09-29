@@ -42,10 +42,14 @@ class SingleProduct extends Component {
         userId: this.props.userId
       })
     } else {
-      await this.props.addGuestItem(productId)
-      const guestCart = Object.values(JSON.parse(localStorage.getItem('cart')))
-      this.setState({
-        cart: guestCart
+      this.props.addGuestItem(productId).then(() => {
+        const guestCart = Object.values(
+          JSON.parse(localStorage.getItem('cart'))
+        )
+        console.log(guestCart)
+        this.setState({
+          cart: guestCart
+        })
       })
     }
   }
@@ -61,7 +65,6 @@ class SingleProduct extends Component {
     if (Array.isArray(cart)) {
       cartProducts = cart
     }
-    console.log('cartProducts', cartProducts)
     const calPrice = cartProducts.reduce((acc, val) => {
       let orderQuantity
       if (!val.productsInOrder) {
