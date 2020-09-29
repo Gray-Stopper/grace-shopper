@@ -1,13 +1,20 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 
 const LoggedInNavbar = props => {
   return (
     <div className="inline">
-      <Link to="/cart">Cart</Link>
-      <a to="/" href="#" onClick={props.handleClick}>
+      <NavLink className="link" activeClassName="active-link" to="/cart">
+        Cart
+      </NavLink>
+      <NavLink
+        to="/logout"
+        className="link"
+        activeClassName="active-link"
+        onClick={props.handleClick}
+      >
         Logout
-      </a>
+      </NavLink>
     </div>
   )
 }

@@ -1,14 +1,32 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 
 const AdminNavbar = props => {
   return (
     <div className="inline">
-      <Link to="/productDashboard">Product Dashboard</Link>
-      <Link to="/users">User Dashboard</Link>
-      <a to="/" href="#" onClick={props.handleClick}>
+      <NavLink
+        activeClassName="active-link"
+        className="link"
+        to="/productDashboard"
+      >
+        Product Dashboard
+      </NavLink>
+      <NavLink
+        activeClassName="active-link"
+        className="link"
+        to="/userDashboard"
+      >
+        User Dashboard
+      </NavLink>
+      <NavLink
+        activeClassName="active-link"
+        className="link"
+        exact
+        to="/logout"
+        onClick={props.handleClick}
+      >
         Logout
-      </a>
+      </NavLink>
     </div>
   )
 }

@@ -1,11 +1,13 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 
 const NotLoggedInNavbar = props => {
   return (
     <div>
       <div>
-        <Link to="/cart">Cart</Link>
+        <NavLink to="/cart" className="link" activeClassName="active-link">
+          Cart
+        </NavLink>
         <button
           type="button"
           className="button nav"
