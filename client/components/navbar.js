@@ -4,10 +4,8 @@ import {connect} from 'react-redux'
 import {Link, NavLink} from 'react-router-dom'
 import {logout} from '../store'
 import {emptyCart} from '../store/cart'
-import {Login, Signup} from './AuthForm'
-import AdminNavbar from './AdminNavbar'
-import NotLoggedInNavbar from './NotLoggedInNavbar'
-import LoggedInNavbar from './LoggedInNavbar'
+import {Login, Signup} from './authForm'
+import {AdminNavbar, NotLoggedInNavbar, LoggedInNavbar} from './index'
 
 class Navbar extends React.Component {
   constructor() {

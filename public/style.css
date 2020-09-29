@@ -43,6 +43,10 @@ h1 {
   margin: 0em;
 }
 
+.active-link {
+  font-weight: bold;
+}
+
 /* Homepage */
 
 .homeImage {
