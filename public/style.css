@@ -99,7 +99,7 @@ h1 {
 .grayStoppers {
   display: flex;
   justify-content: center;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   box-sizing: border-box;
   font-weight: normal;
 }
@@ -170,7 +170,7 @@ button:focus {
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  padding: 0em 7em;
+  padding: 2rem 3rem 2rem 0rem;
 }
 
 .single-img {
@@ -235,20 +235,24 @@ td {
 }
 
 .remove {
-  background-color: #aeb7b3;
+  background-color: #a30075;
+  color: white;
 }
 
 .edit {
-  background-color: #2d00f7;
+  color: white;
+  background-color: #4700a3;
 }
 
 .add {
-  background-color: #b100e8;
+  background-color: #4700a3;
+  color: white;
   margin-left: 2rem;
 }
 
 .auth {
-  background-color: #b100e8;
+  color: white;
+  background-color: #a30075;
 }
 
 .nav {
@@ -270,7 +274,7 @@ td {
 }
 
 .checkout {
-  margin-top: 0.5rem;
+  margin-top: 1.25rem;
   background-color: #160c28;
   color: ivory;
   position: relative;
@@ -297,7 +301,7 @@ td {
 .clearShort {
   background-color: #a30075;
   color: white;
-  width: 8rem;
+  width: 10rem;
 }
 
 .flex-single {
@@ -306,6 +310,7 @@ td {
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
+  min-width: 12rem;
 }
 
 /* User / Product Dashboard styling */

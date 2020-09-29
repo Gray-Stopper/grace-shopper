@@ -11,7 +11,7 @@ const ProductRow = props => {
       <td>{name}</td>
       <td>{category}</td>
       <td>{`$${price}`}</td>
-      <td className={!stock ? 'soldOut' : ''}>{stock}</td>
+      <td>{stock}</td>
       <td>
         <button
           type="button"

@@ -42,7 +42,7 @@ class Navbar extends React.Component {
             activeClassName="active-link"
             className="nav-link"
           >
-            See Products
+            Shop All Products
           </NavLink>
           <Link to="/home" className="nav-link">
             <h2 className="logo">GRAY STOPPER</h2>

@@ -14,7 +14,8 @@ class SingleProduct extends Component {
     this.handleAdd = this.handleAdd.bind(this)
     this.state = {
       tax: 0,
-      cart: []
+      cart: [],
+      mounted: false
     }
   }
 
@@ -32,6 +33,7 @@ class SingleProduct extends Component {
         cart: guestCart
       })
     }
+    this.setState({mounted: true})
   }
 
   async handleAdd(event, productId) {
@@ -51,67 +53,77 @@ class SingleProduct extends Component {
   }
 
   render() {
-    let cart
-    if (this.props.userId) {
-      cart = this.props.cart
+    if (!this.state.mounted) {
+      return null
     } else {
-      cart = this.state.cart
-    }
-    let cartProducts = cart.products
-    if (Array.isArray(cart)) {
-      cartProducts = cart
-    }
-    const calPrice = cartProducts.reduce((acc, val) => {
-      let orderQuantity
-      if (!val.productsInOrder) {
-        orderQuantity = val.quantity
+      let cart
+      if (this.props.userId) {
+        cart = this.props.cart
       } else {
-        orderQuantity = val.productsInOrder.quantity
+        cart = this.state.cart
       }
-      return acc + val.price * orderQuantity
-    }, 0)
-    const subtotal = Math.round(calPrice * 100) / 100
+      let cartProducts = cart.products
+      if (Array.isArray(cart)) {
+        cartProducts = cart
+      }
+      const calPrice = cartProducts.reduce((acc, val) => {
+        let orderQuantity
+        if (!val.productsInOrder) {
+          orderQuantity = val.quantity
+        } else {
+          orderQuantity = val.productsInOrder.quantity
+        }
+        return acc + val.price * orderQuantity
+      }, 0)
+      const subtotal = Math.round(calPrice * 100) / 100
 
-    const calTax = Math.round(subtotal * this.state.tax * 100) / 100
-    const tax = this.state.tax !== 0 ? `$${calTax}` : 'TBD'
+      const calTax = Math.round(subtotal * this.state.tax * 100) / 100
+      const tax = this.state.tax !== 0 ? `$${calTax}` : 'TBD'
 
-    const total = Math.round((subtotal + 5.99 + calTax) * 100) / 100
-    const product = this.props.product
+      const total = Math.round((subtotal + 5.99 + calTax) * 100) / 100
+      const product = this.props.product
 
-    return (
-      <div className="singleProductPage">
-        {product.id && (
-          <div className="singleProduct">
-            <div className="title-img">
-              <h1>{product.name}</h1>
-              <img src={product.imageUrl} className="single-img" />
+      return (
+        <div className="singleProductPage">
+          {product.id && (
+            <div className="singleProduct">
+              <div className="title-img">
+                <h1>{product.name}</h1>
+                <img src={product.imageUrl} className="single-img" />
+              </div>
+              <div className="flex-single">
+                <p className="description">{product.description}</p>
+                {product.stock > 0 ? (
+                  <button
+                    type="button"
+                    className="clearShort button addItem"
+                    onClick={event => {
+                      this.handleAdd(event, product.id)
+                    }}
+                  >
+                    Add To Cart - ${product.price}
+                  </button>
+                ) : (
+                  <h4 className="soldOut">sold out</h4>
+                )}
+              </div>
             </div>
-            <div className="flex-single">
-              <p className="description">{product.description}</p>
-              {product.stock > 0 ? (
-                <button
-                  type="button"
-                  className="clearShort button addItem"
-                  onClick={event => {
-                    this.handleAdd(event, product.id)
-                  }}
-                >
-                  Add To Cart - ${product.price}
-                </button>
-              ) : (
-                <h4 className="soldOut">sold out</h4>
-              )}
-            </div>
-          </div>
-        )}
-        {cartProducts.length > 0 ? (
-          <div className="checkoutPageChildren totheleft">
+          )}
+          <div className="checkoutPageChildren">
             <h3 className="formHeader">Your Cart Items</h3>
             <table>
               <tbody>
-                {cartProducts.map(cartProduct => (
-                  <SideCartView key={cartProduct.id} item={cartProduct} />
-                ))}
+                {cartProducts.length > 0 ? (
+                  cartProducts.map(cartProduct => (
+                    <SideCartView key={cartProduct.id} item={cartProduct} />
+                  ))
+                ) : (
+                  <h4>
+                    Your cart is empty!
+                    <br />
+                    What are you waiting for?
+                  </h4>
+                )}
               </tbody>
             </table>
             <div>
@@ -137,15 +149,9 @@ class SingleProduct extends Component {
               </table>
             </div>
           </div>
-        ) : (
-          <div className="checkoutPageChildren totheleft">
-            <h3 className="formHeader">
-              Your cart is empty. What are you waiting for?!
-            </h3>
-          </div>
-        )}
-      </div>
-    )
+        </div>
+      )
+    }
   }
 }
 
@@ -165,9 +171,6 @@ const mapDispatch = dispatch => {
     addItem: product => {
       dispatch(addItemThunk(product))
     },
-    // addGuestItem: productId => {
-    //   dispatch(addGuestCartItem(productId))
-    // },
     loadCart: userId => dispatch(loadCart(userId)),
     loadInitialData: () => dispatch(me())
   }
