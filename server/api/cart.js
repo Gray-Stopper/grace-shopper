@@ -75,7 +75,7 @@ router.put('/quantity', async (req, res, next) => {
 // add item to cart
 router.put('/add', async (req, res, next) => {
   try {
-    // let message;
+    let alert
     const [currentOrder] = await Order.findOrCreate({
       where: {
         completed: false,
@@ -110,6 +110,11 @@ router.put('/add', async (req, res, next) => {
             updatedProduct = await productToUpdate.update({
               quantity: newQuantity
             })
+          } else if (
+            product.id === req.body.productId &&
+            product.productsInOrder.quantity >= limit
+          ) {
+            alert = true
           }
         })
       }
@@ -124,7 +129,11 @@ router.put('/add', async (req, res, next) => {
         },
         include: {model: Product, as: ProductsInOrder}
       })
-      res.json(updatedOrder)
+      if (alert) {
+        res.json({updatedOrder, alert: alert})
+      } else {
+        res.json(updatedOrder)
+      }
     }
   } catch (error) {
     next(error)

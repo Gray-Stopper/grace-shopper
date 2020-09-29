@@ -37,7 +37,10 @@ export const emptyCart = () => ({type: EMPTY_CART})
 export const addItemThunk = idObj => async dispatch => {
   try {
     const {data, status} = await axios.put('/api/cart/add', idObj)
-    if (status === 200) {
+    if (data.alert) {
+      alert("THAT'S ALL THE STOCK WE HAVE!")
+    } else if (status === 200) {
+      // if (status === 200) {
       dispatch(gotCart(data))
     } else if (status === 401) {
       throw new Error("Warning: attempt to edit another user's cart")
