@@ -2,8 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {me} from '../store'
 import {loadCart, removeItem} from '../store/cart'
-import {CartProduct, CartTotal} from './index'
-import {GuestCart} from './guestCart'
+import {Cart} from './Cart'
 
 class ViewCart extends React.Component {
   constructor() {
@@ -37,46 +36,15 @@ class ViewCart extends React.Component {
     if (!this.state.mounted) {
       return null
     } else {
+      console.log('viewCart', this)
       return (
         <div>
-          <h3 className="left">
-            {this.props.user.firstName
-              ? `${this.props.user.firstName}'s Cart`
-              : "Guest's Cart"}
-          </h3>
-          {this.props.cart.id ? (
-            <div>
-              <table className="cart left">
-                <thead className="t-head">
-                  <tr>
-                    <th />
-                    <th scope="col">Item</th>
-                    <th scope="col">Item Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Total Price</th>
-                    <th />
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.props.cart.products &&
-                    this.props.cart.products.map(prod => {
-                      return (
-                        <CartProduct
-                          key={prod.id}
-                          product={prod}
-                          userId={this.props.user.id}
-                          orderId={this.props.cart.id}
-                          remove={this.handleRemove}
-                        />
-                      )
-                    })}
-                </tbody>
-              </table>
-              {this.props.cart.products && <CartTotal cart={this.props.cart} />}
-            </div>
-          ) : (
-            <GuestCart />
-          )}
+          <h3 className="left">{this.props.user.firstName}'s Cart</h3>
+          <Cart
+            cart={this.props.cart}
+            user={this.props.user}
+            remove={this.handleRemove}
+          />
         </div>
       )
     }

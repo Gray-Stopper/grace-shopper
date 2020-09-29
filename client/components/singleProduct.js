@@ -80,16 +80,19 @@ class SingleProduct extends Component {
     const product = this.props.product
 
     return (
-      <>
-        <div id="single-product">
-          {product.id && (
-            <div className="singleProduct">
+      <div className="singleProductPage">
+        {product.id && (
+          <div className="singleProduct">
+            <div className="title-img">
               <h1>{product.name}</h1>
-              <img src={product.imageUrl} width="400" height="400" />
+              <img src={product.imageUrl} className="single-img" />
+            </div>
+            <div className="">
+              <p className="description">{product.description}</p>
               {product.stock > 0 ? (
                 <button
                   type="button"
-                  className="clear button"
+                  className="clear button addItem"
                   onClick={() => {
                     this.handleAdd(event, product.id)
                   }}
@@ -99,12 +102,11 @@ class SingleProduct extends Component {
               ) : (
                 <h4 className="soldOut">sold out</h4>
               )}
-              <p>{product.description}</p>
             </div>
-          )}
-        </div>
+          </div>
+        )}
         {cartProducts.length > 0 && (
-          <div className="checkoutPageChildren">
+          <div className="checkoutPageChildren totheleft">
             <h3 className="formHeader">Your Cart Items</h3>
             <table>
               <tbody>
@@ -137,7 +139,7 @@ class SingleProduct extends Component {
             </div>
           </div>
         )}
-      </>
+      </div>
     )
   }
 }

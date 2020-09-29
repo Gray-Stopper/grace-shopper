@@ -24,23 +24,32 @@ class Routes extends Component {
   }
 
   render() {
-    const {isAdmin} = this.props
+    const {isAdmin, isLoggedIn} = this.props
     return (
       <Switch>
         <Route exact path="/home" component={UserHome} />
-        <Route exact path="/cart" component={ViewCart} />
         <Route exact path="/checkout" component={Checkout} />
         <Route exact path="/confirmation" component={Confirmation} />
         <Route exact path="/products/:productId" component={SingleProduct} />
         <Route exact path="/products" component={AllProducts} />
-        <Route exact path="/guestCart" component={GuestCart} />
         {isAdmin && (
           <Switch>
             <Route path="/productDashboard" component={ProductDashboard} />
             <Route path="/users" component={Users} />
           </Switch>
         )}
-        <Redirect exact from="/" to="/home" component={UserHome} />
+        {isLoggedIn &&
+          !isAdmin && (
+            <Switch>
+              <Route exact path="/cart" component={ViewCart} />
+            </Switch>
+          )}
+        {!isLoggedIn && (
+          <Switch>
+            <Route exact path="/cart" component={GuestCart} />
+          </Switch>
+        )}
+        <Redirect from="/" to="/home" component={UserHome} />
       </Switch>
     )
   }
