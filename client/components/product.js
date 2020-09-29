@@ -9,8 +9,7 @@ const Product = props => {
       <Link to={`/products/${product.id}`}>
         <img src={product.imageUrl} width="200" height="200" />
       </Link>
-      {/* <h4>{product.category}</h4> */}
-      <Link to={`/products/${product.id}`}>
+      <Link className="link" to={`/products/${product.id}`}>
         <h3>{product.name}</h3>
       </Link>
       {product.stock > 0 ? (
@@ -18,7 +17,7 @@ const Product = props => {
           type="button"
           className="clear button"
           onClick={() => {
-            props.add(event, product.id)
+            props.handleAdd(event, product.id)
           }}
         >
           Add To Cart - ${product.price}

@@ -87,7 +87,7 @@ class SingleProduct extends Component {
               <h1>{product.name}</h1>
               <img src={product.imageUrl} className="single-img" />
             </div>
-            <div className="descript-buy">
+            <div className="">
               <p className="description">{product.description}</p>
               {product.stock > 0 ? (
                 <button

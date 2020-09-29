@@ -22,6 +22,12 @@ router.post('/', isAdminMiddleware, async (req, res, next) => {
       lastName: req.body.lastName,
       isAdmin: req.body.isAdmin
     })
+    const salt = User.generateSalt()
+    const password = User.encryptPassword(req.body.password, salt)
+    await newUser.update({
+      salt,
+      password
+    })
     res.json(newUser)
   } catch (err) {
     next(err)
