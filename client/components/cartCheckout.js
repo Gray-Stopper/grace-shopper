@@ -12,10 +12,10 @@ export class Checkout extends Component {
     this.stateTax = this.stateTax.bind(this)
   }
 
-  stateTax(validation, taxRate) {
+  stateTax(validation) {
     if (validation) {
       this.setState({
-        tax: taxRate
+        tax: 0.07
       })
     }
   }

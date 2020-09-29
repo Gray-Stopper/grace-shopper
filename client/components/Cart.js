@@ -3,12 +3,12 @@ import {CartProduct, CartTotal, GuestCartProduct} from './index'
 
 export const Cart = props => {
   let products = props.cart.products
-  let hasItems = false
-  if (products) {
-    hasItems = true
-  }
   if (!products) {
+    //GuestUser if props.cart.products does not exist
     products = props.cart
+  }
+  let hasItems = false
+  if (products.length > 0) {
     hasItems = true
   }
   console.log('cart', props)

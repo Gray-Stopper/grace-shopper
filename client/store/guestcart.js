@@ -7,13 +7,14 @@ export const addGuestCartItem = async productId => {
       const productObj = JSON.parse(localStorage.getItem('cart'))
       if (Object.keys(productObj).includes(data.name)) {
         if (productObj[data.name].quantity >= 10) {
-          alert('Purchases are up to 10 per item! Sharing is caring!')
-        }
-        if (data.stock < productObj[data.name].quantity) {
-          ++productObj[data.name].quantity
-        } else {
-          alert(`There is currently ${data.stock} in stock!`)
-        }
+          alert(
+            'You have reached the purchase limit for this item. Sharing is caring!'
+          )
+        } else if (data.stock > productObj[data.name].quantity) {
+            ++productObj[data.name].quantity
+          } else {
+            alert(`Only ${data.stock} in stock!`)
+          }
       } else {
         productObj[data.name] = data
         productObj[data.name].quantity = 1
@@ -36,6 +37,9 @@ export const removeGuestCartItem = productName => {
   try {
     const cartArr = JSON.parse(localStorage.getItem('cart'))
     delete cartArr[productName]
+    if (JSON.stringify(cartArr) === '{}') {
+      console.log('hello')
+    }
     const objToStr = JSON.stringify(cartArr)
     localStorage.setItem('cart', objToStr)
   } catch (err) {

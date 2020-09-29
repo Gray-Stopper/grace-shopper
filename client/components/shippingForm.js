@@ -39,7 +39,8 @@ export class ShippingForm extends Component {
       () => {
         if (Object.values(this.state).indexOf('') === -1) {
           this.props.ifFilled('ship', true)
-          this.props.checkTax(true, Number(this.state.state.slice(3)))
+          // const taxRate = Number(this.state.state.slice(3))
+          this.props.checkTax(true)
         }
       }
     )
@@ -163,7 +164,14 @@ export class ShippingForm extends Component {
             <label className="formBlock">
               <h3 className="textInput">State</h3>
               <div className="blocks">
-                <select
+                <input
+                  className="submitForm postal"
+                  type="text"
+                  name="state"
+                  value={this.state.state}
+                  onChange={this.handleChange}
+                />
+                {/* <select
                   className="submitForm postal"
                   type="text"
                   name="state"
@@ -175,7 +183,7 @@ export class ShippingForm extends Component {
                       {abr[0]}
                     </option>
                   ))}
-                </select>
+                </select> */}
               </div>
             </label>
             <label className="formBlock">
