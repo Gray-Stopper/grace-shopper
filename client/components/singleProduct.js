@@ -104,7 +104,7 @@ class SingleProduct extends Component {
             </div>
           </div>
         )}
-        {cartProducts.length > 0 && (
+        {cartProducts.length > 0 ? (
           <div className="checkoutPageChildren totheleft">
             <h3 className="formHeader">Your Cart Items</h3>
             <table>
@@ -136,6 +136,12 @@ class SingleProduct extends Component {
                 </tbody>
               </table>
             </div>
+          </div>
+        ) : (
+          <div className="checkoutPageChildren totheleft">
+            <h3 className="formHeader">
+              Your cart is empty. What are you waiting for?!
+            </h3>
           </div>
         )}
       </div>
