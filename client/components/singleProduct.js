@@ -61,7 +61,6 @@ class SingleProduct extends Component {
     if (Array.isArray(cart)) {
       cartProducts = cart
     }
-
     const calPrice = cartProducts.reduce((acc, val) => {
       let orderQuantity
       if (!val.productsInOrder) {

@@ -49,7 +49,7 @@ class AllProducts extends Component {
         userId: this.props.userId
       })
     } else {
-      this.props.addGuestItem(productId)
+      await addGuestCartItem(productId)
     }
   }
 
@@ -135,9 +135,6 @@ const mapDispatch = dispatch => ({
   getAllProducts: () => dispatch(fetchAllProducts()),
   addItem: product => {
     dispatch(addItemThunk(product))
-  },
-  addGuestItem: productId => {
-    dispatch(addGuestCartItem(productId))
   }
 })
 

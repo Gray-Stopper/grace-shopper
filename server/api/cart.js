@@ -134,9 +134,9 @@ router.put('/:userId/:orderId', async (req, res, next) => {
     })
     const stock = await Promise.all(
       currentCart.map(async product => {
-        const stock = await Product.findByPk(product.productId)
-        if (product.quantity <= stock.stock) {
-          return stock.stock - product.quantity
+        const inventory = await Product.findByPk(product.productId)
+        if (product.quantity <= inventory.stock) {
+          return inventory.stock - product.quantity
         } else {
           return -1
         }
@@ -198,13 +198,13 @@ router.put('/guestCheckout', async (req, res, next) => {
     const products = req.body.obj
     const stock = await Promise.all(
       products.map(async product => {
-        const stock = await Product.findOne({
+        const inventory = await Product.findOne({
           where: {
             name: product.name
           }
         })
-        if (product.quantity <= stock.stock) {
-          return stock.stock - product.quantity
+        if (product.quantity <= inventory.stock) {
+          return inventory.stock - product.quantity
         } else {
           return -1
         }
