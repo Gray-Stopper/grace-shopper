@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const addGuestCartItem = productId => async () => {
+export const addGuestCartItem = async productId => {
   try {
     const {data} = await axios.get(`/api/products/${productId}`)
     if (localStorage.getItem('cart')) {
@@ -12,7 +12,7 @@ export const addGuestCartItem = productId => async () => {
         productObj[data.name].quantity = 1
       }
       const objToStr = JSON.stringify(productObj)
-      localStorage.setItem('cart', objToStr)
+      await localStorage.setItem('cart', objToStr)
     } else {
       const item = {}
       item[data.name] = data

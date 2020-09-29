@@ -42,7 +42,7 @@ class SingleProduct extends Component {
         userId: this.props.userId
       })
     } else {
-      this.props.addGuestItem(productId)
+      await addGuestCartItem(productId)
       const guestCart = Object.values(JSON.parse(localStorage.getItem('cart')))
       this.setState({
         cart: guestCart
@@ -93,7 +93,7 @@ class SingleProduct extends Component {
                 <button
                   type="button"
                   className="clear button addItem"
-                  onClick={() => {
+                  onClick={event => {
                     this.handleAdd(event, product.id)
                   }}
                 >
@@ -160,9 +160,9 @@ const mapDispatch = dispatch => {
     addItem: product => {
       dispatch(addItemThunk(product))
     },
-    addGuestItem: productId => {
-      dispatch(addGuestCartItem(productId))
-    },
+    // addGuestItem: productId => {
+    //   dispatch(addGuestCartItem(productId))
+    // },
     loadCart: userId => dispatch(loadCart(userId)),
     loadInitialData: () => dispatch(me())
   }
