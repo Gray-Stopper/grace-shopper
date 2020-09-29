@@ -1,6 +1,4 @@
 import React, {Component} from 'react'
-// import Product from './product'
-// import {Link} from 'react-router-dom'
 import {fetchProduct} from '../store/product'
 import {addItemThunk, loadCart} from '../store/cart'
 import {addGuestCartItem} from '../store/guestCart'
@@ -118,11 +116,15 @@ class SingleProduct extends Component {
                     <SideCartView key={cartProduct.id} item={cartProduct} />
                   ))
                 ) : (
-                  <h4>
-                    Your cart is empty!
-                    <br />
-                    What are you waiting for?
-                  </h4>
+                  <tr>
+                    <td className="no-dots">
+                      <h4>
+                        Your cart is empty!
+                        <br />
+                        What are you waiting for?
+                      </h4>
+                    </td>
+                  </tr>
                 )}
               </tbody>
             </table>

@@ -4,9 +4,7 @@ import {connect} from 'react-redux'
 import {fetchAllProducts} from '../store/allProducts'
 import {FavoriteProductRender} from './favoriteProductRender'
 import {addGuestCartItem} from '../store/guestCart'
-/**
- * COMPONENT
- */
+
 class UserHome extends React.Component {
   constructor() {
     super()
@@ -104,9 +102,6 @@ class UserHome extends React.Component {
   }
 }
 
-/**
- * CONTAINER
- */
 const mapState = state => {
   return {
     email: state.user.email,
@@ -121,9 +116,6 @@ const mapDispatch = dispatch => ({
 
 export default connect(mapState, mapDispatch)(UserHome)
 
-/**
- * PROP TYPES
- */
 UserHome.propTypes = {
   email: PropTypes.string
 }

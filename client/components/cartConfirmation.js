@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-const Confirmation = props => {
+const Confirmation = () => {
   return (
     <div>
       <h3 className="textCenter">Purchase is Processing</h3>

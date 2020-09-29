@@ -18,7 +18,6 @@ const getProduct = product => ({type: GET_PRODUCT, product})
 /**
  * THUNK CREATORS
  */
-
 export const fetchProduct = productId => {
   return async dispatch => {
     try {
@@ -34,7 +33,6 @@ export const fetchProduct = productId => {
 /**
  * REDUCER
  */
-
 export default function singleProductReducer(state = defaultProduct, action) {
   switch (action.type) {
     case GET_PRODUCT:

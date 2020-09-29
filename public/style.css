@@ -54,15 +54,6 @@ h1 {
 
 /* Homepage */
 
-/* .homeImage {
-  background-image: url('/assets/download-2.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  width: 70rem;
-  padding: 15em;
-} */
-
 .blurb {
   text-align: left;
   width: 50%;
@@ -177,6 +168,10 @@ button:focus {
   width: 75%;
   height: auto;
   padding: 1em;
+}
+
+.no-dots {
+  border: none;
 }
 
 .description {
@@ -378,7 +373,6 @@ p {
 .formHeader {
   text-align: left;
   font-size: 1.5em;
-  /* font-family: arial; */
 }
 
 .leftPText {
@@ -447,10 +441,6 @@ p {
   color: red;
   text-align: center;
 }
-
-/* .addItem {
-  width: 75%;
-} */
 
 .totheleft {
   padding: 2.5em 10em;

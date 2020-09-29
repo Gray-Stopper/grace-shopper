@@ -87,7 +87,7 @@ export const removeUser = userId => async dispatch => {
 /**
  * REDUCER
  */
-export default function(state = defaultUsers, action) {
+export default function allUsersReducer(state = defaultUsers, action) {
   switch (action.type) {
     case GET_USERS:
       return action.users

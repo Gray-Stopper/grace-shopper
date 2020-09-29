@@ -45,6 +45,7 @@ export class Checkout extends Component {
             <table>
               <tbody>
                 {products.map((product, index) => (
+                  // Index being used as key as guest cart products in local storage do not have ordered / sequential IDs
                   <SideCartView key={index} item={product} />
                 ))}
               </tbody>
