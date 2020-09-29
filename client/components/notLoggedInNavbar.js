@@ -5,7 +5,7 @@ const NotLoggedInNavbar = props => {
   return (
     <div>
       <div>
-        <NavLink to="/cart" className="link" activeClassName="active-link">
+        <NavLink to="/cart" className="nav-link" activeClassName="active-link">
           Cart
         </NavLink>
         <button

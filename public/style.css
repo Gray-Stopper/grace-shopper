@@ -1,5 +1,10 @@
 body {
-  font-family: sans-serif;
+  font-family: 'Raleway', sans-serif;
+}
+
+h3,
+h2 {
+  font-family: 'Montserrat', sans-serif;
 }
 
 a {
@@ -31,7 +36,7 @@ h1 {
   flex-flow: row wrap;
   justify-content: space-evenly;
   align-items: center;
-  background-color: #e1efe6;
+  background-color: #bcadff;
 }
 
 .logo {
@@ -39,27 +44,47 @@ h1 {
   background-repeat: no-repeat;
   background-size: 2.5em;
   padding: 0.6em 2em;
-  font-family: 'Bradley Hand';
   margin: 0em;
 }
 
 .active-link {
+  color: black;
   font-weight: bold;
 }
 
 /* Homepage */
 
-.homeImage {
+/* .homeImage {
   background-image: url('/assets/download-2.png');
   background-repeat: no-repeat;
-  background-size: 60em;
+  background-position: center;
+  background-size: cover;
+  width: 70rem;
   padding: 15em;
+} */
+
+.blurb {
+  text-align: left;
+  width: 50%;
+}
+
+.homeImage {
+  display: flex;
+  justify-content: space-around;
 }
 
 .tagline {
-  background-color: #efcb68;
+  color: black;
+  font-weight: bold;
   text-align: right;
+  width: 30rem;
   padding: 1em 5em 1em 1em;
+  margin: 0rem 20rem;
+  position: relative;
+}
+
+.homepage-text {
+  color: black;
 }
 
 /* Auth form */
@@ -76,7 +101,6 @@ h1 {
   justify-content: center;
   flex-flow: row wrap;
   box-sizing: border-box;
-  /* font-family: Verdana; */
   font-weight: normal;
 }
 
@@ -102,10 +126,26 @@ button:focus {
 }
 
 .grayStopper {
-  padding: 3em;
+  padding: 3rem;
+  width: 12rem;
+  border: 2px #a30075 solid;
+  border-radius: 5%;
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.center {
+  text-align: center;
 }
 
 .link {
+  text-decoration: none;
+  color: black;
+}
+
+.nav-link {
   text-decoration: none;
   color: black;
 }
@@ -199,16 +239,16 @@ td {
 }
 
 .edit {
-  background-color: #efcb68;
+  background-color: #2d00f7;
 }
 
 .add {
-  background-color: #e1efe6;
+  background-color: #b100e8;
   margin-left: 2rem;
 }
 
 .auth {
-  background-color: #e1efe6;
+  background-color: #b100e8;
 }
 
 .nav {
@@ -249,8 +289,23 @@ td {
 }
 
 .clear {
-  background-color: white;
+  background-color: #a30075;
+  color: white;
   width: 100%;
+}
+
+.clearShort {
+  background-color: #a30075;
+  color: white;
+  width: 8rem;
+}
+
+.flex-single {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
 }
 
 /* User / Product Dashboard styling */
@@ -318,7 +373,7 @@ p {
 .formHeader {
   text-align: left;
   font-size: 1.5em;
-  font-family: arial;
+  /* font-family: arial; */
 }
 
 .leftPText {
@@ -385,11 +440,12 @@ p {
 
 .soldOut {
   color: red;
+  text-align: center;
 }
 
-.addItem {
+/* .addItem {
   width: 75%;
-}
+} */
 
 .totheleft {
   padding: 2.5em 10em;

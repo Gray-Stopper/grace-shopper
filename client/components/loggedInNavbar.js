@@ -4,12 +4,12 @@ import {NavLink} from 'react-router-dom'
 const LoggedInNavbar = props => {
   return (
     <div className="inline">
-      <NavLink className="link" activeClassName="active-link" to="/cart">
+      <NavLink className="nav-link" activeClassName="active-link" to="/cart">
         Cart
       </NavLink>
       <NavLink
         to="/logout"
-        className="link"
+        className="nav-link"
         activeClassName="active-link"
         onClick={props.handleClick}
       >

@@ -86,12 +86,12 @@ class SingleProduct extends Component {
               <h1>{product.name}</h1>
               <img src={product.imageUrl} className="single-img" />
             </div>
-            <div className="">
+            <div className="flex-single">
               <p className="description">{product.description}</p>
               {product.stock > 0 ? (
                 <button
                   type="button"
-                  className="clear button addItem"
+                  className="clearShort button addItem"
                   onClick={event => {
                     this.handleAdd(event, product.id)
                   }}
