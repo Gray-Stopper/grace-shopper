@@ -40,11 +40,11 @@ class Navbar extends React.Component {
           <NavLink
             to="/products"
             activeClassName="active-link"
-            className="link"
+            className="nav-link"
           >
-            See Products
+            Shop All Products
           </NavLink>
-          <Link to="/home" className="link">
+          <Link to="/home" className="nav-link">
             <h2 className="logo">GRAY STOPPER</h2>
           </Link>
           <nav>
@@ -79,9 +79,6 @@ class Navbar extends React.Component {
   }
 }
 
-/**
- * CONTAINER
- */
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
@@ -100,9 +97,6 @@ const mapDispatch = dispatch => {
 
 export default connect(mapState, mapDispatch)(Navbar)
 
-/**
- * PROP TYPES
- */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired

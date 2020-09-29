@@ -1,5 +1,10 @@
 body {
-  font-family: sans-serif;
+  font-family: 'Raleway', sans-serif;
+}
+
+h3,
+h2 {
+  font-family: 'Montserrat', sans-serif;
 }
 
 a {
@@ -31,7 +36,7 @@ h1 {
   flex-flow: row wrap;
   justify-content: space-evenly;
   align-items: center;
-  background-color: #e1efe6;
+  background-color: #bcadff;
 }
 
 .logo {
@@ -39,27 +44,38 @@ h1 {
   background-repeat: no-repeat;
   background-size: 2.5em;
   padding: 0.6em 2em;
-  font-family: 'Bradley Hand';
   margin: 0em;
 }
 
 .active-link {
+  color: black;
   font-weight: bold;
 }
 
 /* Homepage */
 
+.blurb {
+  text-align: left;
+  width: 50%;
+}
+
 .homeImage {
-  background-image: url('/assets/download-2.png');
-  background-repeat: no-repeat;
-  background-size: 60em;
-  padding: 15em;
+  display: flex;
+  justify-content: space-around;
 }
 
 .tagline {
-  background-color: #efcb68;
+  color: black;
+  font-weight: bold;
   text-align: right;
+  width: 30rem;
   padding: 1em 5em 1em 1em;
+  margin: 0rem 20rem;
+  position: relative;
+}
+
+.homepage-text {
+  color: black;
 }
 
 /* Auth form */
@@ -74,9 +90,8 @@ h1 {
 .grayStoppers {
   display: flex;
   justify-content: center;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   box-sizing: border-box;
-  /* font-family: Verdana; */
   font-weight: normal;
 }
 
@@ -102,10 +117,26 @@ button:focus {
 }
 
 .grayStopper {
-  padding: 3em;
+  padding: 3rem;
+  width: 12rem;
+  border: 2px #a30075 solid;
+  border-radius: 5%;
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.center {
+  text-align: center;
 }
 
 .link {
+  text-decoration: none;
+  color: black;
+}
+
+.nav-link {
   text-decoration: none;
   color: black;
 }
@@ -130,13 +161,17 @@ button:focus {
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  padding: 0em 7em;
+  padding: 2rem 3rem 2rem 0rem;
 }
 
 .single-img {
   width: 75%;
   height: auto;
   padding: 1em;
+}
+
+.no-dots {
+  border: none;
 }
 
 .description {
@@ -195,20 +230,24 @@ td {
 }
 
 .remove {
-  background-color: #aeb7b3;
+  background-color: #a30075;
+  color: white;
 }
 
 .edit {
-  background-color: #efcb68;
+  color: white;
+  background-color: #4700a3;
 }
 
 .add {
-  background-color: #e1efe6;
+  background-color: #4700a3;
+  color: white;
   margin-left: 2rem;
 }
 
 .auth {
-  background-color: #e1efe6;
+  color: white;
+  background-color: #a30075;
 }
 
 .nav {
@@ -230,7 +269,7 @@ td {
 }
 
 .checkout {
-  margin-top: 0.5rem;
+  margin-top: 1.25rem;
   background-color: #160c28;
   color: ivory;
   position: relative;
@@ -249,8 +288,24 @@ td {
 }
 
 .clear {
-  background-color: white;
+  background-color: #a30075;
+  color: white;
   width: 100%;
+}
+
+.clearShort {
+  background-color: #a30075;
+  color: white;
+  width: 10rem;
+}
+
+.flex-single {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  min-width: 12rem;
 }
 
 /* User / Product Dashboard styling */
@@ -318,7 +373,6 @@ p {
 .formHeader {
   text-align: left;
   font-size: 1.5em;
-  font-family: arial;
 }
 
 .leftPText {
@@ -385,10 +439,7 @@ p {
 
 .soldOut {
   color: red;
-}
-
-.addItem {
-  width: 75%;
+  text-align: center;
 }
 
 .totheleft {

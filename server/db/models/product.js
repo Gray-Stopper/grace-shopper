@@ -7,7 +7,6 @@ const Product = db.define('product', {
     type: Sequelize.STRING,
     defaultValue:
       'https://www.kindpng.com/picc/m/94-942827_grandma-wig-clip-art-wig-clip-art-hd.png'
-    // defaultValue: 'public/favicon.ico.png'
   },
   stock: {
     type: Sequelize.INTEGER,

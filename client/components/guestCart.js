@@ -28,7 +28,7 @@ export class GuestCart extends Component {
     })
   }
 
-  async updateItem(event, name) {
+  updateItem(event, name) {
     const newQuantity = Number(event.target.value)
     updateGuestItemQuantity(name, newQuantity)
     const productObj = JSON.parse(localStorage.getItem('cart'))

@@ -84,7 +84,7 @@ async function seed() {
     Product.create({
       name: 'Magenta Dye',
       description:
-        "'I'm having a magenta day. Not just red, but Magenta!' -- Stephen King",
+        "'I'm having a magenta day. Not just red, but magenta!' -- Stephen King",
       price: 5599,
       category: 'color',
       imageUrl:
@@ -176,7 +176,7 @@ async function seed() {
     Product.create({
       name: "All's Fair With Hair Vitamins",
       description:
-        "'To all my little Hulkamaniacs, say your prayers, take your vitamins and you will never go wrong. -- Hulk Hogan",
+        "'To all my little Hulkamaniacs, say your prayers, take your vitamins and you will never go wrong.' -- Hulk Hogan",
       price: 7299,
       category: 'nutrition',
       // imageUrl: 'https://www.pngitem.com/pimgs/m/556-5569166_cartoon-vitamins-and-minerals-hd-png-download.png'

@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
 
 export class PaymentForm extends Component {
   constructor(props) {
@@ -10,8 +9,6 @@ export class PaymentForm extends Component {
       expYear: '',
       cvv: ''
     }
-
-    this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
 
@@ -28,16 +25,12 @@ export class PaymentForm extends Component {
     )
   }
 
-  handleSubmit(event) {
-    event.preventDefault()
-  }
-
   render() {
     return (
       <div>
         <h1 className="formHeader">Payment</h1>
         <hr />
-        <form onSubmit={this.handleSubmit} className="payMargin">
+        <form className="payMargin">
           <label className="formBlock">
             <h3 className="textInput">Card Number</h3>
             <input
@@ -91,14 +84,3 @@ export class PaymentForm extends Component {
     )
   }
 }
-
-const mapState = state => {
-  return {}
-}
-
-const mapDispatch = (dispatch, ownProps) => {
-  return {}
-}
-
-// export default connect(mapState, mapDispatch)(ShippingForm);
-// export ShippingForm

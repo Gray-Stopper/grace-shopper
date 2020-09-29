@@ -10,12 +10,12 @@ const Product = props => {
         <img src={product.imageUrl} width="200" height="200" />
       </Link>
       <Link className="link" to={`/products/${product.id}`}>
-        <h3>{product.name}</h3>
+        <h3 className="center">{product.name}</h3>
       </Link>
       {product.stock > 0 ? (
         <button
           type="button"
-          className="clear button"
+          className="clear button center"
           onClick={() => {
             props.handleAdd(event, product.id)
           }}

@@ -40,7 +40,6 @@ export const addItemThunk = idObj => async dispatch => {
     if (data.alert) {
       alert("THAT'S ALL THE STOCK WE HAVE!")
     } else if (status === 200) {
-      // if (status === 200) {
       dispatch(gotCart(data))
     } else if (status === 401) {
       throw new Error("Warning: attempt to edit another user's cart")
@@ -102,7 +101,7 @@ export const editQuantity = updateObj => async dispatch => {
 /**
  * REDUCER
  */
-export default function(state = defaultCartState, action) {
+export default function cartReducer(state = defaultCartState, action) {
   switch (action.type) {
     case LOAD_CART:
       return action.cart
