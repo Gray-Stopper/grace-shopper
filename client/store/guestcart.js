@@ -1,12 +1,19 @@
 import axios from 'axios'
 
-export const addGuestCartItem = productId => async () => {
+export const addGuestCartItem = async productId => {
   try {
     const {data} = await axios.get(`/api/products/${productId}`)
     if (localStorage.getItem('cart')) {
       const productObj = JSON.parse(localStorage.getItem('cart'))
       if (Object.keys(productObj).includes(data.name)) {
-        ++productObj[data.name].quantity
+        if (productObj[data.name].quantity >= 10) {
+          alert('Purchases are up to 10 per item! Sharing is caring!')
+        }
+        if (data.stock < productObj[data.name].quantity) {
+          ++productObj[data.name].quantity
+        } else {
+          alert(`There is currently ${data.stock} in stock!`)
+        }
       } else {
         productObj[data.name] = data
         productObj[data.name].quantity = 1
