@@ -12,7 +12,7 @@ class SingleProduct extends Component {
     this.handleAdd = this.handleAdd.bind(this)
     this.state = {
       tax: 0,
-      cart: [],
+      cart: {},
       mounted: false
     }
   }
@@ -26,6 +26,9 @@ class SingleProduct extends Component {
     if (this.props.userId) {
       await this.props.loadCart(this.props.userId)
     } else {
+      if (!localStorage.getItem('cart')) {
+        localStorage.setItem('cart', JSON.stringify({}))
+      }
       const guestCart = Object.values(JSON.parse(localStorage.getItem('cart')))
       this.setState({
         cart: guestCart

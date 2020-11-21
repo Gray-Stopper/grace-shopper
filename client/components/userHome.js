@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import MediaQuery from 'react-responsive'
+import {me} from '../store/user'
 import {fetchAllProducts} from '../store/allProducts'
 import {FavoriteProductRender} from './favoriteProductRender'
 import {addGuestCartItem} from '../store/guestCart'
@@ -10,13 +12,21 @@ class UserHome extends React.Component {
     super()
     this.state = {
       mounted: false,
-      products: []
+      products: [],
+      mediumLeft: 0,
+      mediumRight: 2
     }
     this.handleAdd = this.handleAdd.bind(this)
+    this.scrollLeft = this.scrollLeft.bind(this)
+    this.scrollRight = this.scrollRight.bind(this)
   }
 
   async componentDidMount() {
+    await this.props.getMe()
     await this.props.getAllProducts()
+    if (!localStorage.getItem('cart')) {
+      localStorage.setItem('cart', JSON.stringify({}))
+    }
     this.setState({
       mounted: true,
       products: this.props.allProducts
@@ -46,8 +56,25 @@ class UserHome extends React.Component {
     }
   }
 
+  scrollLeft() {
+    if (this.state.mediumLeft > 0) {
+      this.setState(prevState => ({
+        mediumLeft: --prevState.mediumLeft,
+        mediumRight: --prevState.mediumRight
+      }))
+    }
+  }
+
+  scrollRight() {
+    if (this.state.mediumRight < 3) {
+      this.setState(prevState => ({
+        mediumLeft: ++prevState.mediumLeft,
+        mediumRight: ++prevState.mediumRight
+      }))
+    }
+  }
+
   render() {
-    const grayStoppers = this.props.allProducts || []
     const {email, firstName} = this.props
     if (!this.state.mounted) return null
     else
@@ -55,7 +82,7 @@ class UserHome extends React.Component {
         <div>
           <div className="homeImage">
             {email ? (
-              <div>
+              <div className="blurb">
                 {' '}
                 <h3 className="margin-left">
                   Welcome, {firstName ? firstName : email}... <br />
@@ -88,15 +115,25 @@ class UserHome extends React.Component {
               </p>
             </div>
           </div>
-          <h3 className="margin-left">Shop Our Personal Favorites:</h3>
-          {grayStoppers.length > 0 ? (
+          <div className="homeImage">
+            <h3 className="margin-left">Shop Our Personal Favorites:</h3>
+          </div>
+          <MediaQuery maxWidth={1000}>
+            <FavoriteProductRender
+              mediumLeft={this.state.mediumLeft}
+              mediumRight={this.state.mediumRight}
+              scrollLeft={this.scrollLeft}
+              scrollRight={this.scrollRight}
+              products={this.state.products}
+              handleAdd={this.handleAdd}
+            />
+          </MediaQuery>
+          <MediaQuery minWidth={1001} maxWidth={3000}>
             <FavoriteProductRender
               products={this.state.products}
               handleAdd={this.handleAdd}
             />
-          ) : (
-            <h3>More products coming soon!</h3>
-          )}
+          </MediaQuery>
         </div>
       )
   }
@@ -104,6 +141,7 @@ class UserHome extends React.Component {
 
 const mapState = state => {
   return {
+    user: state.user,
     email: state.user.email,
     firstName: state.user.firstName,
     allProducts: state.allProducts
@@ -111,6 +149,7 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => ({
+  getMe: () => dispatch(me()),
   getAllProducts: () => dispatch(fetchAllProducts())
 })
 

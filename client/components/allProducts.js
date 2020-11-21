@@ -4,6 +4,7 @@ import {fetchAllProducts} from '../store/allProducts'
 import {addItemThunk} from '../store/cart'
 import AllProductRender from './allProductRender'
 import {addGuestCartItem} from '../store/guestCart'
+import {me} from '../store/user'
 
 class AllProducts extends Component {
   constructor() {
@@ -135,7 +136,8 @@ const mapDispatch = dispatch => ({
   getAllProducts: () => dispatch(fetchAllProducts()),
   addItem: product => {
     dispatch(addItemThunk(product))
-  }
+  },
+  loadInitialData: () => dispatch(me())
 })
 
 export default connect(mapState, mapDispatch)(AllProducts)

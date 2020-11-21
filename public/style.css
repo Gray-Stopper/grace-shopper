@@ -56,12 +56,12 @@ h1 {
 
 .blurb {
   text-align: left;
-  width: 50%;
+  max-width: 50ch;
 }
 
 .homeImage {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .tagline {
