@@ -57,6 +57,8 @@ h1 {
 .blurb {
   text-align: left;
   max-width: 50ch;
+  min-width: 30%;
+  margin: 0rem 1rem;
 }
 
 .homeImage {
@@ -119,6 +121,7 @@ button:focus {
 .grayStopper {
   padding: 3rem;
   width: 12rem;
+  min-height: 350px;
   border: 2px #a30075 solid;
   border-radius: 5%;
   margin: 1rem;

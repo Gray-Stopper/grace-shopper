@@ -1481,8 +1481,8 @@ __webpack_require__.r(__webpack_exports__);
 var FavoriteProductRender = function FavoriteProductRender(props) {
   var left = 0,
       right = 3;
-  if (props.mediumLeft) left = props.mediumLeft;
-  if (props.mediumRight) right = props.mediumRight;
+  if (props.left) left = props.left;
+  if (props.right) right = props.right;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "grayStoppers",
     className: "grayStoppers"
@@ -1490,7 +1490,7 @@ var FavoriteProductRender = function FavoriteProductRender(props) {
     type: "button",
     className: "scroll",
     onClick: function onClick() {
-      props.scrollLeft();
+      props.scrollLeft(props.size);
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "arrow",
@@ -1507,7 +1507,7 @@ var FavoriteProductRender = function FavoriteProductRender(props) {
     type: "button",
     className: "scroll",
     onClick: function onClick() {
-      props.scrollRight();
+      props.scrollRight(props.size);
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "arrow",
@@ -3720,7 +3720,9 @@ var UserHome = /*#__PURE__*/function (_React$Component) {
       mounted: false,
       products: [],
       mediumLeft: 0,
-      mediumRight: 2
+      mediumRight: 2,
+      smallLeft: 0,
+      smallRight: 1
     };
     _this.handleAdd = _this.handleAdd.bind(_assertThisInitialized(_this));
     _this.scrollLeft = _this.scrollLeft.bind(_assertThisInitialized(_this));
@@ -3818,24 +3820,38 @@ var UserHome = /*#__PURE__*/function (_React$Component) {
     }()
   }, {
     key: "scrollLeft",
-    value: function scrollLeft() {
-      if (this.state.mediumLeft > 0) {
+    value: function scrollLeft(size) {
+      if (size === 'medium') {
         this.setState(function (prevState) {
           return {
             mediumLeft: --prevState.mediumLeft,
             mediumRight: --prevState.mediumRight
           };
         });
+      } else if (size === 'small') {
+        this.setState(function (prevState) {
+          return {
+            smallLeft: --prevState.smallLeft,
+            smallRight: --prevState.smallRight
+          };
+        });
       }
     }
   }, {
     key: "scrollRight",
-    value: function scrollRight() {
-      if (this.state.mediumRight < 3) {
+    value: function scrollRight(size) {
+      if (size === 'medium') {
         this.setState(function (prevState) {
           return {
             mediumLeft: ++prevState.mediumLeft,
             mediumRight: ++prevState.mediumRight
+          };
+        });
+      } else if (size === 'small') {
+        this.setState(function (prevState) {
+          return {
+            smallLeft: ++prevState.smallLeft,
+            smallRight: ++prevState.smallRight
           };
         });
       }
@@ -3848,11 +3864,11 @@ var UserHome = /*#__PURE__*/function (_React$Component) {
           firstName = _this$props.firstName;
       if (!this.state.mounted) return null;else return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "homeImage"
-      }, email ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "blurb"
-      }, ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+      }, email ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "margin-left"
-      }, "Welcome, ", firstName ? firstName : email, "... ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "to a virtual spa for your aging head")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Welcome, guest... ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "to a virtual spa for your aging head"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Welcome, ", firstName ? firstName : email, "... ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "to a virtual spa for your aging head") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Welcome, guest... ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "to a virtual spa for your aging head")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "blurb"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "leftPText margin-left"
@@ -3861,14 +3877,26 @@ var UserHome = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "margin-left"
       }, "Shop Our Personal Favorites:")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_responsive__WEBPACK_IMPORTED_MODULE_3___default.a, {
-        maxWidth: 1000
+        maxWidth: 750
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_favoriteProductRender__WEBPACK_IMPORTED_MODULE_6__["FavoriteProductRender"], {
-        mediumLeft: this.state.mediumLeft,
-        mediumRight: this.state.mediumRight,
+        left: this.state.smallLeft,
+        right: this.state.smallRight,
         scrollLeft: this.scrollLeft,
         scrollRight: this.scrollRight,
         products: this.state.products,
-        handleAdd: this.handleAdd
+        handleAdd: this.handleAdd,
+        size: "small"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_responsive__WEBPACK_IMPORTED_MODULE_3___default.a, {
+        maxWidth: 1000,
+        minWidth: 751
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_favoriteProductRender__WEBPACK_IMPORTED_MODULE_6__["FavoriteProductRender"], {
+        left: this.state.mediumLeft,
+        right: this.state.mediumRight,
+        scrollLeft: this.scrollLeft,
+        scrollRight: this.scrollRight,
+        products: this.state.products,
+        handleAdd: this.handleAdd,
+        size: "medium"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_responsive__WEBPACK_IMPORTED_MODULE_3___default.a, {
         minWidth: 1001,
         maxWidth: 3000

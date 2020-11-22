@@ -4,8 +4,8 @@ import Product from './product'
 export const FavoriteProductRender = props => {
   let left = 0,
     right = 3
-  if (props.mediumLeft) left = props.mediumLeft
-  if (props.mediumRight) right = props.mediumRight
+  if (props.left) left = props.left
+  if (props.right) right = props.right
   return (
     <>
       <div id="grayStoppers" className="grayStoppers">
@@ -14,7 +14,7 @@ export const FavoriteProductRender = props => {
             type="button"
             className="scroll"
             onClick={() => {
-              props.scrollLeft()
+              props.scrollLeft(props.size)
             }}
           >
             <img
@@ -39,7 +39,7 @@ export const FavoriteProductRender = props => {
             type="button"
             className="scroll"
             onClick={() => {
-              props.scrollRight()
+              props.scrollRight(props.size)
             }}
           >
             <img

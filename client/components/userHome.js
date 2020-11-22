@@ -14,7 +14,9 @@ class UserHome extends React.Component {
       mounted: false,
       products: [],
       mediumLeft: 0,
-      mediumRight: 2
+      mediumRight: 2,
+      smallLeft: 0,
+      smallRight: 1
     }
     this.handleAdd = this.handleAdd.bind(this)
     this.scrollLeft = this.scrollLeft.bind(this)
@@ -56,20 +58,30 @@ class UserHome extends React.Component {
     }
   }
 
-  scrollLeft() {
-    if (this.state.mediumLeft > 0) {
+  scrollLeft(size) {
+    if (size === 'medium') {
       this.setState(prevState => ({
         mediumLeft: --prevState.mediumLeft,
         mediumRight: --prevState.mediumRight
       }))
+    } else if (size === 'small') {
+      this.setState(prevState => ({
+        smallLeft: --prevState.smallLeft,
+        smallRight: --prevState.smallRight
+      }))
     }
   }
 
-  scrollRight() {
-    if (this.state.mediumRight < 3) {
+  scrollRight(size) {
+    if (size === 'medium') {
       this.setState(prevState => ({
         mediumLeft: ++prevState.mediumLeft,
         mediumRight: ++prevState.mediumRight
+      }))
+    } else if (size === 'small') {
+      this.setState(prevState => ({
+        smallLeft: ++prevState.smallLeft,
+        smallRight: ++prevState.smallRight
       }))
     }
   }
@@ -81,20 +93,19 @@ class UserHome extends React.Component {
       return (
         <div>
           <div className="homeImage">
-            {email ? (
-              <div className="blurb">
-                {' '}
+            <div className="blurb">
+              {email ? (
                 <h3 className="margin-left">
                   Welcome, {firstName ? firstName : email}... <br />
                   to a virtual spa for your aging head
                 </h3>
-              </div>
-            ) : (
-              <h3>
-                Welcome, guest... <br />
-                to a virtual spa for your aging head
-              </h3>
-            )}
+              ) : (
+                <h3>
+                  Welcome, guest... <br />
+                  to a virtual spa for your aging head
+                </h3>
+              )}
+            </div>
             <div className="blurb">
               <p className="leftPText margin-left">
                 Picture this scene: you're getting ready for a night out. You
@@ -118,14 +129,26 @@ class UserHome extends React.Component {
           <div className="homeImage">
             <h3 className="margin-left">Shop Our Personal Favorites:</h3>
           </div>
-          <MediaQuery maxWidth={1000}>
+          <MediaQuery maxWidth={750}>
             <FavoriteProductRender
-              mediumLeft={this.state.mediumLeft}
-              mediumRight={this.state.mediumRight}
+              left={this.state.smallLeft}
+              right={this.state.smallRight}
               scrollLeft={this.scrollLeft}
               scrollRight={this.scrollRight}
               products={this.state.products}
               handleAdd={this.handleAdd}
+              size="small"
+            />
+          </MediaQuery>
+          <MediaQuery maxWidth={1000} minWidth={751}>
+            <FavoriteProductRender
+              left={this.state.mediumLeft}
+              right={this.state.mediumRight}
+              scrollLeft={this.scrollLeft}
+              scrollRight={this.scrollRight}
+              products={this.state.products}
+              handleAdd={this.handleAdd}
+              size="medium"
             />
           </MediaQuery>
           <MediaQuery minWidth={1001} maxWidth={3000}>
