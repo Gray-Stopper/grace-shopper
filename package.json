@@ -1,7 +1,7 @@
 {
   "name": "gray_stopper",
   "version": "2.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "description": "A virtual spa for your aging head",
   "engines": {
     "node": "~12.11.1"
   },
@@ -56,6 +56,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
+    "react-responsive": "^8.1.1",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",

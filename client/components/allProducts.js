@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import MediaQuery from 'react-responsive'
 import {fetchAllProducts} from '../store/allProducts'
 import {addItemThunk} from '../store/cart'
 import AllProductRender from './allProductRender'
 import {addGuestCartItem} from '../store/guestCart'
+import {me} from '../store/user'
 
 class AllProducts extends Component {
   constructor() {
@@ -54,17 +56,17 @@ class AllProducts extends Component {
   }
 
   scrollLeft(category) {
-    if (category === 'color' && this.state.colorLeft > 0) {
+    if (category === 'color') {
       this.setState(prevState => ({
         colorLeft: --prevState.colorLeft,
         colorRight: --prevState.colorRight
       }))
-    } else if (category === 'wigs' && this.state.wigLeft > 0) {
+    } else if (category === 'wigs') {
       this.setState(prevState => ({
         wigLeft: --prevState.wigLeft,
         wigRight: --prevState.wigRight
       }))
-    } else if (category === 'nutrition' && this.state.nutritionLeft > 0) {
+    } else if (category === 'nutrition') {
       this.setState(prevState => ({
         nutritionLeft: --prevState.nutritionLeft,
         nutritionRight: --prevState.nutritionRight
@@ -73,26 +75,17 @@ class AllProducts extends Component {
   }
 
   scrollRight(category) {
-    if (
-      category === 'color' &&
-      this.state.colorRight < this.state.colorProducts.length
-    ) {
+    if (category === 'color') {
       this.setState(prevState => ({
         colorLeft: ++prevState.colorLeft,
         colorRight: ++prevState.colorRight
       }))
-    } else if (
-      category === 'wigs' &&
-      this.state.wigRight < this.state.wigProducts.length
-    ) {
+    } else if (category === 'wigs') {
       this.setState(prevState => ({
         wigLeft: ++prevState.wigLeft,
         wigRight: ++prevState.wigRight
       }))
-    } else if (
-      category === 'nutrition' &&
-      this.state.nutritionRight < this.state.nutritionProducts.length
-    ) {
+    } else if (category === 'nutrition') {
       this.setState(prevState => ({
         nutritionLeft: ++prevState.nutritionLeft,
         nutritionRight: ++prevState.nutritionRight
@@ -108,15 +101,34 @@ class AllProducts extends Component {
       return (
         <div>
           {grayStoppers.length > 0 ? (
-            <AllProductRender
-              indexes={this.state}
-              colorProducts={this.state.colorProducts}
-              wigProducts={this.state.wigProducts}
-              nutritionProducts={this.state.nutritionProducts}
-              scrollLeft={this.scrollLeft}
-              scrollRight={this.scrollRight}
-              handleAdd={this.handleAdd}
-            />
+            <>
+              <MediaQuery maxWidth={750}>
+                <AllProductRender
+                  data={this.state}
+                  size="small"
+                  scrollLeft={this.scrollLeft}
+                  scrollRight={this.scrollRight}
+                  handleAdd={this.handleAdd}
+                />
+              </MediaQuery>
+              <MediaQuery maxWidth={1100} minWidth={751}>
+                <AllProductRender
+                  data={this.state}
+                  size="medium"
+                  scrollLeft={this.scrollLeft}
+                  scrollRight={this.scrollRight}
+                  handleAdd={this.handleAdd}
+                />
+              </MediaQuery>
+              <MediaQuery minWidth={1101} maxWidth={3000}>
+                <AllProductRender
+                  data={this.state}
+                  scrollLeft={this.scrollLeft}
+                  scrollRight={this.scrollRight}
+                  handleAdd={this.handleAdd}
+                />
+              </MediaQuery>
+            </>
           ) : (
             <h3>More products coming soon!</h3>
           )}
@@ -135,7 +147,8 @@ const mapDispatch = dispatch => ({
   getAllProducts: () => dispatch(fetchAllProducts()),
   addItem: product => {
     dispatch(addItemThunk(product))
-  }
+  },
+  loadInitialData: () => dispatch(me())
 })
 
 export default connect(mapState, mapDispatch)(AllProducts)
