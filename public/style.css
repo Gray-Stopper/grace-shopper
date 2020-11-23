@@ -149,14 +149,15 @@ button:focus {
 .singleProductPage {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .singleProduct {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  margin: 0rem 3rem;
 }
 
 .title-img {
@@ -168,7 +169,7 @@ button:focus {
 }
 
 .single-img {
-  width: 75%;
+  max-width: 20em;
   height: auto;
   padding: 1em;
 }
@@ -179,6 +180,7 @@ button:focus {
 
 .description {
   width: 75%;
+  max-width: 25rem;
 }
 
 /* Cart Page Styling */
@@ -355,14 +357,30 @@ td {
 
 .checkoutPage {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row;
   justify-content: center;
   left: 0%;
 }
 
 .checkoutPageChildren {
-  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 5%;
+}
+
+.minicart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 20rem;
+  padding: 5%;
+}
+
+@media all and (max-width: 700px) {
+  .hide {
+    display: none;
+  }
 }
 
 .textCenter {
@@ -374,7 +392,7 @@ p {
 }
 
 .formHeader {
-  text-align: left;
+  text-align: center;
   font-size: 1.5em;
 }
 
@@ -398,6 +416,7 @@ p {
 
 .textInput {
   margin: 0.3em;
+  font-size: medium;
   font-weight: normal;
 }
 
@@ -424,7 +443,7 @@ p {
 .pay-img {
   width: 3em;
   height: auto;
-  padding: 0em 1.5em;
+  padding: 0em 1.5em 0em 0em;
 }
 
 .rowSpaces {
@@ -443,6 +462,7 @@ p {
 .soldOut {
   color: red;
   text-align: center;
+  margin-top: 0.75rem;
 }
 
 .totheleft {

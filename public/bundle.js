@@ -843,7 +843,7 @@ var Checkout = /*#__PURE__*/function (_Component) {
         checkTax: this.stateTax,
         cartTotal: total
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "checkoutPageChildren"
+        className: "minicart hide"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "formHeader"
       }, "Cart Items"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, products.map(function (product, index) {
@@ -3280,7 +3280,7 @@ var SingleProduct = /*#__PURE__*/function (_Component) {
         }, "Add To Cart - $", product.price) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
           className: "soldOut"
         }, "sold out"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "checkoutPageChildren"
+          className: "minicart hide"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
           className: "formHeader"
         }, "Your Cart Items"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, cartProducts.length > 0 ? cartProducts.map(function (cartProduct) {

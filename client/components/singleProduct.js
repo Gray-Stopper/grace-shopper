@@ -110,7 +110,7 @@ class SingleProduct extends Component {
               </div>
             </div>
           )}
-          <div className="checkoutPageChildren">
+          <div className="minicart hide">
             <h3 className="formHeader">Your Cart Items</h3>
             <table>
               <tbody>

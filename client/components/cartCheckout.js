@@ -39,7 +39,7 @@ export class Checkout extends Component {
             cartTotal={total}
           />
         </div>
-        <div className="checkoutPageChildren">
+        <div className="minicart hide">
           <h3 className="formHeader">Cart Items</h3>
           <div>
             <table>
