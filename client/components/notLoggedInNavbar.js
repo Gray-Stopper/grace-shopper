@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom'
 const NotLoggedInNavbar = props => {
   return (
     <div>
-      <div>
+      <div className="flex">
         <NavLink to="/cart" className="nav-link" activeClassName="active-link">
           Cart
         </NavLink>

@@ -104,7 +104,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components__WEBPACK_IMPORTED_MODULE_1__["Navbar"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_routes__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "body-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "content"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components__WEBPACK_IMPORTED_MODULE_1__["Navbar"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_routes__WEBPACK_IMPORTED_MODULE_2__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components__WEBPACK_IMPORTED_MODULE_1__["Footer"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -196,7 +200,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var AdminNavbar = function AdminNavbar(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "inline"
+    className: "flex"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
     activeClassName: "active-link",
     className: "nav-link",
@@ -1566,6 +1570,29 @@ var FavoriteProductRender = function FavoriteProductRender(props) {
 
 /***/ }),
 
+/***/ "./client/components/footer.js":
+/*!*************************************!*\
+  !*** ./client/components/footer.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Footer = function Footer() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "footer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\xA9 2020 Gray Stopper. All Rights Reserved."));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Footer);
+
+/***/ }),
+
 /***/ "./client/components/guestCart.js":
 /*!****************************************!*\
   !*** ./client/components/guestCart.js ***!
@@ -1719,7 +1746,7 @@ var GuestCartProduct = function GuestCartProduct(props) {
 /*!************************************!*\
   !*** ./client/components/index.js ***!
   \************************************/
-/*! exports provided: Navbar, UserHome, Login, Signup, AllProducts, ViewCart, CartTotal, CartProduct, EditCartQuantity, Checkout, Confirmation, Users, UserRow, NewUser, EditUser, ProductDashboard, ProductRow, NewProduct, EditProduct, GuestCart, SingleProduct, GuestCartProduct, AdminNavbar, NotLoggedInNavbar, LoggedInNavbar */
+/*! exports provided: Navbar, UserHome, Login, Signup, AllProducts, ViewCart, CartTotal, CartProduct, EditCartQuantity, Checkout, Confirmation, Users, UserRow, NewUser, EditUser, ProductDashboard, ProductRow, NewProduct, EditProduct, GuestCart, SingleProduct, GuestCartProduct, AdminNavbar, NotLoggedInNavbar, LoggedInNavbar, Footer */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1798,11 +1825,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _loggedInNavbar__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./loggedInNavbar */ "./client/components/loggedInNavbar.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "LoggedInNavbar", function() { return _loggedInNavbar__WEBPACK_IMPORTED_MODULE_23__["default"]; });
 
+/* harmony import */ var _footer__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./footer */ "./client/components/footer.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Footer", function() { return _footer__WEBPACK_IMPORTED_MODULE_24__["default"]; });
+
 /**
  * `components/index.js` exists simply as a 'central export' for our components.
  * This way, we can import all of our components from the same place, rather than
  * having to figure out which file they belong to!
  */
+
 
 
 
@@ -1847,7 +1878,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var LoggedInNavbar = function LoggedInNavbar(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "inline"
+    className: "flex"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
     className: "nav-link",
     activeClassName: "active-link",
@@ -1969,7 +2000,9 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
         className: "nav-link"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         className: "logo"
-      }, "GRAY STOPPER")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, this.props.isAdmin && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index__WEBPACK_IMPORTED_MODULE_7__["AdminNavbar"], {
+      }, "GRAY STOPPER")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+        className: ""
+      }, this.props.isAdmin && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index__WEBPACK_IMPORTED_MODULE_7__["AdminNavbar"], {
         handleClick: this.props.handleClick
       }), this.props.isLoggedIn && !this.props.isAdmin && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index__WEBPACK_IMPORTED_MODULE_7__["LoggedInNavbar"], {
         handleLoginClick: this.handleLoginClick,
@@ -2221,7 +2254,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var NotLoggedInNavbar = function NotLoggedInNavbar(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
     to: "/cart",
     className: "nav-link",
     activeClassName: "active-link"
@@ -2397,27 +2432,29 @@ var Product = function Product(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "product",
     key: product.id,
-    className: "grayStopper"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "grayStopper grayStopperContainer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/products/".concat(product.id)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: product.imageUrl,
-    width: "200",
-    height: "200"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "image-product"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "productContent"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "link",
     to: "/products/".concat(product.id)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
-    className: "center"
+    className: "leftPText productName"
   }, product.name)), product.stock > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "button",
     className: "clear button center",
     onClick: function onClick() {
       props.handleAdd(event, product.id);
     }
-  }, "Add To Cart - $", product.price) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-    className: "soldOut"
-  }, "sold out"));
+  }, "Add To Cart - $", product.price) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "button",
+    className: "clear button center disabled"
+  }, "sold out")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Product);
@@ -3998,9 +4035,7 @@ var UserHome = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_favoriteProductRender__WEBPACK_IMPORTED_MODULE_6__["FavoriteProductRender"], {
         products: this.state.products,
         handleAdd: this.handleAdd
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "footer"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\xA9 2020 Gray Stopper. All Rights Reserved.")));
+      })));
     }
   }]);
 

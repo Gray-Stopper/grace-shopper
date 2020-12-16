@@ -223,9 +223,6 @@ class UserHome extends React.Component {
               handleAdd={this.handleAdd}
             />
           </MediaQuery>
-          <div className="footer">
-            <span>© 2020 Gray Stopper. All Rights Reserved.</span>
-          </div>
         </div>
       )
   }

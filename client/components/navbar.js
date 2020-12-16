@@ -47,7 +47,7 @@ class Navbar extends React.Component {
           <Link to="/home" className="nav-link">
             <h2 className="logo">GRAY STOPPER</h2>
           </Link>
-          <nav>
+          <nav className="">
             {/* The navbar will show these links after you log in as an admin */}
             {this.props.isAdmin && (
               <AdminNavbar handleClick={this.props.handleClick} />
