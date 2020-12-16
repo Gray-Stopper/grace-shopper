@@ -93,6 +93,72 @@ class UserHome extends React.Component {
       return (
         <div>
           <div className="homeImage">
+            <div
+              id="carouselExampleIndicators"
+              className="carousel carousel-dark slide carousel-fade"
+              data-bs-ride="carousel"
+            >
+              <ol className="carousel-indicators">
+                <li
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide-to="0"
+                  className="active"
+                />
+                <li
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide-to="1"
+                />
+                <li
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide-to="2"
+                />
+              </ol>
+              <div className="carousel-inner">
+                <div className="carousel-item active">
+                  <img src="assets/plant.jpg" className="d-block" alt="About" />
+                </div>
+                <div className="carousel-item">
+                  <img
+                    src="assets/plant.jpg"
+                    className="d-block"
+                    alt="Shop All"
+                  />
+                </div>
+                <div className="carousel-item">
+                  <img
+                    src="assets/plant.jpg"
+                    className="d-block"
+                    alt="Contact"
+                  />
+                </div>
+              </div>
+              <a
+                className="carousel-control-prev"
+                href="#carouselExampleIndicators"
+                role="button"
+                data-bs-slide="prev"
+              >
+                <span
+                  className="carousel-control-prev-icon"
+                  aria-hidden="true"
+                />
+                <span className="visually-hidden">Previous</span>
+              </a>
+              <a
+                className="carousel-control-next"
+                href="#carouselExampleIndicators"
+                role="button"
+                data-bs-slide="next"
+              >
+                <span
+                  className="carousel-control-next-icon"
+                  aria-hidden="true"
+                />
+                <span className="visually-hidden">Next</span>
+              </a>
+            </div>
+          </div>
+          {/* <div className="homeImage">
             <div className="blurb">
               {email ? (
                 <h3 className="margin-left">
@@ -125,7 +191,7 @@ class UserHome extends React.Component {
                 <b>Welcome to Gray Stopper.</b>
               </p>
             </div>
-          </div>
+          </div> */}
           <div className="homeImage">
             <h3 className="margin-left">Shop Our Personal Favorites:</h3>
           </div>
@@ -157,6 +223,9 @@ class UserHome extends React.Component {
               handleAdd={this.handleAdd}
             />
           </MediaQuery>
+          <div className="footer">
+            <span>© 2020 Gray Stopper. All Rights Reserved.</span>
+          </div>
         </div>
       )
   }
