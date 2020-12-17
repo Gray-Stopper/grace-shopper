@@ -30,7 +30,7 @@ const Product = props => {
             Add To Cart - ${product.price}
           </button>
         ) : (
-          <button type="button" className="clear button center disabled">
+          <button type="button" className="clear disabled button center">
             sold out
           </button>
         )}

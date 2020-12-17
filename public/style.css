@@ -69,7 +69,7 @@ tr {
 }
 
 .homeImage {
-  margin-top: 2rem;
+  padding: 2rem 0 2rem 0;
   display: flex;
   justify-content: space-evenly;
 }
@@ -93,7 +93,7 @@ tr {
   justify-content: space-evenly;
   flex-flow: row nowrap;
   align-items: stretch;
-  background-color: #eeebe7;
+  /* background-color: #eeebe7; */
   margin-top: 5rem;
   padding: 2rem 0 5rem 0;
 }
@@ -144,6 +144,7 @@ button:focus {
 .disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  border: 0;
 }
 .grayStopper {
   /* padding: 3rem; */
@@ -297,11 +298,11 @@ td {
 
 .edit {
   color: white;
-  background-color: #e8712e;
+  background-color: #50423d;
 }
 
 .add {
-  background-color: #e8712e;
+  background-color: #8b8da0;
   color: white;
   margin-left: 2rem;
 }
@@ -555,4 +556,44 @@ p {
 
 .eeebe7 {
   background-color: #eeebe7;
+}
+
+.white {
+  color: white;
+}
+
+.sideCart {
+  max-width: 30%;
+  height: 100%;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  background-color: #675264;
+  overflow-x: hidden;
+  padding-top: 5rem;
+  opacity: 85%;
+}
+
+.navbar-toggler-edit {
+  padding: 0.25rem 0.75rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  transition: box-shadow 0.15s ease-in-out;
+}
+
+button:focus {
+  outline: none;
+}
+
+.sideCart-close {
+  top: 0;
+  color: white;
+  background-color: transparent;
+  border: #675264;
+  padding: 1em;
+  font-size: x-large;
 }

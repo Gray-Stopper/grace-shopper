@@ -92,7 +92,7 @@ class UserHome extends React.Component {
     else
       return (
         <div>
-          <div className="homeImage">
+          <div className="homeImage eeebe7">
             <div
               id="carouselExampleIndicators"
               className="carousel carousel-dark slide carousel-fade"

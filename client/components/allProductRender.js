@@ -116,7 +116,7 @@ const AllProductRender = props => {
           <div className="arrow" />
         )}
       </div>
-      <h2 className="all-product-header">FOR WELLNESS SHOPPERS</h2>
+      <h2 className="all-product-header">WELLNESS SHOPPERS</h2>
       <br />
       <div id="grayStoppers" className="grayStoppers">
         {nutritionLeft !== 0 ? (

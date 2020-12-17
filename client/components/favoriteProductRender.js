@@ -8,7 +8,7 @@ export const FavoriteProductRender = props => {
   if (props.right) right = props.right
   return (
     <>
-      <div id="grayStoppers" className="grayStoppers eeebe7">
+      <div id="grayStoppers" className="grayStoppers">
         {left !== 0 ? (
           <button
             type="button"
