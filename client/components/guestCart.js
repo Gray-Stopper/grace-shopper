@@ -41,7 +41,7 @@ export class GuestCart extends Component {
     const cart = this.state.products || []
     const productsArr = Object.values(cart)
     return (
-      <div>
+      <div className="cart-content">
         <h3 className="left">Guest's Cart</h3>
         <Cart
           cart={productsArr}

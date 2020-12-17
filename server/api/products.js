@@ -83,3 +83,16 @@ router.delete('/:productId', isAdminMiddleware, async (req, res, next) => {
     next(err)
   }
 })
+
+router.get('/type/:category', async (req, res, next) => {
+  try {
+    const productCategory = await Product.findAll({
+      where: {
+        category: req.params.category
+      }
+    })
+    res.json(productCategory)
+  } catch (err) {
+    next(err)
+  }
+})

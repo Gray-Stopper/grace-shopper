@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom'
 
 const AdminNavbar = props => {
   return (
-    <div className="inline">
+    <div className="flex">
       <NavLink
         activeClassName="active-link"
         className="nav-link"

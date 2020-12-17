@@ -6,6 +6,7 @@ import {logout} from '../store'
 import {emptyCart} from '../store/cart'
 import {Login, Signup} from './authForm'
 import {AdminNavbar, NotLoggedInNavbar, LoggedInNavbar} from './index'
+import SideCart from './menuCart'
 
 class Navbar extends React.Component {
   constructor() {
@@ -37,17 +38,32 @@ class Navbar extends React.Component {
     return (
       <>
         <div className="header">
-          <NavLink
+          {/* <NavLink
             to="/products"
             activeClassName="active-link"
             className="nav-link"
           >
             Shop All Products
-          </NavLink>
+          </NavLink> */}
+          <nav className="navbar navbar-light bg-eeebe7">
+            <div className="container-fluid">
+              <button
+                className="navbar-toggler-edit"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarToggleExternalContent"
+                aria-controls="navbarToggleExternalContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span className="navbar-toggler-icon" />
+              </button>
+            </div>
+          </nav>
           <Link to="/home" className="nav-link">
             <h2 className="logo">GRAY STOPPER</h2>
           </Link>
-          <nav>
+          <nav className="">
             {/* The navbar will show these links after you log in as an admin */}
             {this.props.isAdmin && (
               <AdminNavbar handleClick={this.props.handleClick} />

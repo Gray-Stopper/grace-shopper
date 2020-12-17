@@ -97,7 +97,7 @@ class SingleProduct extends Component {
                 {product.stock > 0 ? (
                   <button
                     type="button"
-                    className="clearShort button addItem"
+                    className="clear button addItem"
                     onClick={event => {
                       this.handleAdd(event, product.id)
                     }}

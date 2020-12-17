@@ -11,7 +11,8 @@ import {
   Users,
   GuestCart,
   SingleProduct,
-  ProductDashboard
+  ProductDashboard,
+  ProductCategory
 } from './components'
 import {me} from './store'
 
@@ -31,6 +32,10 @@ class Routes extends Component {
             <Route path="/productDashboard" component={ProductDashboard} />
             <Route path="/userDashboard" component={Users} />
             <Route exact path="/products" component={AllProducts} />
+            <Route
+              path="/products/type/:category"
+              component={ProductCategory}
+            />
             <Route path="/products/:productId" component={SingleProduct} />
             <Route path="*" component={UserHome} />
           </Switch>
@@ -41,6 +46,10 @@ class Routes extends Component {
               <Route exact path="/" component={UserHome} />
               <Route path="/home" component={UserHome} />
               <Route exact path="/products" component={AllProducts} />
+              <Route
+                path="/products/type/:category"
+                component={ProductCategory}
+              />
               <Route path="/products/:productId" component={SingleProduct} />
               <Route path="/cart" component={ViewCart} />
               <Route path="/checkout" component={Checkout} />
@@ -55,6 +64,10 @@ class Routes extends Component {
             <Route exact path="/checkout" component={Checkout} />
             <Route exact path="/confirmation" component={Confirmation} />
             <Route exact path="/products" component={AllProducts} />
+            <Route
+              path="/products/type/:category"
+              component={ProductCategory}
+            />
             <Route path="/products/:productId" component={SingleProduct} />
             <Route exact path="/cart" component={GuestCart} />
             <Route path="*" component={UserHome} />

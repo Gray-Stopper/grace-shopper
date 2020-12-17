@@ -6,6 +6,7 @@ import {me} from '../store/user'
 import {fetchAllProducts} from '../store/allProducts'
 import {FavoriteProductRender} from './favoriteProductRender'
 import {addGuestCartItem} from '../store/guestCart'
+import {Carousel} from './Carousel'
 
 class UserHome extends React.Component {
   constructor() {
@@ -92,7 +93,8 @@ class UserHome extends React.Component {
     else
       return (
         <div>
-          <div className="homeImage">
+          <Carousel />
+          {/* <div className="homeImage">
             <div className="blurb">
               {email ? (
                 <h3 className="margin-left">
@@ -125,38 +127,40 @@ class UserHome extends React.Component {
                 <b>Welcome to Gray Stopper.</b>
               </p>
             </div>
+          </div> */}
+          <div id="personalFavorites">
+            <div id="favs" className="category">
+              <h3 className="margin-left">Shop Our Personal Favorites:</h3>
+            </div>
+            <MediaQuery maxWidth={750}>
+              <FavoriteProductRender
+                left={this.state.smallLeft}
+                right={this.state.smallRight}
+                scrollLeft={this.scrollLeft}
+                scrollRight={this.scrollRight}
+                products={this.state.products}
+                handleAdd={this.handleAdd}
+                size="small"
+              />
+            </MediaQuery>
+            <MediaQuery maxWidth={1000} minWidth={751}>
+              <FavoriteProductRender
+                left={this.state.mediumLeft}
+                right={this.state.mediumRight}
+                scrollLeft={this.scrollLeft}
+                scrollRight={this.scrollRight}
+                products={this.state.products}
+                handleAdd={this.handleAdd}
+                size="medium"
+              />
+            </MediaQuery>
+            <MediaQuery minWidth={1001} maxWidth={3000}>
+              <FavoriteProductRender
+                products={this.state.products}
+                handleAdd={this.handleAdd}
+              />
+            </MediaQuery>
           </div>
-          <div className="homeImage">
-            <h3 className="margin-left">Shop Our Personal Favorites:</h3>
-          </div>
-          <MediaQuery maxWidth={750}>
-            <FavoriteProductRender
-              left={this.state.smallLeft}
-              right={this.state.smallRight}
-              scrollLeft={this.scrollLeft}
-              scrollRight={this.scrollRight}
-              products={this.state.products}
-              handleAdd={this.handleAdd}
-              size="small"
-            />
-          </MediaQuery>
-          <MediaQuery maxWidth={1000} minWidth={751}>
-            <FavoriteProductRender
-              left={this.state.mediumLeft}
-              right={this.state.mediumRight}
-              scrollLeft={this.scrollLeft}
-              scrollRight={this.scrollRight}
-              products={this.state.products}
-              handleAdd={this.handleAdd}
-              size="medium"
-            />
-          </MediaQuery>
-          <MediaQuery minWidth={1001} maxWidth={3000}>
-            <FavoriteProductRender
-              products={this.state.products}
-              handleAdd={this.handleAdd}
-            />
-          </MediaQuery>
         </div>
       )
   }
