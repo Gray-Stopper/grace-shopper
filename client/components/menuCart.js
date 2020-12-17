@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-const SideCart = () => {
+const menuCart = () => {
   return (
     <div className="sideCart collapse" id="navbarToggleExternalContent">
       <button
@@ -22,17 +22,17 @@ const SideCart = () => {
           </Link>
         </p>
         <p className="leftPText">
-          <Link to="" className="nav-link white">
+          <Link to="/products/type/color" className="nav-link white">
             Color Poppers
           </Link>
         </p>
         <p className="leftPText">
-          <Link to="" className="nav-link white">
+          <Link to="/products/type/wigs" className="nav-link white">
             Hair Toppers
           </Link>
         </p>
         <p className="leftPText">
-          <Link to="" className="nav-link white">
+          <Link to="/products/type/nutrition" className="nav-link white">
             Wellness Shoppers
           </Link>
         </p>
@@ -41,4 +41,4 @@ const SideCart = () => {
   )
 }
 
-export default SideCart
+export default menuCart

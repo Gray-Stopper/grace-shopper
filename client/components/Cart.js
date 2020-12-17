@@ -11,7 +11,6 @@ export const Cart = props => {
   if (products.length > 0) {
     hasItems = true
   }
-  console.log('cart', props)
   return (
     <div>
       {hasItems ? (

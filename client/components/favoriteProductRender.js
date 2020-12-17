@@ -12,7 +12,7 @@ export const FavoriteProductRender = props => {
         {left !== 0 ? (
           <button
             type="button"
-            className="scroll eeebe7"
+            className="scroll"
             onClick={() => {
               props.scrollLeft(props.size)
             }}
@@ -37,7 +37,7 @@ export const FavoriteProductRender = props => {
         {right !== 3 && right ? (
           <button
             type="button"
-            className="scroll eeebe7"
+            className="scroll"
             onClick={() => {
               props.scrollRight(props.size)
             }}

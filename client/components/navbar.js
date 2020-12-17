@@ -6,7 +6,7 @@ import {logout} from '../store'
 import {emptyCart} from '../store/cart'
 import {Login, Signup} from './authForm'
 import {AdminNavbar, NotLoggedInNavbar, LoggedInNavbar} from './index'
-import SideCart from './sideCart'
+import SideCart from './menuCart'
 
 class Navbar extends React.Component {
   constructor() {

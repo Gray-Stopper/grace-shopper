@@ -193,7 +193,7 @@ class UserHome extends React.Component {
             </div>
           </div> */}
           <div id="personalFavorites">
-            <div id="favs">
+            <div id="favs" className="category">
               <h3 className="margin-left">Shop Our Personal Favorites:</h3>
             </div>
             <MediaQuery maxWidth={750}>

@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom'
 
 const Product = props => {
   const product = props.product
-
   return (
+    // <div id='categoryContainer' className="grayStopper">
     <div
       id="product"
       key={product.id}
@@ -36,6 +36,7 @@ const Product = props => {
         )}
       </div>
     </div>
+    // </div>
   )
 }
 
