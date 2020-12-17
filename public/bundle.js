@@ -1536,10 +1536,10 @@ var FavoriteProductRender = function FavoriteProductRender(props) {
   if (props.right) right = props.right;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "grayStoppers",
-    className: "grayStoppers"
+    className: "grayStoppers eeebe7"
   }, left !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "button",
-    className: "scroll",
+    className: "scroll eeebe7",
     onClick: function onClick() {
       props.scrollLeft(props.size);
     }
@@ -1556,7 +1556,7 @@ var FavoriteProductRender = function FavoriteProductRender(props) {
     });
   }), right !== 3 && right ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "button",
-    className: "scroll",
+    className: "scroll eeebe7",
     onClick: function onClick() {
       props.scrollRight(props.size);
     }
@@ -3310,7 +3310,7 @@ var SingleProduct = /*#__PURE__*/function (_Component) {
           className: "description"
         }, product.description), product.stock > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           type: "button",
-          className: "clearShort button addItem",
+          className: "clear button addItem",
           onClick: function onClick(event) {
             _this2.handleAdd(event, product.id);
           }
@@ -4005,7 +4005,9 @@ var UserHome = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "visually-hidden"
       }, "Next")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "homeImage"
+        id: "personalFavorites"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "favs"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "margin-left"
       }, "Shop Our Personal Favorites:")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_responsive__WEBPACK_IMPORTED_MODULE_3___default.a, {
@@ -4035,7 +4037,7 @@ var UserHome = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_favoriteProductRender__WEBPACK_IMPORTED_MODULE_6__["FavoriteProductRender"], {
         products: this.state.products,
         handleAdd: this.handleAdd
-      })));
+      }))));
     }
   }]);
 
