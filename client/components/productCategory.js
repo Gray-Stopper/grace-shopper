@@ -83,7 +83,6 @@ class productCategory extends Component {
 
 const mapState = state => ({
   allCategoryProducts: state.categoryProducts,
-  // allProducts: state.allProducts,
   userId: state.user.id
 })
 

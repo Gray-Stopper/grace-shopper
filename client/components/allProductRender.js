@@ -27,7 +27,7 @@ const AllProductRender = props => {
   return (
     <div id="allProductContainer">
       <div id="grayStoppers" className="grayStoppers">
-        <div className="category">
+        <div className="category category-right">
           <h3 className="all-product-header">COLOR POPPERS</h3>
         </div>
         <div className="productContent">
@@ -75,7 +75,7 @@ const AllProductRender = props => {
         </div>
       </div>
       <div id="grayStoppers" className="grayStoppers">
-        <div className="category">
+        <div className="category category-right">
           <h3 className="all-product-header">HAIR TOPPERS</h3>
         </div>
         <div className="productContent">
@@ -123,7 +123,7 @@ const AllProductRender = props => {
         </div>
       </div>
       <div id="grayStoppers" className="grayStoppers">
-        <div className="category">
+        <div className="category category-right">
           <h3 className="all-product-header">WELLNESS SHOPPERS</h3>
         </div>
         <div className="productContent">

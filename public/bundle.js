@@ -115,6 +115,90 @@ var App = function App() {
 
 /***/ }),
 
+/***/ "./client/components/Carousel.js":
+/*!***************************************!*\
+  !*** ./client/components/Carousel.js ***!
+  \***************************************/
+/*! exports provided: Carousel */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Carousel", function() { return Carousel; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+var Carousel = function Carousel() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "homeImage home-background"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "carouselExampleIndicators",
+    className: "carousel carousel-dark slide",
+    "data-bs-ride": "carousel"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ol", {
+    className: "carousel-indicators"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    "data-bs-target": "#carouselExampleIndicators",
+    "data-bs-slide-to": "0",
+    className: "active"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    "data-bs-target": "#carouselExampleIndicators",
+    "data-bs-slide-to": "1"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    "data-bs-target": "#carouselExampleIndicators",
+    "data-bs-slide-to": "2"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "carousel-inner"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "carousel-item active carousel-background"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "assets/plant.jpg",
+    className: "d-block",
+    alt: "About"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "leftPText about-text"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "With our boutique artisanal range of small-batch hair toppers and color poppers, wellness shoppers like yourself need fear the mirror no longer."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "And hey, if you decide to embrace your grays? We have products for you too. All aging heads deserve to feel fabulous."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Welcome to Gray Stopper.")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "carousel-item carousel-background"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "assets/multiHair.jpg",
+    className: "d-block",
+    alt: "Shop All"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/products",
+    className: "shop-all-carousel"
+  }, "Shop All")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "carousel-item"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "assets/gray.jpg",
+    className: "d-block",
+    alt: "Gray Hair"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "carousel-control-prev",
+    href: "#carouselExampleIndicators",
+    role: "button",
+    "data-bs-slide": "prev"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "carousel-control-prev-icon",
+    "aria-hidden": "true"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "visually-hidden"
+  }, "Previous")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "carousel-control-next",
+    href: "#carouselExampleIndicators",
+    role: "button",
+    "data-bs-slide": "next"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "carousel-control-next-icon",
+    "aria-hidden": "true"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "visually-hidden"
+  }, "Next"))));
+};
+
+/***/ }),
+
 /***/ "./client/components/Cart.js":
 /*!***********************************!*\
   !*** ./client/components/Cart.js ***!
@@ -265,7 +349,7 @@ var AllProductRender = function AllProductRender(props) {
     id: "grayStoppers",
     className: "grayStoppers"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "category"
+    className: "category category-right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "all-product-header"
   }, "COLOR POPPERS")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -302,7 +386,7 @@ var AllProductRender = function AllProductRender(props) {
     id: "grayStoppers",
     className: "grayStoppers"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "category"
+    className: "category category-right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "all-product-header"
   }, "HAIR TOPPERS")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -339,7 +423,7 @@ var AllProductRender = function AllProductRender(props) {
     id: "grayStoppers",
     className: "grayStoppers"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "category"
+    className: "category category-right"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "all-product-header"
   }, "WELLNESS SHOPPERS")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2780,7 +2864,6 @@ var productCategory = /*#__PURE__*/function (_Component) {
 var mapState = function mapState(state) {
   return {
     allCategoryProducts: state.categoryProducts,
-    // allProducts: state.allProducts,
     userId: state.user.id
   };
 };
@@ -4096,6 +4179,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_allProducts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/allProducts */ "./client/store/allProducts.js");
 /* harmony import */ var _favoriteProductRender__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./favoriteProductRender */ "./client/components/favoriteProductRender.js");
 /* harmony import */ var _store_guestCart__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../store/guestCart */ "./client/store/guestCart.js");
+/* harmony import */ var _Carousel__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Carousel */ "./client/components/Carousel.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -4121,6 +4205,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -4288,65 +4373,7 @@ var UserHome = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           email = _this$props.email,
           firstName = _this$props.firstName;
-      if (!this.state.mounted) return null;else return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "homeImage eeebe7"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "carouselExampleIndicators",
-        className: "carousel carousel-dark slide carousel-fade",
-        "data-bs-ride": "carousel"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ol", {
-        className: "carousel-indicators"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        "data-bs-target": "#carouselExampleIndicators",
-        "data-bs-slide-to": "0",
-        className: "active"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        "data-bs-target": "#carouselExampleIndicators",
-        "data-bs-slide-to": "1"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        "data-bs-target": "#carouselExampleIndicators",
-        "data-bs-slide-to": "2"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "carousel-inner"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "carousel-item active"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "assets/plant.jpg",
-        className: "d-block",
-        alt: "About"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "carousel-item"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "assets/plant.jpg",
-        className: "d-block",
-        alt: "Shop All"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "carousel-item"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "assets/plant.jpg",
-        className: "d-block",
-        alt: "Contact"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        className: "carousel-control-prev",
-        href: "#carouselExampleIndicators",
-        role: "button",
-        "data-bs-slide": "prev"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "carousel-control-prev-icon",
-        "aria-hidden": "true"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "visually-hidden"
-      }, "Previous")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        className: "carousel-control-next",
-        href: "#carouselExampleIndicators",
-        role: "button",
-        "data-bs-slide": "next"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "carousel-control-next-icon",
-        "aria-hidden": "true"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "visually-hidden"
-      }, "Next")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      if (!this.state.mounted) return null;else return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Carousel__WEBPACK_IMPORTED_MODULE_8__["Carousel"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "personalFavorites"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "favs",

@@ -11,6 +11,10 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  color: #8b8da0;
+}
+
 label {
   display: block;
 }
@@ -69,9 +73,13 @@ tr {
 }
 
 .homeImage {
-  padding: 2rem 0 2rem 0;
+  padding: 5% 25% 3% 25%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+}
+
+.home-background {
+  background: url('/assets/orangeHair.jpeg');
 }
 
 .tagline {
@@ -111,7 +119,35 @@ tr {
   /* background-color: #efbaa6; */
   padding-right: 1rem 1rem 0rem 0rem;
   border-bottom: #efbaa6 solid 1rem;
-  margin-right: 4rem;
+}
+
+.category-right {
+  margin-right: 1rem;
+}
+
+.carousel-background {
+  position: relative;
+  /* display: inline-block; */
+}
+
+.shop-all-carousel {
+  position: absolute;
+  bottom: 4em;
+  right: 4em;
+  background-color: #efbaa6;
+  border-radius: 1.5em;
+  color: white;
+  text-transform: uppercase;
+  padding: 1em 1.5em;
+}
+
+.about-text {
+  width: 90%;
+  padding-left: 40%;
+  position: absolute;
+  z-index: 20;
+  top: 5%;
+  text-align: left;
 }
 
 /* Auth form */
@@ -228,11 +264,11 @@ button:focus {
 .categoryContainer {
   display: flex;
   flex-flow: row wrap;
-  justify-content: left;
+  justify-content: center;
 }
 
 .category-margin {
-  margin: 3rem 8rem 4rem 8rem;
+  margin: 3% 5% 4% 5%;
 }
 
 .category-header {
