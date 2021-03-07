@@ -36,3 +36,4 @@ Admins are able to add, edit, and delete products from the inventory. <br/>
 [Sofia Javed](https://github.com/sofjaved) <br/>
 [Alexandra Langton](https://github.com/alexandralangton) <br/>
 [Melissa Lam](https://github.com/mlam0527) <br/>
+
